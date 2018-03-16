@@ -1,0 +1,20 @@
+Work Diary
+
+z3492782 Li Yu
+
+--------------------------------------------------------------
+Week2:
+ 
+1. Group formed
+2. Learned concepts of DAPP
+3. Learned basic syntax of Solidity
+4. Learned how to use MetaMask
+--------------------------------------------------------------
+Week3: 
+
+1. Created Trello group for team
+2. Wrote project Methodology and Project Time-frame/Schedule for project proposal
+3. Managed group activates on Trello
+4. Reviewed project proposal and submited it
+
+ 

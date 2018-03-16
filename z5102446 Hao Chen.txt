@@ -1,5 +1,19 @@
 Week 01:
 
-Hello World!
+- Hello World!
 
 by Hao Chen
+
+Project initiated in Mar 2018 18S1 
+For COMP9900 
+*******************************************   
+
+Week 02:
+- Writing the proposal, and I am responsible for the part 
+of basic background and drawbacks of existing systems, which 
+is the first part of our proposal.
+
+- Register the trello account.
+
+- Register the BitBucket account.
+*******************************************   

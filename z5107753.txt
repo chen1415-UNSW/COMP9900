@@ -1,0 +1,20 @@
+Work Diary
+
+z5107753 Li Yu
+
+--------------------------------------------------------------
+Week2:
+ 
+1. Group formed
+2. Learned concepts of DAPP
+3. Learned basic syntax of Solidity
+4. Learned how to use node.js
+--------------------------------------------------------------
+Week3: 
+
+1. Join Trello group
+2. Wrote aim part for project proposal
+3. continue learning solidity and DApp
+4. project proposal submited
+
+ 

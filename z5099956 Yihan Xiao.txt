@@ -1,0 +1,18 @@
+Work Diary
+
+z5099956 Yihan Xiao
+
+--------------------------------------------------------------
+Week2:
+ 
+- Group formed
+- Basic study of DApp and syntax of Solidity
+- Go through practice of MetaMask
+--------------------------------------------------------------
+Week3: 
+
+- Begin to cooperate in Trello
+- In charge of Epic section of project proposal
+- Continue to study use of Solidity and Web3.js
+
+ 

@@ -17,4 +17,9 @@ Week3:
 3. Managed group activates on Trello
 4. Reviewed project proposal and submited it
 
- 
+--------------------------------------------------------------
+Week4:
+
+1. Distributed tasks for group members
+2. Created a frond end page of adding products to cart
+3. Provided opinions for database design 

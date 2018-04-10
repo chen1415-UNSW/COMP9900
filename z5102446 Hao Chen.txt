@@ -18,7 +18,6 @@ is the first part of our proposal.
 - Register the BitBucket account.
 *******************************************   
 
-
 Week 04:
 - Finished writing proposal.
 
@@ -28,3 +27,22 @@ Week 04:
 
 - Build the repository
 *******************************************   
+
+Week 05:
+- Installed the webstorm and set the initinal route
+
+- Find the template to fulllfill and modify it
+
+- Finish the diary writing.
+
+- begin to code 
+*******************************************  
+
+Week 06:
+- Finised the login control and login layout
+
+- Find the template for showing the products.
+
+- Finish the diary writing.
+
+*******************************************  

@@ -43,7 +43,7 @@
                         </div>
                         <h2 id="Product_1">Product 1</h2>
                         <p>Product Info</p>
-                        <p id="Price_1">90</p>
+                        <p id="Price_1">90</p><span class="badge">Ether</span>
 
                         <button id="loader1" style="btn btn-primary" type="submit">Add</button>
                     </div>
@@ -54,7 +54,7 @@
                         </div>
                         <h2 id="Product_2">Product 2</h2>
                         <p>Product Info</p>
-                        <p id="Price_2">50</p>
+                        <p id="Price_2">50</p><span class="badge">Ether</span>
 
                         <button id="loader2" style="btn btn-primary" type="submit">Add</button>
                     </div>
@@ -65,7 +65,7 @@
                         </div>
                         <h2 id="Product_3">Product 3</h2>
                         <p>Product Info</p>
-                        <p id="Price_3">5</p>
+                        <p id="Price_3">5</p><span class="badge">Ether</span>
 
                         <button id="loader3" style="btn btn-primary" type="submit">Add</button>
                     </div>
@@ -77,9 +77,11 @@
                 <div id = 'cart-container' data-spy="affix" data-offset-top="10">
                     <h1>Shopping Cart <span class="badge" id='cartItems'></span></h1>
                     <div class="cart" id = 'cart'>
+                        <h4 id="flag">So lonely here, add something</h4>
                         <h4 id="selected"></h4>
                         <h4 id="contract"></h4>
-                        <h4 id="flag">So lonely here, add something</h4>
+                        <h4 id="hash"></h4>
+                        
                     </div>
                     <div id = 'prices'></div>
                 </div>
@@ -242,6 +244,11 @@
             {
                 
                 $("#contract").html(result.args.seller + " " + result.args.buyer + " " + result.args.item + " cost: " + result.args.price);
+                var number = web3.eth.blockNumber; //get the block number of current transaction
+                console.log(number); 
+                var info = web3.eth.getBlock(number); // get all information of a block (current block here)
+                console.log(info.hash); // get the hash number for displaying
+                $("#hash").html(info.hash);
             } else {
                 
                 console.log(error);

@@ -177,31 +177,23 @@
 				<h3>Register Now</h3>
 				<p>Welcome, please enter the following details to continue.</p>
 				<p>If you have previously registered with us, <a href="#">click here</a></p>
-				 <form>
+				 <form method="post" action="/SignUpControl">
 					<ul>
-						<li class="text-info">First Name: </li>
-						<li><input type="text" value=""></li>
+						<li class="text-info">Enter Name: </li>
+						<li><input name="user_name" type="text" value="firstNameTest" required></li>
 					</ul>
 					<ul>
-						<li class="text-info">Last Name: </li>
-						<li><input type="text" value=""></li>
-					 </ul>				 
-					<ul>
-						<li class="text-info">Email: </li>
-						<li><input type="text" value=""></li>
+						<li class="text-info">Enter Email: </li>
+						<li><input name="email" type="text" value="test@gmail.com"></li>
 					</ul>
 					<ul>
-						<li class="text-info">Password: </li>
-						<li><input type="password" value=""></li>
+						<li class="text-info" type="password">Enter Password: </li>
+						<li><input name="password" type="password" value="123456" required></li>
 					</ul>
 					<ul>
 						<li class="text-info">Re-enter Password:</li>
-						<li><input type="password" value=""></li>
+						<li><input name="re_password" type="password" value="123456" required></li>
 					</ul>
-					<ul>
-						<li class="text-info">Mobile Number:</li>
-						<li><input type="text" value=""></li>
-					</ul>						
 					<input type="submit" value="Register Now">
 					<p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p> 
 				</form>

@@ -12,6 +12,8 @@ var productsRoute = require('./routes/products');
 var registerRoute = require('./routes/register');
 var signupRoute = require('./routes/signup');
 var singleRoute = require('./routes/single');
+var SignUpControlRoute = require('./routes/SignUpControl');
+
 
 var app = express();
 
@@ -33,6 +35,8 @@ app.use('/products', productsRoute);
 app.use('/register', registerRoute);
 app.use('/signup', signupRoute);
 app.use('/single', singleRoute);
+app.use('/SignUpControl', SignUpControlRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

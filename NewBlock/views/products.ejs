@@ -9,7 +9,7 @@
 		<meta charset utf="8">
 		<!--fonts-->
 		<link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
-		
+
 		<!--fonts-->
         <!--form-css-->
         <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
@@ -41,128 +41,12 @@
         <!-- //FlexSlider-->
     </head>
     <body>
-        <div class="header">
-            <div class="container">
-                <div class="header-top">
-                    <div class="logo">
-                        <a href="/index">N-AIR</a>
-                    </div>
-                    <div class="login-bars">
-                        <a class="btn btn-default log-bar" href="/register" role="button">Sign up</a>
-                        <a class="btn btn-default log-bar" href="/signup" role="button">Login</a>
-                        <div class="cart box_1">
-                            <a href="/checkout">
-                            <h3>
-                                <div class="total">
-<span class="simpleCart_total"></span>(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div></h3>
-                            </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                            <div class="clearfix"> </div>
-                        </div>	
-                    </div>
-        <div class="clearfix"></div>
-                </div>
-                <!---menu-----bar--->
-                <div class="header-botom">
-                    <div class="content white">
-                    <nav class="navbar navbar-default nav-menu" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <!--/.navbar-header-->
+        <%include header.ejs%>
+        <!--2.加search框-->
+        <%include searchbar.ejs%>
 
-                        <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav nav-font">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/products">Shoes</a></li>
-                                        <li><a href="/products">Tees</a></li>
-                                        <li><a href="/products">Tops</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Tracks</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Gear</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-3">
-                                        <div class="row">
-                                            <div class="col-sm-4 menu-img-pad">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="/products">Joggers</a></li>
-                                                    <li><a href="/products">Foot Ball</a></li>
-                                                    <li><a href="/products">Cricket</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Tennis</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Casual</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-4 menu-img-pad">
-                        <a href="#"><img src="images/menu1.jpg" alt="/" class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                            <div class="col-sm-4 menu-img-pad">
-                        <a href="#"><img src="images/menu2.jpg" alt="/" class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Women<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-2">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="/products">Tops</a></li>
-                                                    <li><a href="/products">Bottoms</a></li>
-                                                    <li><a href="/products">Yoga Pants</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Sports</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Gym</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-6">
-                        <a href="#"><img src="images/menu3.jpg" alt="/" class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">kids<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/products">Tees</a></li>
-                                        <li><a href="/products">Shorts</a></li>
-                                        <li><a href="/products">Gear</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Watches</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Shoes</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="/contact">Catch</a></li>
-                                <div class="clearfix"></div>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!--/.navbar-collapse-->
-                        <div class="clearfix"></div>
-                    </nav>
-                    <!--/.navbar-->   
-                        <div class="clearfix"></div>
-                    </div>
-                    <!--/.content--->
-                </div>
-                    <!--header-bottom-->
-            </div>
-        </div>
+
+        <!--3. 导航 start -->
         <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
@@ -171,6 +55,10 @@
                 </ol>
             </div>
         </div>
+        <!--3. 导航 end -->
+
+
+        <!--4. 展示商品 start -->
         <div class="products-gallery">
            <div class="container">
                <div class="col-md-9 grid-gallery">
@@ -422,25 +310,25 @@
 					 <div class="product_right">
 						 <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Categories</h4>
 						 <div class="tab1">
-							 <ul class="place">								
+							 <ul class="place">
 								 <li class="sort">Shoes</li>
 								 <li class="by"><img src="images/do.png" alt=""></li>
 									<div class="clearfix"> </div>
 							  </ul>
-							 <div class="single-bottom">						
+							 <div class="single-bottom">
 									<a href="#"><p>Running</p></a>
 									<a href="#"><p>Foot ball</p></a>
 									<a href="#"><p>Daily</p></a>
 									<a href="#"><p>Sneakers</p></a>
 						     </div>
-					      </div>						  
+					      </div>
 						  <div class="tab2">
-							 <ul class="place">								
+							 <ul class="place">
 								 <li class="sort">Clothing</li>
 								 <li class="by"><img src="images/do.png" alt=""></li>
 									<div class="clearfix"> </div>
 							  </ul>
-							 <div class="single-bottom">						
+							 <div class="single-bottom">
 									<a href="#"><p>Tracks</p></a>
 									<a href="#"><p>Tees</p></a>
 									<a href="#"><p>Hair bands</p></a>
@@ -448,17 +336,17 @@
 						     </div>
 					      </div>
 						  <div class="tab3">
-							 <ul class="place">								
+							 <ul class="place">
 								 <li class="sort">Gear</li>
 								 <li class="by"><img src="images/do.png" alt=""></li>
 									<div class="clearfix"> </div>
 							  </ul>
-							 <div class="single-bottom">						
+							 <div class="single-bottom">
 									<a href="#"><p>Running app</p></a>
 									<a href="#"><p>Training club</p></a>
 									<a href="#"><p>Nike Fuel+Band se</p></a>
 						     </div>
-					      </div>						  
+					      </div>
 						  <!--script-->
 						<script>
 							$(document).ready(function(){
@@ -467,7 +355,7 @@
 								$(".tab3 .single-bottom").hide();
 								$(".tab4 .single-bottom").hide();
 								$(".tab5 .single-bottom").hide();
-								
+
 								$(".tab1 ul").click(function(){
 									$(".tab1 .single-bottom").slideToggle(300);
 									$(".tab2 .single-bottom").hide();
@@ -495,17 +383,18 @@
 									$(".tab3 .single-bottom").hide();
 									$(".tab2 .single-bottom").hide();
 									$(".tab1 .single-bottom").hide();
-								})	
+								})
 								$(".tab5 ul").click(function(){
 									$(".tab5 .single-bottom").slideToggle(300);
 									$(".tab4 .single-bottom").hide();
 									$(".tab3 .single-bottom").hide();
 									$(".tab2 .single-bottom").hide();
 									$(".tab1 .single-bottom").hide();
-								})	
+								})
 							});
 						</script>
-						<!-- script -->					 
+						<!-- script -->
+                     </div>
 				 </section>
 				 <section  class="sky-form">
 					 <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>DISCOUNTS</h4>
@@ -520,7 +409,7 @@
 								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other(50)</label>
 						 </div>
 					 </div>
-				 </section> 				 
+				 </section>
 				   <!---->
 					 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
@@ -537,7 +426,7 @@
 					 });
 					$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
-					});//]]>  
+					});//]]>
 
 					</script>
 
@@ -574,60 +463,16 @@
 									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Zumba</label>
 								</div>
 							</div>
-				   </section>		
+				   </section>
                     </div>
                </div>
             <div class="clearfix"></div>
-            </div> 
-        </div>
-        <div class="footer-grid">
-            <div class="container">
-                <div class="col-md-2 re-ft-grd">
-                    <h3>Categories</h3>
-                    <ul class="categories">
-                        <li><a href="#">Men</a></li>
-                        <li><a href="#">Women</a></li>
-                        <li><a href="#">Kids</a></li>
-                        <li><a href="#">Formal</a></li>
-                        <li><a href="#">Casuals</a></li>
-                        <li><a href="#">Sports</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 re-ft-grd">
-                    <h3>Short links</h3>
-                    <ul class="shot-links">
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                        <li><a href="#">Terms & conditions</a></li>
-                        <li><a href="/contact">Sitemap</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 re-ft-grd">
-                    <h3>Social</h3>
-                    <ul class="social">
-                        <li><a href="#" class="fb">facebook</a></li>
-                        <li><a href="#" class="twt">twitter</a></li>
-                        <li><a href="#" class="gpls">g+ plus</a></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
-                <div class="col-md-2 re-ft-grd">
-                    <div class="bt-logo">
-                        <div class="logo">
-                            <a href="/index" class="ft-log">N-AIR</a>
-                        </div>
-                    </div>
-                </div>
-        <div class="clearfix"></div>
-            </div>
-            <div class="copy-rt">
-                <div class="container">
-                    <p>Copyright &copy; 2018. Block Business</p>
-                    <p>All rights reserved.</p>
-                </div>
             </div>
         </div>
+        <!--4. 展示商品 end -->
+
+        <!--5. foot start -->
+        <%include footer.ejs%>
+
     </body>
 </html>

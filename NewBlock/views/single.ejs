@@ -9,7 +9,7 @@
 		<meta charset utf="8">
 		<!--fonts-->
 		<link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
-		
+
 		<!--fonts-->
 		<!--bootstrap-->
 			 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -39,137 +39,23 @@
         <!-- //FlexSlider-->
     </head>
     <body>
-        <div class="header">
-            <div class="container">
-                <div class="header-top">
-                    <div class="logo">
-                        <a href="/index">N-AIR</a>
-                    </div>
-                    <div class="login-bars">
-                        <a class="btn btn-default log-bar" href="/register" role="button">Sign up</a>
-                        <a class="btn btn-default log-bar" href="/signup" role="button">Login</a>
-                        <div class="cart box_1">
-                            <a href="/checkout">
-                            <h3>
-                                <div class="total">
-<span class="simpleCart_total"></span>(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div></h3>
-                            </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                            <div class="clearfix"> </div>
-                        </div>	
-                    </div>
-        <div class="clearfix"></div>
-                </div>
-                <!---menu-----bar--->
-                <div class="header-botom">
-                    <div class="content white">
-                    <nav class="navbar navbar-default nav-menu" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <!--/.navbar-header-->
+        <%include header.ejs%>
+        <!--2.加search框-->
+        <%include searchbar.ejs%>
 
-                        <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav nav-font">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/products">Shoes</a></li>
-                                        <li><a href="/products">Tees</a></li>
-                                        <li><a href="/products">Tops</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Tracks</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Gear</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-3">
-                                        <div class="row">
-                                            <div class="col-sm-4 menu-img-pad">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="/products">Joggers</a></li>
-                                                    <li><a href="/products">Foot Ball</a></li>
-                                                    <li><a href="/products">Cricket</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Tennis</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Casual</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-4 menu-img-pad">
-                        <a href="#"><img src="images/menu1.jpg" alt="/" class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                            <div class="col-sm-4 menu-img-pad">
-                        <a href="#"><img src="images/menu2.jpg" alt="/" class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Women<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-2">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="/products">Tops</a></li>
-                                                    <li><a href="/products">Bottoms</a></li>
-                                                    <li><a href="/products">Yoga Pants</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Sports</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="/products">Gym</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-6">
-                        <a href="#"><img src="images/menu3.jpg" alt="/" class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">kids<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/products">Tees</a></li>
-                                        <li><a href="/products">Shorts</a></li>
-                                        <li><a href="/products">Gear</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Watches</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="/products">Shoes</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="/contact">Catch</a></li>
-                                <div class="clearfix"></div>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!--/.navbar-collapse-->
-                        <div class="clearfix"></div>
-                    </nav>
-                    <!--/.navbar-->   
-                        <div class="clearfix"></div>
-                    </div>
-                    <!--/.content--->
-                </div>
-                    <!--header-bottom-->
-            </div>
-        </div>
+
+        <!--3. 导航 start -->
         <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Men</a></li>
-                    <li class="active">Shop</li>
+                    <li class="active">single product</li>
                 </ol>
             </div>
         </div>
+        <!--3. 导航 end -->
+
+        <!--4. 展示单个商品-->
         <div class="showcase-grid">
             <div class="container">
                 <div class="col-md-8 showcase">
@@ -198,15 +84,7 @@
                             <p>Men's running shoes</p>
                             <h4>&#36;190</h4>
                         </div>
-                        <div class="pull-left rating-stars">
-                            <ul>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-                            </ul>
-                        </div>
+
                         <div class="clearfix"></div>
                     </div>
                     <hr class="featurette-divider">
@@ -242,53 +120,38 @@
                         <ul>
                             <li class="ad-2-crt simpleCart_shelfItem">
                                 <a class="btn item_add" href="#" role="button">Add To Cart</a>
-                                <a class="btn" href="#" role="button">Buy Now</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="showcase-last">
-                        <h3>product details</h3>
-                        <ul>
-                            <li>Internal bootie wraps your foot for a sock-like fit</li>
-        <li>Unique eyestays work with the Flywire cables to create an even better glove-like fit</li>
-                            <li>Waffle outsole for durability and multi-surface traction</li>
-        <li>Sculpted Cushlon midsole combines plush cushioning and springy resilience for impact protection</li>
-                            <li>Midsole flex grooves for greater forefoot flexibility</li>
-                        </ul>
-                    </div>
                 </div>
+
         <div class="clearfix"></div>
             </div>
         </div>
-        
+
         <div class="specifications">
             <div class="container">
-              <h3>Item Details</h3> 
+              <h3>Item Details</h3>
                 <div class="detai-tabs">
                     <!-- Nav tabs -->
                     <ul class="nav nav-pills tab-nike" role="tablist">
-                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Highlights</a></li>
-                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Description</a></li>
-                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Terms & conditiona</a></li>
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
-                    <p>The full-length Max Air unit delivers excellent cushioning with enhanced flexibility for smoother transitions through footstrike.</p> 
+                    <p>The full-length Max Air unit delivers excellent cushioning with enhanced flexibility for smoother transitions through footstrike.</p>
                     <p>Dynamic Flywire cables integrate with the laces and wrap your midfoot for a truly adaptive, supportive fit.</p>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="profile">
-                    <p>Nike is one of the leading manufacturer and supplier of sports equipment, footwear and apparels. Nike is a global brand and it continuously creates products using high technology and design innovation. Nike has a vast collection of sports shoes for men at Snapdeal. You can explore our range of basketball shoes, football shoes, cricket shoes, tennis shoes, running shoes, daily shoes or lifestyle shoes. Take your pick from an array of sports shoes in vibrant colours like red, yellow, green, blue, brown, black, grey, olive, pink, beige and white. Designed for top performance, these shoes match the way you play or run. Available in materials like leather, canvas, suede leather, faux leather, mesh etc, these shoes are lightweight, comfortable, sturdy and extremely sporty. The sole of all Nike shoes is designed to provide an increased amount of comfort and the material is good enough to provide an improved fit. These shoes are easy to maintain and last for a really long time given to their durability. Buy Nike shoes for men online with us at some unbelievable discounts and great prices. So get faster and run farther with your Nike shoes and track how hard you can play.</p>    
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="messages">
-                        The images represent actual product though color of the image and product may slightly differ.    
-                    </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
-        
+
+        <!--4. you may like start -->
         <div class="you-might-like">
             <div class="container">
                 <h3 class="you-might">Products You May Like</h3>
@@ -322,7 +185,7 @@
                                     <h3>style 01</h3>
                                 </div>
                                 <div class="pull-right styl-price">
-    <p><a  href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
+                                    <p><a  href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
                                 </div>
                                 <div class="clearfix"></div>
                             </div></div>
@@ -342,7 +205,7 @@
                                     <h3>style 01</h3>
                                 </div>
                                 <div class="pull-right styl-price">
-    <p><a  href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
+                                    <p><a  href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
                                 </div>
                                 <div class="clearfix"></div>
                             </div></div>
@@ -355,56 +218,13 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-        
-        <div class="footer-grid">
-            <div class="container">
-                <div class="col-md-2 re-ft-grd">
-                    <h3>Categories</h3>
-                    <ul class="categories">
-                        <li><a href="#">Men</a></li>
-                        <li><a href="#">Women</a></li>
-                        <li><a href="#">Kids</a></li>
-                        <li><a href="#">Formal</a></li>
-                        <li><a href="#">Casuals</a></li>
-                        <li><a href="#">Sports</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 re-ft-grd">
-                    <h3>Short links</h3>
-                    <ul class="shot-links">
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                        <li><a href="#">Terms & conditions</a></li>
-                        <li><a href="/contact">Sitemap</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 re-ft-grd">
-                    <h3>Social</h3>
-                    <ul class="social">
-                        <li><a href="#" class="fb">facebook</a></li>
-                        <li><a href="#" class="twt">twitter</a></li>
-                        <li><a href="#" class="gpls">g+ plus</a></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
-                <div class="col-md-2 re-ft-grd">
-                    <div class="bt-logo">
-                        <div class="logo">
-                            <a href="/index" class="ft-log">N-AIR</a>
-                        </div>
-                    </div>
-                </div>
-        <div class="clearfix"></div>
-            </div>
-            <div class="copy-rt">
-                <div class="container">
-                    <p>Copyright &copy; 2018. Block Business</p>
-                    <p>All rights reserved.</p>
-                </div>
-            </div>
-        </div>
+        <!--4. you may like end -->
+
+        <!--5. foot start -->
+        <%include footer.ejs%>
+
+
+
+
     </body>
 </html>
-    

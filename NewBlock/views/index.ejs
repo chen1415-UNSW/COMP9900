@@ -24,30 +24,7 @@
 		<!--script-->
     </head>
     <body>
-        <!--1. header start-->
-        <div class="header">
-            <div class="container">
-                <div class="header-top">
-                    <div class="logo">
-                        <a href="/index">N-AIR</a>
-                    </div>
-                    <div class="login-bars">
-                        <a class="btn btn-default log-bar" href="/register" role="button">Sign up</a>
-                        <a class="btn btn-default log-bar" href="/signup" role="button">Login</a>
-                        <div class="cart box_1">
-                            <a href="/checkout">
-                            <h3>
-                                <div class="total">
-                                    <span class="simpleCart_total"></span>(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div></h3>
-                            </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--1. header end-->
+        <%include header.ejs%>
 
         <!--2. @yuli加search框 start -->
         <div class="sub-news">
@@ -139,6 +116,7 @@
             <div class="clearfix"></div>
             </div>
         </div>
+
         <div class="shop-grid">
             <div class="container">
                 <div class="col-md-4 grid-stn simpleCart_shelfItem">
@@ -267,15 +245,6 @@
         <!--4. 展示商品 end -->
 
         <!--5. foot start -->
-        <div class="clearfix"></div>
-            <div>
-            <div class="copy-rt">
-                <br class="container">
-                    <span>Copyright &copy; 2018. Block Business</span></br>
-                    <span>All rights reserved.<a href="/contact"> Contact us</a></span>
-                </div>
-            </div>
-        </div>
-        <!--5. foot end -->
+        <%include footer.ejs%>
     </body>
 </html>

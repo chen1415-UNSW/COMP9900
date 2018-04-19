@@ -1,9 +1,3 @@
-// module.exports = function (request, response, next) {
-//     response.render('index');
-//
-// };
-
-
 
 var express = require('express');
 var router = express.Router();

@@ -13,11 +13,15 @@ var registerRoute = require('./routes/register');
 var signupRoute = require('./routes/signup');
 var singleRoute = require('./routes/single');
 var SignUpControlRoute = require('./routes/SignUpControl');
-
 var addProductRoute = require('./routes/addproduct');
+var LogInControlRoute = require('./routes/LogInControl');
+
 
 
 var app = express();
+
+var mongoose=require('mongoose');
+var db = mongoose.connect("mongodb://127.0.0.1:27017/tests");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,6 +43,7 @@ app.use('/signup', signupRoute);
 app.use('/single', singleRoute);
 app.use('/SignUpControl', SignUpControlRoute);
 app.use('/addProduct', addProductRoute);
+app.use('/LogInControl', LogInControlRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,19 +1,9 @@
-
-
-function validataPwd(pwd, pwd2, callback)
-{
-    var RegisterResult = false;
-    if(pwd == pwd2)
-    {
-        RegisterResult = true;
-    }
-    callback(RegisterResult);
-}
+var Client=require('../models/clients');
 
 
 module.exports = function (request, response, next)
 {
-    console.log("-----Enter the SignUpControl functuion!!!!!!------")
+    console.log("-----Enter the SignUpControl functuion------");
     // var name = request.body.id()
     var username = request.body.user_name;
     var email = request.body.email;
@@ -25,13 +15,24 @@ module.exports = function (request, response, next)
     console.log(pwd);
     console.log(pwd2);
 
-    validataPwd(pwd, pwd2, function (RegisterResult) {
-        if(RegisterResult) {
-            response.redirect('/index');
-            return;
+
+    Client.findOne({'username':username},function (err,res) {
+        result=res;
+        if(result == null)
+        {
+            if(pwd === pwd2)
+            {
+                var cliententity=new Client({username:username,password:pwd, email:email});
+                cliententity.save();
+                return response.json({success:true});
+            }else {
+                return response.json({success:false});
+            }
         }
-        response.redirect('/error');
-        
+        else {
+            return response.json({success:false});
+        }
+
     });
 
     console.log("-----Complete Process-----");

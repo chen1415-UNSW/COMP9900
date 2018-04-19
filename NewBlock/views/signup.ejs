@@ -45,6 +45,28 @@
         controlNav: "thumbnails"
       });
     });
+
+    function LogInsubmitForm() {
+        let frm = $('#LogInForm');
+        frm.submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type:"POST",
+                url:"/LogInControl",
+                data:frm.serialize(),
+                success: function (response) {
+                    if(response.success){
+                        alert("Login success!");
+                        window.location='http://localhost:3000/index'
+                        //在这里定义一个session对象，将这个表格里的username，存到session里面
+                    }else{
+                        alert("Login Fail! Pleas try again.");
+                    }
+
+                }})
+        })}
+
+
   </script>
   <!-- //FlexSlider-->
 </head>
@@ -70,14 +92,15 @@
             <h3>Login</h3>
             <div class="strip"></div>
             <p>Welcome, please enter the following to continue.</p>
-            <form>
-              <h5>User Name:</h5>
-              <input type="text" value="">
-              <h5>Password:</h5>
-              <input type="password" value=""><br>
-              <input type="submit" value="Login">
 
+            <form id="LogInForm">
+              <h5>User Name:</h5>
+              <input type="text" name="u_name" required/>
+              <h5>Password:</h5>
+              <input type="password" name="u_password" required/><br>
+              <input type="submit" value="Login" onclick="LogInsubmitForm()"/>
             </form>
+
             <a href="#">Forgot Password ?</a>
           </div>
           <div class="col-md-6 login-right">

@@ -37,6 +37,18 @@ Week6:
 1. Learn how to use javascript to access Google firbase
 2. Prepare for Demo
 
+--------------------------------------------------------------
+Week7:
 
+1. Learn how to use MongoDB
+2. Reformat the front end pages. Separate hear , footer and javascript parts from the ejs pages.
+
+--------------------------------------------------------------
+Week8:
+
+1. Learn how to use javascript to access Google firbase
+2. Design and coding for the Mongodb product model and schema.
+3. Coding for Add one product/ delete one product.
+3. Coding for search products by keyworks.
 
 

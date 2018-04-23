@@ -13,9 +13,13 @@ var registerRoute = require('./routes/register');
 var signupRoute = require('./routes/signup');
 var singleRoute = require('./routes/single');
 var SignUpControlRoute = require('./routes/SignUpControl');
-var addProductRoute = require('./routes/addproduct');
 var LogInControlRoute = require('./routes/LogInControl');
-
+// me 4.22
+var addProductRouter = require('./routes/addProduct');
+var uploadRouter = require('./routes/uploadfile');
+var addProductProcessRouter = require('./routes/addproductprocess');
+var searchRouter = require('./routes/search');
+var searchResultRouter = require('./routes/result');
 
 
 var app = express();
@@ -42,8 +46,15 @@ app.use('/register', registerRoute);
 app.use('/signup', signupRoute);
 app.use('/single', singleRoute);
 app.use('/SignUpControl', SignUpControlRoute);
-app.use('/addProduct', addProductRoute);
 app.use('/LogInControl', LogInControlRoute);
+
+
+// 4.22 for product
+app.use('/uploadfile',uploadRouter);
+app.use('/addProduct', addProductRouter);
+app.use('/addproductprocess',addProductProcessRouter);
+app.use('/search',searchRouter);
+app.use('/searchresult',searchResultRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,3 +1,8 @@
+a {
+    cursor:pointer;
+}
+
+
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
 ul, ol, li{margin: 0; padding: 0;}
@@ -33,7 +38,7 @@ body{
     padding: 10px 60px;
     font-weight: bold;
     font-size: 50px;
-    color: #fff;  
+    color: #fff;
 }
 a.log-bar {
     background-color: #100B0B;
@@ -213,7 +218,7 @@ a.left.carousel-control,a.right.carousel-control {
     bottom: 35%;
     padding: 0%;
     margin: 0%;
-    z-index: 99;    
+    z-index: 99;
     left: 55%;
     right: 0%;
 }
@@ -335,7 +340,7 @@ span.fel-fal-bar2{
     -webkit-transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     transition: all 0.35s ease-in-out;
-    z-index: 999;   
+    z-index: 999;
 }
 .styl-hdn h3 {
     font-family: 'Pathway Gothic One';
@@ -724,7 +729,7 @@ h3.you-might{
     font-size: 27px;
     font-family: 'Pathway Gothic One';
     color: #100B0B;
-    margin:15px 0px; 
+    margin:15px 0px;
 }
 .showcase-last ul{
     list-style-type: none;
@@ -865,7 +870,7 @@ ul.qty li {
     color: #aaa;
     font-size: 1em;
     font-weight: 400;
-    float: right; 
+    float: right;
 }
 .cart-header,.cart-header2 {
     position: relative;
@@ -1111,7 +1116,7 @@ div textarea {
     color: #100b0b;
     font-weight: 600;
     font-size: 25px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 .cont-btn {
     background: #100b0b;
@@ -1285,7 +1290,7 @@ div textarea {
         font-size: 11px;
     }
     .styl-hdn h3 {
-        font-size: 20px;    
+        font-size: 20px;
     }
     .styl-price p {
         font-size: 17px;
@@ -1323,7 +1328,7 @@ div textarea {
         margin-left: 93px;
     }
     span.color-bar{
-        margin-left: 82px; 
+        margin-left: 82px;
     }
 }
 @media screen and (max-width:736px){
@@ -1482,7 +1487,7 @@ div textarea {
         right: 0%;
     }
     span.color-bar{
-        margin-left: 54px; 
+        margin-left: 54px;
     }
 }
 @media screen and (max-width: 667px){
@@ -1509,7 +1514,7 @@ div textarea {
         right: 0%;
     }
     span.color-bar{
-        margin-left: 54px; 
+        margin-left: 54px;
     }
 }
 @media screen and (max-width: 568px){

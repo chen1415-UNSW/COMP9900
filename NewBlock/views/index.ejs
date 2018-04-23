@@ -35,19 +35,10 @@
 </head>
 
 <body>
-  <%include header.ejs%>
+    <%include header.ejs%>
 
     <!--2. search start -->
-    <div class="sub-news">
-      <div class="container">
-        <form>
-          <!--<h3>Search</h3>-->
-          <input type="text" class="sub-email" value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Email';}">
-          <a class="btn btn-default subs-btn" href="#" role="button">Search</a>
-        </form>
-      </div>
-    </div>
-    <!--2. search end -->s
+    <%include searchbar.ejs%>
 
 
     <!--广告轮播-->

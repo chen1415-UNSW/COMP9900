@@ -3,3 +3,4 @@
 /ExpressTest/*
 /MongoDB/*
 /ExpressWebpack/node_modules/*
+/ExpressWebpack/.vscode/*

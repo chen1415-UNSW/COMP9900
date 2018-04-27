@@ -18,6 +18,8 @@ var SignUpControlRoute = require('./routes/SignUpControl');
 var LogInControlRoute = require('./routes/LogInControl');
 //Harvey
 var SignOutRoute = require('./routes/SignOut');
+var ProfileRoute = require('./routes/ProfileControl');
+
 
 // me 4.22
 var addProductRouter = require('./routes/addProduct');
@@ -61,6 +63,8 @@ app.use('/LogInControl', LogInControlRoute);
 
 //Harvey
 app.use('/SignOut', SignOutRoute);
+app.use('/ProfileControl', ProfileRoute);
+
 
 // 4.22 for product
 app.use('/uploadfile',uploadRouter);

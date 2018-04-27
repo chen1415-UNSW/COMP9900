@@ -29,5 +29,4 @@ module.exports = function (request, response, next)
     });
 
     console.log("----Complete the LogInControl----");
-
 };

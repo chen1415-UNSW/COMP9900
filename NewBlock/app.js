@@ -1,8 +1,10 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+var cookieParser = require('cookie-parser');
+var Session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,13 +16,16 @@ var signupRoute = require('./routes/signup');
 var singleRoute = require('./routes/single');
 var SignUpControlRoute = require('./routes/SignUpControl');
 var LogInControlRoute = require('./routes/LogInControl');
+//Harvey
+var SignOutRoute = require('./routes/SignOut');
+
 // me 4.22
 var addProductRouter = require('./routes/addProduct');
 var uploadRouter = require('./routes/uploadfile');
 var addProductProcessRouter = require('./routes/addproductprocess');
 var searchRouter = require('./routes/search');
 var searchResultRouter = require('./routes/result');
-
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -34,8 +39,14 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cookieParser('sessiontest'));
+
+app.use(Session({secret:'max', saveUninitialized: false, resave: false}));
+app.use(flash());
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -48,6 +59,8 @@ app.use('/single', singleRoute);
 app.use('/SignUpControl', SignUpControlRoute);
 app.use('/LogInControl', LogInControlRoute);
 
+//Harvey
+app.use('/SignOut', SignOutRoute);
 
 // 4.22 for product
 app.use('/uploadfile',uploadRouter);

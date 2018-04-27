@@ -1,9 +1,16 @@
 var mongoose = require('mongoose');
-var clientchema= require('../schemas/clients')
+var clientshema= require('../schemas/clients');
 
-var Client = mongoose.model('client',clientchema)
+var Client = mongoose.model('client',clientshema);
 
 
 //sClient.findOne({'username':1234},function(err,res){console.log(res)})
 
-module.exports=Client
+module.exports=Client;
+
+// var mongoose = require('mongoose');
+// var Schema = mongoose.Schema;
+//
+// var userSchema = new Schema({
+//
+// });

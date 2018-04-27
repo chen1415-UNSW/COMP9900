@@ -5,9 +5,9 @@ module.exports = function (request, response, next)
 {
     console.log("-----Enter the SignUpControl functuion------");
     // var name = request.body.id()
-    var username = request.body.user_name;
-    var email = request.body.email;
-    var pwd = request.body.password;
+    var username = request.body.rej_name;
+    var email = request.body.rej_email;
+    var pwd = request.body.rej_password;
     var pwd2 = request.body.re_password;
 
     console.log(username);
@@ -29,7 +29,7 @@ module.exports = function (request, response, next)
                 return response.json({success:false});
             }
         }
-        else {
+        if(result!=null) {
             return response.json({success:false});
         }
 

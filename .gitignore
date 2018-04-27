@@ -4,3 +4,4 @@
 /MongoDB/*
 /ExpressWebpack/node_modules/*
 /ExpressWebpack/.vscode/*
+/ExpressDemo/node_modules*

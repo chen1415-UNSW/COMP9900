@@ -1,3 +1,12 @@
 /ExpressTruffle/*
+<<<<<<< .merge_file_7Lmtcf
 /ExpressWebpack/*
 /Petshop/*
+=======
+/Petshop/*
+/ExpressTest/*
+/MongoDB/*
+/ExpressWebpack/node_modules/*
+/ExpressWebpack/.vscode/*
+/ExpressDemo/node_modules*
+>>>>>>> .merge_file_NWDS9h

@@ -32,7 +32,10 @@ var flash = require('connect-flash');
 var app = express();
 
 var mongoose=require('mongoose');
-var db = mongoose.connect("mongodb://127.0.0.1:27017/tests");
+
+mongoose.connect('mongodb://block_business:comp9900@ds259079.mlab.com:59079/comp9900');
+var db=mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

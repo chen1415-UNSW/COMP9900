@@ -20,6 +20,15 @@ module.exports = function (request, response, next)
             if(res.password == pwd)
             {
                 request.session.user = {'username': uname};
+
+
+
+                request.session.uid = {'uid': res._id};
+
+
+
+
+
                 return response.json({success:true});
             }else if(res.password != pwd)
             {

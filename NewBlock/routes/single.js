@@ -20,50 +20,110 @@ router.get('/',function(req, res, next) {
 });
 
 router.get('/showproduct', function(req, res, next) {
-    var pid = req.query.pid;
-    console.log("pid=");
-    console.log(pid);
 
-    var logstr = JSON.stringify({url:req.path});
-    console.log(logstr);
+    console.log("Show Product user: ", req.session.user);
 
-    // 查数据库：未完继续
-    //数据库里边找这条数据，render 这个记录
-    var productName = "";
-    var productInfo = "";
-    var productPrice = "";
-    var imgPath = "";
+    // console.log("Show Product uid: ", req.session.user.uid);
 
-    Product.findOne({'_id': pid},function(err,response){
-        result = response;
-        if(result == null)
-        {
-            return res.json({success:"didn't find the product with pid"});
-        }
-        else
-        {
-            pid = result._id;
-            productName = result.productName;
-            productInfo = result.productInfo;
-            productPrice = result.productPrice;
-            imgPath = result.imgPath;
+    if(req.session.user == undefined)
+    {
+        res.redirect('/signup');
+    }
+    else
+    {
+        var pid = req.query.pid;
+        console.log("pid=");
+        console.log(pid);
 
-            console.log("db中找到了pid对应的 product=");
-            console.log(productName);
-            console.log(productInfo);
-            console.log(productPrice );
+        var logstr = JSON.stringify({url:req.path});
+        console.log(logstr);
 
-            var product_json = {
-                pid:pid,
-                productName:productName,
-                productInfo:productInfo,
-                productPrice:productPrice,
-                imgPath: imgPath
+        // 查数据库：未完继续
+        //数据库里边找这条数据，render 这个记录
+        var productName = "";
+        var productInfo = "";
+        var productPrice = "";
+        var imgPath = "";
 
-            };
-            res.render('single', product_json);
-        }
-    });
+        Product.findOne({'_id': pid},function(err,response){
+            result = response;
+            if(result == null)
+            {
+                return res.json({success:"didn't find the product with pid"});
+            }
+            else
+            {
+                pid = result._id;
+                productName = result.productName;
+                productInfo = result.productInfo;
+                productPrice = result.productPrice;
+                imgPath = result.imgPath;
+
+                console.log("db中找到了pid对应的 product=");
+                console.log(productName);
+                console.log(productInfo);
+                console.log(productPrice );
+
+                var product_json = {
+                    pid:pid,
+                    productName:productName,
+                    productInfo:productInfo,
+                    productPrice:productPrice,
+                    imgPath: imgPath,
+                    u_name: req.session.user.username
+
+                };
+                res.render('single', product_json);
+            }
+        });
+
+    }
+
+
+    // var pid = req.query.pid;
+    // console.log("pid=");
+    // console.log(pid);
+    //
+    // var logstr = JSON.stringify({url:req.path});
+    // console.log(logstr);
+    //
+    // // 查数据库：未完继续
+    // //数据库里边找这条数据，render 这个记录
+    // var productName = "";
+    // var productInfo = "";
+    // var productPrice = "";
+    // var imgPath = "";
+    //
+    // Product.findOne({'_id': pid},function(err,response){
+    //     result = response;
+    //     if(result == null)
+    //     {
+    //         return res.json({success:"didn't find the product with pid"});
+    //     }
+    //     else
+    //     {
+    //         pid = result._id;
+    //         productName = result.productName;
+    //         productInfo = result.productInfo;
+    //         productPrice = result.productPrice;
+    //         imgPath = result.imgPath;
+    //
+    //         console.log("db中找到了pid对应的 product=");
+    //         console.log(productName);
+    //         console.log(productInfo);
+    //         console.log(productPrice );
+    //
+    //         var product_json = {
+    //             pid:pid,
+    //             productName:productName,
+    //             productInfo:productInfo,
+    //             productPrice:productPrice,
+    //             imgPath: imgPath
+    //
+    //         };
+    //         res.render('single', product_json);
+    //     }
+    // });
 });
 
 router.post('/delete', function(req, res, next) {

@@ -2,7 +2,7 @@
 
 <%
 console.log("Header u_name: ",u_name)
-if(u_name != "NULL")
+if(u_name != "NULL")   //现在是有用户登录的情况
 {%>
 
 <!--1. header end-->
@@ -34,7 +34,7 @@ if(u_name != "NULL")
 
 
 <%
-}else if(u_name == "NULL"){
+}else if(u_name == "NULL"){ // if 没有用户登录 则后面的购物车链接都不生效
 %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <div class="header">
@@ -47,14 +47,13 @@ if(u_name != "NULL")
                 <a class="btn btn-default log-bar" href="/register" role="button">Sign up</a>
                 <a class="btn btn-default log-bar" href="/signup" role="button">Log In</a>
                 <div class="cart box_1">
-                    <h3>
-                        <div class="total">
-                            <i class="fas fa-shopping-cart"></i>  <span class="simpleCart_total"></span>
-                            (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)
-                        </div>
-                    </h3>
-                    </a>
-                    <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                    <!--<h3>-->
+                        <!--<div class="total">-->
+                            <!--<i class="fas fa-shopping-cart"></i>  <span class="simpleCart_total"></span>-->
+                            <!--(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)-->
+                        <!--</div>-->
+                    <!--</h3>-->
+                    <!--<p><a class="simpleCart_empty">Empty Cart</a></p>-->
                     <div class="clearfix"> </div>
                 </div>
             </div>

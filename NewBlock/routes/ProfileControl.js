@@ -4,7 +4,7 @@ module.exports = function (request, response, next) {
 
     if(request.session.user == undefined || request.session.user.u_name == "NULL")
     {
-        response.render('profile', {title:'Profile Page', u_name:"NULL"});
+        response.redirect('/signup');
     }
     else
     {

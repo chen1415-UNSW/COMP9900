@@ -47,8 +47,13 @@ app.use('/signup', signupRoute);
 app.use('/single', singleRoute);
 app.use('/SignUpControl', SignUpControlRoute);
 app.use('/LogInControl', LogInControlRoute);
-
-
+// add port for trade page
+app.get('/trade', function(req, res) {
+  res.render('trade')
+});
+app.get('/meta', function(req, res) {
+  res.render('index-sample')
+});
 // 4.22 for product
 app.use('/uploadfile',uploadRouter);
 app.use('/addProduct', addProductRouter);

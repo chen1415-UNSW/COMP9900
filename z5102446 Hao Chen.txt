@@ -46,3 +46,21 @@ Week 06:
 - Finish the diary writing.
 
 *******************************************  
+
+Week 07:
+- Finised the sign up control part and insert the data into the database.
+
+- FInised the log in part and verfiy the user to use the website.
+
+- Finish the diary writing.
+
+*******************************************  
+
+Week 08:
+- Finised session and cookies part, now the website can store logginer's whole process.
+
+- FInised profile part, which allows the user to change their personal information.
+
+- Finish the diary writing.
+
+*******************************************  

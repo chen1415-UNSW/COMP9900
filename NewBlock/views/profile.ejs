@@ -46,6 +46,31 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+        function ChangesubmitForm() {
+            let frm = $('#ChangPersonalDetailsForm');
+            frm.submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type:"POST",
+                    url:"/ChangeDetails",
+                    data:frm.serialize(),
+                    success: function (response) {
+                        if(response.success){
+                            alert("Save success!");
+                            window.location='http://localhost:3000/signup'
+                            //在这里定义一个session对象，将这个表格里的username，存到session里面
+
+                        }else{
+                            alert("Save Fail! Pleas try again.");
+                        }
+                    }})
+            })}
+    </script>
+
+
+
     <!-- //FlexSlider-->
 </head>
 
@@ -61,34 +86,57 @@
     </div>
 </div>
 
-<!-- contact -->
-<div class="contact">
+<div class="login">
     <div class="container">
-        <h3>Modify Your Profile</h3>
-        <div class="contact-content">
-            <form>
-                <div class="row">
-                <label>Change your username</label>
-                    <br>
-                <input type="text" value="New User Name" />
-                <br/>
-                </div>
+        <div class="login-grids">
+            <div class="col-md-6 log">
+                <h3>Your Current Information</h3>
+                <div class="strip"></div>
+                <p>Please check your information before modification.</p>
 
-
-                <div class="row">
-                <label>Change your emial address</label>
-                <br/>
-                <input type="text" value="New E-Mail Address" />
+                <h5>User Name:</h5>
+                <h6><%=u_name%></h6>
                 <br>
-                </div>
+                <br>
+                <h5>Password:</h5>
+                <h6><%=nu_pwd%></h6>
+                <br>
+                <br>
+                <h5>Email:</h5>
+                <h6><%=u_email%></h6>
+                <br>
+                <br>
+                <h5>Hash Address:</h5>
+                <h6>12sdf31sdf23WEdwed</h6>
+                <br>
+                <br>
+                <h5>Your Published Products:</h5>
+                <h6>Shoes#1</h6>
 
-                <div class="submit">
-                    <input class="btn btn-default cont-btn" type="submit" value="SEND " />
-                </div>
-            </form>
+            </div>
+
+
+            <div class="col-md-6 log">
+                <h3>Input your new information</h3>
+                <div class="strip"></div>
+                <p>Please change your personal details here</p>
+
+                <form id="ChangPersonalDetailsForm">
+                    <h5>New Email Address:</h5>
+                    <input type="text" id="p_email" name="p_email" required/><br>
+                    <h5>New Password:</h5>
+                    <input type="password" id="p_password" name="p_password" required/><br>
+                    <h5>Confirm New Password:</h5>
+                    <input type="password" id="pr_password" name="pr_password" required/><br>
+
+                    <input type="submit" value="Save" onclick="ChangesubmitForm()"/>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
+
 
 <!--5. foot start -->
 <%include footer.ejs%>

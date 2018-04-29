@@ -107,8 +107,13 @@
 
             <%
                }
-            %>
+               if (JSON.parse(JSON.stringify(result)).length==0){
 
+
+            %>
+            <div>
+                <h3 align="middle">0 results for your search. But you may like these items</h3>
+            </div>
             <div class="col-md-4 grid-stn simpleCart_shelfItem">
                 <!-- normal -->
                 <div class="ih-item square effect3 bottom_to_top">
@@ -179,8 +184,9 @@
                 </div>
             </div>
 
-
-
+            <%
+            }
+             %>
 
 
 

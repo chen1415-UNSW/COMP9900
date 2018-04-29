@@ -19,18 +19,15 @@ router.get('/', function(req, res, next) {
 
     if(req.session.user == undefined || req.session.user == "NULL")
     {
-        // console.log("Sign Up No username Yet!");
-        // response.render('signup', {title:'Log In Page', u_name:"NULL"});
-
-
 
         var searchInfo = req.query.searchInfo;//get
         // var searchInfo = req.body.searchInfo;
         console.log(searchInfo);
         // console.log(req.body);
 
-        // Product.find({'productName': {$exists:searchInfo}},function(err,response){
+        // Product.find({'productName': {"$exists":searchInfo}},function(err,response){
         Product.find({'productName': searchInfo},function(err,response){
+        // Product.find({'productName': searchInfo},function(err,response){
             resultList = response;
             console.log("backend resultList=");
             console.log(resultList);
@@ -45,10 +42,6 @@ router.get('/', function(req, res, next) {
                 var resultList_json = {result: resultList, u_name:"NULL"};
 
                 res.render('searchresult', resultList_json);
-                // res.send({
-                //     err: null,
-                //     msg: resultList
-                // });
 
 
             }
@@ -79,7 +72,9 @@ router.get('/', function(req, res, next) {
             {
                 console.log("resultList[0]=");
 
-                var resultList_json = {result: resultList, u_name:req.session.user.username};
+                var resultList_json = {result: resultList,
+                    u_name:req.session.user.username,
+                    uid:req.session.userid.uid};
 
                 res.render('searchresult', resultList_json);
                 // res.send({

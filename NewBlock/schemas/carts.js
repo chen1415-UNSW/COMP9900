@@ -1,13 +1,15 @@
 var mongoose = require('mongoose');
 
 
-var ProductSchema = new mongoose.Schema(
+var CartSchema = new mongoose.Schema(
     {
-        pid:Number,
+        uid:String,
+        pid:String,
         selleruid:String,
         productName:String,
         productInfo:String,
         productPrice:String,
+        number:Number,
         imgPath: String,
         meta:{
             createAt:{
@@ -22,7 +24,7 @@ var ProductSchema = new mongoose.Schema(
     }
 )
 
-ProductSchema.pre("save",function (next) {
+CartSchema.pre("save",function (next) {
     if (this.isNew){
         this.meta.createAt = this.meta.updateAt=Date.now()
     }else{
@@ -31,7 +33,7 @@ ProductSchema.pre("save",function (next) {
     next()
 })
 
-ProductSchema.statics={
+CartSchema.statics={
     fetch:function (cb) {
         return this.find().sort('meta.updateAt')
             .exec(cb)
@@ -41,4 +43,4 @@ ProductSchema.statics={
     }
 }
 
-module.exports=ProductSchema
+module.exports=CartSchema

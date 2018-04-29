@@ -17,11 +17,16 @@ router.post('/', function(req, res, next) {
     var productInfo = req.body.productInfo;
     var productPrice = req.body.productPrice;
     var imgPath= req.body.imgPath;
+
+    var selleruid = req.session.userid.uid;
+    console.log("addProduct: seller uid=");
+    console.log(selleruid);
+
     console.log("addPro: productName=");
     console.log(productName);
     // var pid = 10000;
     //调用数据库，写入4个商品参数，返回pid
-    var productentity=new Product({productName:productName,productInfo:productInfo, productPrice:productPrice, imgPath:imgPath});
+    var productentity=new Product({selleruid:selleruid,productName:productName,productInfo:productInfo, productPrice:productPrice, imgPath:imgPath});
     productentity.save();
     console.log("pid=");
     console.log(productentity._id);

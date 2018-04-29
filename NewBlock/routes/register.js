@@ -10,7 +10,8 @@ module.exports = function (request, response, next) {
     else
     {
         console.log(request.session.user.username);
-        response.render('sigregisternup', {title:'Register In Page', u_name:request.session.user.username});
+        response.render('sigregisternup', {title:'Register In Page', u_name:request.session.user.username,
+            uid:req.session.userid.uid});
     }
 
 };

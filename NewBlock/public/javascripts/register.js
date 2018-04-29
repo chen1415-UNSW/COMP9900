@@ -20,7 +20,6 @@ function submitForm() {
                     //在这里定义一个session对象，将这个表格里的username，存到session里面
                 }else{
                     alert("Register Fail! Pleas try again.");
-                    window.location='http://localhost:3000/register'
                 }
 
             },})

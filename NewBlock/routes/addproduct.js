@@ -1,11 +1,3 @@
-// module.exports = function (request, response, next) {
-//
-//     if()
-//
-//     response.render('addproduct');
-//
-// };
-
 module.exports = function (request, response, next) {
 
     console.log("Add Product session: ", request.session.user);
@@ -18,7 +10,11 @@ module.exports = function (request, response, next) {
     else
     {
         console.log(request.session.user.username);
-        response.render('addproduct', {title:'Add Product Page', u_name:request.session.user.username});
+        response.render('addproduct', {title:'Add Product',
+            u_name:request.session.user.username,
+            uid:request.session.userid.uid
+
+        });
     }
 
 

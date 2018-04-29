@@ -33,6 +33,11 @@
   <script src="js/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="/javascripts/allJSforProduct.js"></script>
+
+  <!-- jquery-validation -->
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+  <script src="/javascripts/addProductValidation.js"></script>
+
   <!--bootstrap-js-->
   <script src="js/bootstrap.min.js"></script>
   <!--script-->
@@ -69,25 +74,30 @@
     <!-- contact -->
     <div class="contact">
       <div class="container">
-        <h3>Add PRODUCT</h3>
+        <h3>Add PRODUCT image</h3>
         <div class="contact-content">
 
           <!--1. upload pic using ajax-->
-          <form id="addPic" class="form-inline" enctype='multipart/form-data' method='post' action='javascript:;'>
-            <input type="file" id="choose" required="required" class="form-control" value="upload product image"/>
+          <form name="addPic" id="addPic" class="form-inline" enctype='multipart/form-data' method='post' action='javascript:;'>
+
+          <!--<form id="addPic" class="form-inline" enctype='multipart/form-data' method='post' action='javascript:;'>-->
+            <input name="choose" type="file" id="choose" required="required" class="form-control" value="upload product image"/>
             <!--<button onclick="handle()" class="form-inline">upload</button>-->
             <input onclick="handleUpload()" class="btn btn-default cont-btn form-inline" type="submit" value="Upload" />
 
 
-            <img id="newPic" class="newImg" width="200" height="200"/>
+            <!--<img id="newPic" class="newImg" width="200" height="200"/>-->
           </form>
           <!--2. add product info-->
-          <form id="addProduct" class="form-horizontal" method='get' action='javascript:;'>
-            <input id="productName" required="required" type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Product Name';}">
+          <form name="addProduct" id="addProduct" class="form-horizontal" method='get' action='javascript:;'>
+            <img name="newPic" id="newPic" class="newImg" width="200" height="200"/>
 
-            <input id="productPrice" required="required" type="number" min="0" class="textbox" value="0" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Price';}"><br>
+            <h3>Product Name : </h3>
+            <input name="productName" id="productName" required="required" type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Product Name';}">
 
-            <textarea id="productInfo" required="required" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Product description ';}">Product description</textarea><br>
+            <h3>Price : </h3><input name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="0" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Price';}"><br>
+
+            <h3>Product Description : </h3><textarea name="productInfo" id="productInfo" required="required" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Product description ';}">Product description</textarea><br>
 
 
             <div class="submit">

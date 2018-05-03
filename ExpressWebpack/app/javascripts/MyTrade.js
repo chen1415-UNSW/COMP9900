@@ -13,8 +13,6 @@ var account
 
 window.App = {
 
-    
-
     start: function() {
         var self = this
         MyTrade.setProvider(web3.currentProvider)
@@ -32,11 +30,18 @@ window.App = {
             // 以后需要替换为用户的实际账户
             account_list = accs
             account = account_list[0]
-      
+            var address_element = document.getElementById("YourAddress")
+            console.log("Check account")
+            address_element.innerHTML = account.valueOf()
+            // 设置初始合约默认地址，否则会报错invalid address
+            web3.eth.defaultAccount = account
+
             self.refreshBalance()
+
+            //注册event
+            self.tradeEvent()
           })
-        // 设置初始合约默认地址，否则会报错invalid address
-        MyTrade.web3.eth.defaultAccount = MyTrade.web3.eth.coinbase
+    
     },
 
     setStatus: function(message) {
@@ -45,7 +50,7 @@ window.App = {
     },
 
     refreshBalance: function() {
-        var unit = new BigNumber('10e18')
+        var unit = new BigNumber('10e17')
         web3.eth.getBalance(account, function(err, result){
             if (!err) {
                 var balance_element = document.getElementById("balance")
@@ -67,15 +72,28 @@ window.App = {
             price: 100
         }
         MyTrade.deployed().then(function(instance) {
-            return instance.setTrade(example.seller, example.buyer, example.item, example.price, {gas:3000000})
+            instance.setTrade(example.seller, example.buyer, example.item, example.price, {from:account, gas:3000000})
         }).then(function() {
             self.setStatus("Trade Complete!")
             self.refreshBalance()
+            
         }).catch(function(e) {
             console.log(e)
             self.setStatus("Error making trade, check log")
         })
+    },
+
+    tradeEvent: function() {
+        MyTrade.deployed().then(function(instance) {
+            instance.showTrade().watch(function(error, result) {
+                $("#contract").html(result.args.seller + " " + result.args.buyer + " " + result.args.item + " cost: " + result.args.price)
+                var number = web3.eth.blockNumber
+                var info =  web3.eth.getBlock(number)
+                console.log("Block Num:" + number + " Block Hash:" + info.hash)
+            })
+        })
     }
+
 }
         
 window.addEventListener('load', function() {

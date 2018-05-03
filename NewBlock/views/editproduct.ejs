@@ -22,16 +22,16 @@
 
   <!--fonts-->
   <!--form-css-->
-  <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/css/form.css" rel="stylesheet" type="text/css" media="all" />
   <!--bootstrap-->
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <!--coustom css-->
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
   <!--shop-kart-js-->
-  <script src="js/simpleCart.min.js"></script>
+  <script src="/js/simpleCart.min.js"></script>
   <!--default-js-->
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="/javascripts/allJSforProduct.js"></script>
 
   <!-- jquery-validation -->
@@ -39,12 +39,12 @@
   <script src="/javascripts/addProductValidation.js"></script>
 
   <!--bootstrap-js-->
-  <script src="js/bootstrap.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
   <!--script-->
   <!-- FlexSlider -->
-  <script src="js/imagezoom.js"></script>
-  <script defer src="js/jquery.flexslider.js"></script>
-  <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+  <script src="/js/imagezoom.js"></script>
+  <script defer src="/js/jquery.flexslider.js"></script>
+  <link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" />
 
   <script>
     // Can also be used with $(document).ready()
@@ -90,19 +90,23 @@
           </form>
           <!--2. add product info-->
           <form name="addProduct" id="addProduct" class="form-horizontal" method='get' action='javascript:;'>
-            <img name="newPic" id="newPic" class="newImg" width="200" height="200" />
+            <p>pid and selleruid:</p>
+            <p id="pid"><%=pid%></p>
+            <p id="selleruid"><%=selleruid%></p>
+            <img name="newPic" id="newPic" class="newImg" width="200" height="200" src="<%=imgPath%>"/>
 
             <h3>Product Name : </h3>
-            <!--<input name="productName" id="productName" required="required" type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Product Name';}">-->
-            <input name="productName" id="productName" required="required" type="text" class="textbox" value=""  onblur="if (this.value == '') {this.value = 'Product Name';}">
+            <input name="productName" id="productName" required="required" type="text" class="textbox" value="<%=productName%>" onfocus="if (this.value == '') this.value = '<%=productName%>';">
 
-            <h3>Price : </h3><input name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="0"  onblur="if (this.value == '') {this.value = 'Price';}"><br>
+            <h3>Price : </h3>
+            <input name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="<%=productPrice%>" onfocus=" if (this.value == '') this.value = '<%=productPrice%>';"><br>
 
-            <h3>Product Description : </h3><textarea name="productInfo" id="productInfo" required="required" value=""  onblur="if (this.value == '') {this.value = 'Product description ';}"></textarea><br>
+            <h3>Product Description : </h3>
+            <textarea name="productInfo" id="productInfo" required="required" value="" onfocus=" if (this.value == '')  this.value = '<%=productInfo%>';"><%=productInfo%></textarea><br>
 
 
             <div class="submit">
-              <input onclick="addProdcut()" class="btn btn-default cont-btn" type="submit" value="ADD " />
+              <input onclick="editProduct()" class="btn btn-default cont-btn" type="submit" value="edit " />
               <p id="addSuccess" class="addResult"></p>
             </div>
           </form>

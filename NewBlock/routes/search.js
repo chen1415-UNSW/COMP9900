@@ -25,9 +25,13 @@ router.get('/', function(req, res, next) {
         console.log(searchInfo);
         // console.log(req.body);
 
+        var regex = new RegExp(searchInfo,'i');
+
         // Product.find({'productName': {"$exists":searchInfo}},function(err,response){
-        Product.find({'productName': searchInfo},function(err,response){
         // Product.find({'productName': searchInfo},function(err,response){
+        Product.find({'productName': regex},function(err,response){
+        // Product.find({'productName': {$regex:"*"+searchInfo+"*", $options:"i"}},function(err,response){
+
             resultList = response;
             console.log("backend resultList=");
             console.log(resultList);
@@ -55,12 +59,14 @@ router.get('/', function(req, res, next) {
         // response.render('signup', {title:'Log In Page', u_name:request.session.user.username});
 
         var searchInfo = req.query.searchInfo;//get
+
         // var searchInfo = req.body.searchInfo;
         console.log(searchInfo);
         // console.log(req.body);
 
-        // Product.find({'productName': {$exists:searchInfo}},function(err,response){
-        Product.find({'productName': searchInfo},function(err,response){
+        var regex = new RegExp(searchInfo,'i');
+        Product.find({'productName': regex},function(err,response){
+        // Product.find({'productName': searchInfo},function(err,response){
             resultList = response;
             console.log("backend resultList=");
             console.log(resultList);

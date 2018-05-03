@@ -40,6 +40,16 @@ body{
     font-size: 50px;
     color: #fff;
 }
+
+.footer a, .footer a:hover {
+    font-family: 'Pathway Gothic One';
+    background-color: #A5E126;
+    padding: 10px 36px;
+    font-size: 24px;
+    color: #fff;
+}
+
+
 a.log-bar {
     background-color: #100B0B;
     color: #aaa;
@@ -1661,6 +1671,10 @@ div textarea {
 		padding: 10px 36px;
 		font-size: 45px;
 	}
+    .footer a, .footer a:hover {
+        padding: 10px 36px;
+        font-size: 24px;
+    }
 }
 @media screen and (max-width: 384px){
 .logo a, .logo a:hover {

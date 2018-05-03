@@ -12,7 +12,8 @@ function handleUpload() {
         contentType: false,
         processData: false,
         success: function (data) {
-            $(".newImg").attr("src", data.filePath);
+            // $(".newImg").attr("src", data.filePath);
+            $(".newImg").attr("src", "/"+data.filePath);
         },
         error: function (err) {
             console.log(err.message);
@@ -31,7 +32,7 @@ function addProdcut() {
     console.log(imgPath);
     console.log(productName);
     console.log(productInfo);
-    console.log(productPrice);
+
     product_json = {"productName":productName, "productInfo":productInfo, "productPrice":productPrice, "imgPath":imgPath};
 
 
@@ -81,12 +82,48 @@ function deleteProduct(){
 
 }
 
-// 4.23 未完待续
+// 5.1 未完待续
 function editProduct(){
-    var editpid = document.getElementById("showpid").innerText;
-    var pid = editpid.toString().substr(4);
-    console.log("editpid=");
-    console.log(pid);
+    console.log("----------- !!!! here---------");
+
+    var pid = document.getElementById("pid").innerText;
+    var selleruid = document.getElementById("selleruid").innerText;
+
+    let index = document.getElementById("newPic").src.search("uploads");
+    let imgPath = document.getElementById("newPic").src.toString().substr(index-1);
+    var productName = document.getElementById("productName").value;
+    var productPrice = document.getElementById("productPrice").value;
+    var productInfo = document.getElementById("productInfo").value;
+
+
+
+    // var pid = editpid.toString().substr(4);
+    console.log("pid="+pid);
+    console.log("-------------------- imgPath="+imgPath);
+    console.log("productName="+productName);
+    console.log("productPrice="+productPrice);
+    console.log("productInfo="+productInfo);
+
+    edit_json = {"pid":pid, "selleruid":selleruid,"productName":productName, "productInfo":productInfo, "productPrice":productPrice, "imgPath":imgPath};
+
+
+    $.ajax({
+        type: 'POST',
+        url: '/editproductprocess',
+        contentType: "application/json",
+        dataType: 'json',
+        data: JSON.stringify(edit_json),
+        success: function (data) {
+            console.log("Edit product success frontend!!!");
+            if (data.msg){
+                window.location.href="/single/showproduct?pid="+data.msg;
+            }
+        },
+        error: function (err) {
+            console.log(err.message);
+        }
+    })
+
 }
 
 function addToCart(){
@@ -98,9 +135,11 @@ function addToCart(){
     console.log("addtoCartJS uid ="+ uid);
     console.log("addtoCartJS selleruid ="+ selleruid);
 
+
     var productName = document.getElementById("showproductName").innerText;
     var productInfo = document.getElementById("showproductInfo").innerText;
-    var productPrice = document.getElementById("showproductPrice").innerText.toString().substr(2);
+    var productPrice = document.getElementById("showproductPrice").innerText.toString();
+    console.log("addtoCartJS productPrice="+productPrice);
 
     let index = document.getElementById("showpimgPath").src.search("uploads");
     var imgPath = document.getElementById("showpimgPath").src.toString().substr(index-1)

@@ -27,6 +27,7 @@ var ChangeDetailsRoute = require('./routes/ChangeDetailsControl');
 var addProductRouter = require('./routes/addProduct');
 var uploadRouter = require('./routes/uploadfile');
 var addProductProcessRouter = require('./routes/addproductprocess');
+var editProductProcessRouter = require('./routes/editproductprocess');
 var searchRouter = require('./routes/search');
 var searchResultRouter = require('./routes/result');
 var flash = require('connect-flash');
@@ -75,6 +76,7 @@ app.use('/ChangeDetails', ChangeDetailsRoute);
 app.use('/uploadfile',uploadRouter);
 app.use('/addProduct', addProductRouter);
 app.use('/addproductprocess',addProductProcessRouter);
+app.use('/editproductprocess',editProductProcessRouter);
 app.use('/search',searchRouter);
 app.use('/searchresult',searchResultRouter);
 

@@ -20,7 +20,7 @@ var ClientSchema = new mongoose.Schema(
             }
         }
     }
-)
+);
 
 ClientSchema.pre("save",function (next) {
     if (this.isNew){
@@ -29,7 +29,7 @@ ClientSchema.pre("save",function (next) {
         this.meta.updateAt=Date.now()
     }
     next()
-})
+});
 
 ClientSchema.statics={
     fetch:function (cb) {
@@ -39,6 +39,6 @@ ClientSchema.statics={
     finduser:function (id,cb) {
     return this.findOne({username:id}).exec(cb)
 }
-}
+};
 
-module.exports=ClientSchema
+module.exports=ClientSchema;

@@ -1,4 +1,7 @@
 var Client=require('../models/clients');
+//harvey
+var cryptoscript = require('../routes/encrypter');
+
 
 module.exports = function (request, response, next) {
 
@@ -19,18 +22,34 @@ module.exports = function (request, response, next) {
             }
             else {
                 var r_name = res.username;
-                var r_pwd = res.password;
                 var r_email = res.email;
 
                 console.log("r_name: ",r_name);
-                console.log("r_pwd: ", r_pwd);
                 console.log("r_email: ",r_email);
 
-                var nr_pwd = "*".repeat(r_pwd.length-1).concat(r_pwd.substring(r_pwd.length-1));
+                var n_email = "";
+                for(i =0; i<r_email.length;i++)
+                {
+                    if(r_email.charAt(i) == "@")
+                    {
+                        n_email = n_email.substring(0,n_email.length-1);
+                        n_email += r_email.charAt(i-1);
+                        n_email += r_email.charAt(i);
+                        // console.log(r_email.substring(0,i))
+                        n_email += r_email.substring(i+1);
+                        break;
+                    }
+                    else
+                    {
+                        n_email += "*";
+                    }
+                }
+                console.log("n_email: ", n_email);
+                // var n_email = "*".repeat(r_email.length-1).concat(r_email.substring(r_email.length-1));
 
-                console.log("Transfered pwd: ", nr_pwd);
+                console.log("Transfered email: ", n_email);
 
-                response.render('profile', {title:'Profile Page', u_name:r_name, u_pwd: r_pwd, nu_pwd: nr_pwd, u_email:r_email, uid:request.session.userid.uid});
+                response.render('profile', {title:'Profile Page', u_name:r_name, u_email:n_email, uid:request.session.userid.uid});
 
             }
         });

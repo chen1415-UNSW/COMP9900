@@ -1,6 +1,11 @@
 var Client=require('../models/clients');
 //harvey
 
+//harvey
+var cryptoscript = require('../routes/encrypter');
+
+
+
 module.exports = function (request, response, next) {
 
     //功能待做
@@ -20,7 +25,12 @@ module.exports = function (request, response, next) {
     {
         return response.json({success:false});
     }else{
-        Client.findOneAndUpdate({'username':uname},{'password':pwd,'email':email},function(err,res){
+
+        var en_pwd = cryptoscript.cryptPwd(pwd);
+        console.log("en_pwd: ",en_pwd);
+
+
+        Client.findOneAndUpdate({'username':uname},{'password':en_pwd,'email':email},function(err,res){
             if(err)
             {
                 console.log(err);

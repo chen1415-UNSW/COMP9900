@@ -21,6 +21,7 @@ var LogInControlRoute = require('./routes/LogInControl');
 var SignOutRoute = require('./routes/SignOut');
 var ProfileRoute = require('./routes/ProfileControl');
 var ChangeDetailsRoute = require('./routes/ChangeDetailsControl');
+var ViewOrderHistoryRoute = require('./routes/ViewOrderHistory');
 
 
 // me 4.22
@@ -71,6 +72,7 @@ app.use('/LogInControl', LogInControlRoute);
 app.use('/SignOut', SignOutRoute);
 app.use('/ProfileControl', ProfileRoute);
 app.use('/ChangeDetails', ChangeDetailsRoute);
+app.use('/ViewOrder', ViewOrderHistoryRoute);
 
 // 4.22 for product
 app.use('/uploadfile',uploadRouter);

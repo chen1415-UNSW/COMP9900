@@ -92,6 +92,7 @@ window.App = {
                 console.log("Block Num:" + number + " Block Hash:" + info.hash)
             })
         })
+        
     }
 
 }

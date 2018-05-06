@@ -8,7 +8,7 @@
   <link href="./css/spiner.css" rel="stylesheet">
 </head>
 <body>
-  <h1>Trade Info</h1>
+  <h1 style="color:Orange;">Trade Info</h1>
 
 
 </body>
@@ -17,8 +17,19 @@
   window.loading_screen = window.pleaseWait({
     logo: "./images/logo3.png",
     backgroundColor: '#000000',
-    loadingHtml: '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>'
-  });
+    loadingHtml: '<div><h2 style="color:Orange;">Your purchase is processed on block-chain now</h2></div> \
+                  <div class="sk-folding-cube"> \
+                  <div class="sk-cube1 sk-cube"></div> \
+                  <div class="sk-cube2 sk-cube"></div> \
+                  <div class="sk-cube4 sk-cube"></div> \
+                  <div class="sk-cube3 sk-cube"></div> \
+                  </div>'
+  })
+  setTimeout("updateMessage('Complete!')", 3000)
+  function updateMessage(words) {
+    window.loading_screen.updateLoadingHtml('<div><h2 style="color:Orange;">' + words + '</h2></div>')
+  }
+ 
 </script>
 
  

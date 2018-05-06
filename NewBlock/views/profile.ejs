@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="N-Air Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"
+    />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <meta charset utf="8">
+    <!--fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+
+    <!--fonts-->
+    <!--bootstrap-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--coustom css-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!--shop-kart-js-->
+    <script src="js/simpleCart.min.js"></script>
+    <!--default-js-->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <!--bootstrap-js-->
+    <script src="js/bootstrap.min.js"></script>
+    <!--script-->
+    <!-- FlexSlider -->
+    <script src="js/imagezoom.js"></script>
+    <script defer src="js/jquery.flexslider.js"></script>
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function ChangesubmitForm() {
+            let frm = $('#ChangPersonalDetailsForm');
+            frm.submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type:"POST",
+                    url:"/ChangeDetails",
+                    data:frm.serialize(),
+                    success: function (response) {
+                        if(response.success){
+                            alert("Save success!");
+                            window.location='http://localhost:3000/signup'
+                            //在这里定义一个session对象，将这个表格里的username，存到session里面
+
+                        }else{
+                            alert("Save Fail! Pleas try again.");
+                        }
+                    }})
+            })}
+    </script>
+
+
+
+    <!-- //FlexSlider-->
+</head>
+
+<body>
+<%include header.ejs%>
+
+<div class="head-bread">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/index">Home</a></li>
+            <li class="active">Profile</li>
+        </ol>
+    </div>
+</div>
+
+<div class="login">
+    <div class="container">
+        <div class="login-grids">
+            <div class="col-md-6 log">
+                <h3>Your Current Information</h3>
+                <div class="strip"></div>
+                <p>Please check your information before modification.</p>
+
+                <h5>User Name:</h5>
+                <h6><%=u_name%></h6>
+                <br>
+                <br>
+                <h5>Password:</h5>
+                <h6><%=nu_pwd%></h6>
+                <br>
+                <br>
+                <h5>Email:</h5>
+                <h6><%=u_email%></h6>
+                <br>
+                <br>
+                <h5>Hash Address:</h5>
+                <h6>12sdf31sdf23WEdwed</h6>
+                <br>
+                <br>
+                <h5>Your Published Products:</h5>
+                <h6>Shoes#1</h6>
+
+            </div>
+
+
+            <div class="col-md-6 log">
+                <h3>Input your new information</h3>
+                <div class="strip"></div>
+                <p>Please change your personal details here</p>
+
+                <form id="ChangPersonalDetailsForm">
+                    <h5>New Email Address:</h5>
+                    <input type="text" id="p_email" name="p_email" required/><br>
+                    <h5>New Password:</h5>
+                    <input type="password" id="p_password" name="p_password" required/><br>
+                    <h5>Confirm New Password:</h5>
+                    <input type="password" id="pr_password" name="pr_password" required/><br>
+
+                    <input type="submit" value="Save" onclick="ChangesubmitForm()"/>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--5. foot start -->
+<%include footer.ejs%>
+</body>
+
+</html>

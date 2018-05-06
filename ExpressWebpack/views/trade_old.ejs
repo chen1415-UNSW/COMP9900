@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trade</title>
+  <script src="./MyTrade.js"></script>
+  <script src="./js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+  <h1>Trade Info</h1>
+  <h2 id="status">no trade info found</h2>
+  <h3 id="contract">waiting to show info</h3>
+  <h3 id="YourAddress">address not found</h3>
+  <h3>You have <span><span id="balance"></span> Ether</span></h3>
+
+  <br>
+  <button onclick="App.refreshBalance()">Show balanece</button>
+  <span><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
+  <br>
+  <button onclick="App.makeTrade()">Trade</button>
+
+</body>
+
+ 
+</html>

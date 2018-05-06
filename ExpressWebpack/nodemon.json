@@ -1,0 +1,24 @@
+{
+    "restartable": "rs",
+    "verbose": false,
+    "env": {
+        "NODE_ENV": "development",
+        "PORT": "3000" 
+    },
+    "execMap": {
+        "": "node --debug", 
+        "js": "node --debug"
+    },
+    "watch": [
+        "public/*",
+        "routes/",
+        "views/",
+        "app.js"
+    ],
+    "ignore": [
+        ".git",
+        ".vscode",
+        "node_modules"
+    ],
+    "ext": "js ejs"
+}

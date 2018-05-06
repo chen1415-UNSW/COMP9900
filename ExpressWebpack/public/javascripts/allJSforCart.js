@@ -78,9 +78,9 @@ function placeorder_POST(cartInfo_list) {
    
     var input = $("<input type='hidden'>");
     input.attr({"name": "JSON"});
-    input.val(cartInfo_list);
+    input.val(JSON.stringify(cartInfo_list));
     form.append(input);
- 
+    console.log(cartInfo_list);
     $(document.body).append(form);
     form.submit();
 }

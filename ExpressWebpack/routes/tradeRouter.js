@@ -9,9 +9,15 @@ router.get('/', function(req, res, next) {
 })
 
 router.post('/', function(req, res, next){
-    console.log(req.body)
-    var content = req.body.JSON
-    console.log(content)
+   
+    var content = JSON.parse(req.body.JSON)
+    for (var i in content) {
+        console.log("Data entry " + i)
+        console.log(content[i])
+    }
+    
+  
+    
     res.render('trade')
     
 

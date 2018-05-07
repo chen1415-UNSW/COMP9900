@@ -64,3 +64,12 @@ Week 08:
 - Finish the diary writing.
 
 *******************************************  
+
+Week 09:
+- Add the view history function to the profile page.
+
+- Start the integrated function of the front-end and back-end.
+
+- Finish the diary writing.
+
+*******************************************  

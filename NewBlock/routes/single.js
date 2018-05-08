@@ -216,7 +216,6 @@ router.post('/addtocart', function(req, res, next) {
     var uid = req.body.uid;
     var selleruid = req.body.selleruid;
     console.log("/addtocart ==> uid="+uid);
-    console.log("/addtocart ==> sellerid="+selleruid);
     var productName = req.body.productName;
     var productInfo = req.body.productInfo;
     var productPrice = req.body.productPrice;
@@ -283,5 +282,7 @@ router.post('/addtocart', function(req, res, next) {
         }
     });
 });
+
+
 
 module.exports = router;

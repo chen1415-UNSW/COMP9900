@@ -22,7 +22,7 @@ module.exports = function (request, response, next)
         {
             if(pwd === pwd2)
             {
-                var cliententity=new Client({username:username,password:pwd, email:email});
+                var cliententity=new Client({username:username, password:pwd, email:email});
                 cliententity.save();
                 return response.json({success:true});
             }else {

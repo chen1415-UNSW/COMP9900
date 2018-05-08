@@ -44,23 +44,29 @@ window.App = {
     
     },
 
+    // 返回新的地址给注册的新用户
+    getNewAccount: function() {
+
+    },
+
     setStatus: function(message) {
-        var status = document.getElementById("status")
-        status.innerHTML = message
+        return message
     },
 
     refreshBalance: function() {
         var unit = new BigNumber('10e17')
         web3.eth.getBalance(account, function(err, result){
+            console.log("Refresh Balance")
             if (!err) {
-                var balance_element = document.getElementById("balance")
-                balance_element.innerHTML = result.dividedBy(unit).toFixed(5).toString()
+                 var balance_element = result.dividedBy(unit).toFixed(5).toString()
+                 console.log(balance_element)
+                 return balance_element
             }
             else {
                 console.log(err)
             }
         })
-        console.log("Refresh Balance")
+        
     },
 
     makeTrade: function() {

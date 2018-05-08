@@ -34,7 +34,9 @@ var myproductsRouter = require('./routes/myproducts');
 
 
 var flash = require('connect-flash');
+
 var app = express();
+
 var mongoose=require('mongoose');
 
 mongoose.connect('mongodb://block_business:comp9900@ds259079.mlab.com:59079/comp9900');
@@ -51,8 +53,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieParser('sessiontest'));
+
 app.use(Session({secret:'max', saveUninitialized: false, resave: false}));
 app.use(flash());
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -78,6 +83,7 @@ app.use('/editproductprocess',editProductProcessRouter);
 app.use('/search',searchRouter);
 app.use('/searchresult',searchResultRouter);
 app.use('/myproducts',myproductsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

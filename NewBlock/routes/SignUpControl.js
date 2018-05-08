@@ -1,4 +1,7 @@
 var Client=require('../models/clients');
+//harvey
+var cryptoscript = require('../routes/encrypter');
+
 
 
 module.exports = function (request, response, next)
@@ -22,7 +25,11 @@ module.exports = function (request, response, next)
         {
             if(pwd === pwd2)
             {
-                var cliententity=new Client({username:username,password:pwd, email:email});
+                var en_pwd = cryptoscript.cryptPwd(pwd);
+                console.log("en_pwd: ",en_pwd);
+
+                var cliententity=new Client({username:username,password:en_pwd, email:email});
+
                 cliententity.save();
                 return response.json({success:true});
             }else {

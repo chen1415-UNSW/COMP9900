@@ -1,4 +1,7 @@
 var Client=require('../models/clients');
+//harvey
+var cryptoscript = require('../routes/encrypter');
+
 
 module.exports = function (request, response, next)
 {
@@ -17,15 +20,21 @@ module.exports = function (request, response, next)
         }
         else if(res!=null)
         {
-            if(res.password == pwd)
+            var en_pwd = cryptoscript.cryptPwd(pwd);
+            console.log("en_pwd: ",en_pwd);
+            var db_pwd = cryptoscript.cryptPwd(res.password);
+
+            if(db_pwd == en_pwd)
             {
+                console.log("登录密码正确");
                 request.session.user = {'username': uname};
                 request.session.userid = {'uid': res._id};
 
 
                 return response.json({success:true});
-            }else if(res.password != pwd)
+            }else if(db_pwd != en_pwd)
             {
+                console.log("登录密码错误");
                 return response.json({success:false});
             }
         }

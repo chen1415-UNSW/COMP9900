@@ -25,6 +25,11 @@
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <!--coustom css-->
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+   <!--交易动态页面-->
+  <link href="./css/please-wait.css" rel="stylesheet">
+  <link href="./css/spiner.css" rel="stylesheet">
+
   <!--shop-kart-js-->
   <script src="js/simpleCart.min.js"></script>
   <!--default-js-->
@@ -37,6 +42,8 @@
   <script defer src="js/jquery.flexslider.js"></script>
   <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
   <script type="text/javascript" src="/javascripts/allJSforCart.js"></script>
+  <script type="text/javascript" src="./MyTrade.js"></script>
+  <script type="text/javascript" src="./js/please-wait.min.js"></script>
   <script>
     // Can also be used with $(document).ready()
     $(window).load(function() {
@@ -158,7 +165,7 @@
         if (totalMoney>0){
 
         %>
-        <a class="order" onclick="placeorder_POST(<%=JSON.stringify(result)%>)">Place Order</a>
+        <a class="order" onclick="placeorder_Trade(<%=JSON.stringify(result)%>)">Place Order</a>
         <%
         }
         %>
@@ -172,9 +179,36 @@
     <%include footer.ejs%>
 </body>
 <script>
-  //var _result = "<%= JSON.stringify(result) %>";
-  //console.log(_result);
- 
+
+  function updateMessage(words) {
+    window.loading_screen.updateLoadingHtml('<div><h2 style="color:Orange;">' + words + '</h2></div>')
+  }
+
+  function placeorder_Trade(cart_list) {
+    //console.log(cart_list)
+    window.loading_screen = window.pleaseWait({
+    logo: "./images/logo3.png",
+    backgroundColor: '#000000',
+    loadingHtml: '<div><h2 style="color:Orange;">Your purchase is processed on block-chain now</h2></div> \
+                  <div class="sk-folding-cube"> \
+                  <div class="sk-cube1 sk-cube"></div> \
+                  <div class="sk-cube2 sk-cube"></div> \
+                  <div class="sk-cube4 sk-cube"></div> \
+                  <div class="sk-cube3 sk-cube"></div> \
+                  </div>'
+    })
+    setTimeout("updateMessage('Complete!')", 2000)
+    App.makeTrade(cart_list, function(txHashList) {
+      console.log("All transaction processed")
+      console.log(txHashList)
+      //注册event
+      App.tradeEvent()
+      
+    })
+    window.loading_screen.finish()
+    
+
+  }
 </script>
 
 </html>

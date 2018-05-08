@@ -9,7 +9,10 @@ import mytrade_artifacts from '../../build/contracts/Trade.json'
 var MyTrade = contract(mytrade_artifacts)
 
 var account_list
-var account
+var default_buyer
+var default_seller
+var buyer_balance
+var seller_balance
 
 window.App = {
 
@@ -29,17 +32,18 @@ window.App = {
             }
             // 以后需要替换为用户的实际账户
             account_list = accs
-            account = account_list[0]
-            var address_element = document.getElementById("YourAddress")
+            default_buyer = account_list[0]
+            default_seller = account_list[1]
+           
             console.log("Check account")
-            address_element.innerHTML = account.valueOf()
+            console.log(default_buyer)
+           
             // 设置初始合约默认地址，否则会报错invalid address
-            web3.eth.defaultAccount = account
+            web3.eth.defaultAccount = default_buyer
 
-            self.refreshBalance()
+            self.refreshBalance(default_buyer)
 
-            //注册event
-            self.tradeEvent()
+           
           })
     
     },
@@ -53,14 +57,14 @@ window.App = {
         return message
     },
 
-    refreshBalance: function() {
-        var unit = new BigNumber('10e17')
+    refreshBalance: function(account) {
+        
         web3.eth.getBalance(account, function(err, result){
             console.log("Refresh Balance")
             if (!err) {
-                 var balance_element = result.dividedBy(unit).toFixed(5).toString()
-                 console.log(balance_element)
-                 return balance_element
+                 var balance = web3.fromWei(result ,'ether').toString()
+                 console.log(balance)
+                 return balance
             }
             else {
                 console.log(err)
@@ -69,33 +73,69 @@ window.App = {
         
     },
 
-    makeTrade: function() {
+    checkBalanceEnough: function(account, total) {
         var self = this
-        var example = {
-            seller: "Harvey",
-            buyer: "Tom",
-            item: "#1",
-            price: 100
+        if (total < self.refreshBalance(account)) {
+            return false
         }
-        MyTrade.deployed().then(function(instance) {
-            instance.setTrade(example.seller, example.buyer, example.item, example.price, {from:account, gas:3000000})
-        }).then(function() {
-            self.setStatus("Trade Complete!")
-            self.refreshBalance()
-            
-        }).catch(function(e) {
-            console.log(e)
-            self.setStatus("Error making trade, check log")
-        })
+        else {
+            return true
+        }
+    },
+
+    makeTrade: function(cart_list, callback) {
+
+        var self = this
+        var txHashList = []
+        var transaction_num = cart_list.length
+        var waiting_for = 0 //异步等待标志
+        var flag = true
+        function waitingEnd(flag) {
+            if (flag === transaction_num) {
+                callback(flag, cart_list)
+            }
+        }
+        //统计购物车总价是否超过用户余额
+        var total = 0
+        for (var i in cart_list){
+            total += cart_list[i].number * cart_list[i].price
+        }
+        // 尚未添加价格确认
+
+        for (var i in cart_list) {
+            MyTrade.deployed().then(function(instance) {
+                var tradeDetail = cart_list[i]
+                var txHash = instance.setTrade(tradeDetail.selleruid, tradeDetail.uid, tradeDetail.pid,
+                    tradeDetail.number, tradeDetail.productPrice
+                    , {from:default_buyer, gas:3000000})
+                txHash.then(function(value) {
+                    console.log("Waiting for transaction: " + i )
+                    console.log(value.tx)
+                    //在输入的购物车里面添加交易成功的Hash
+                    tradeDetail.hash = value.tx
+                    waiting_for += 1
+                    waitingEnd(waiting_for)
+                })
+            }).then(function() {
+                console.log("Trade " + i + " Complete!")
+                self.refreshBalance(default_buyer)
+            }).catch(function(e) {
+                console.log(e)
+                console.log("Error making trade, check log")
+            })
+        }
+       
+    },
+
+    readTransaction: function(address) {
+        return web3.eth.getTransaction(address)
     },
 
     tradeEvent: function() {
         MyTrade.deployed().then(function(instance) {
             instance.showTrade().watch(function(error, result) {
-                $("#contract").html(result.args.seller + " " + result.args.buyer + " " + result.args.item + " cost: " + result.args.price)
-                var number = web3.eth.blockNumber
-                var info =  web3.eth.getBlock(number)
-                console.log("Block Num:" + number + " Block Hash:" + info.hash)
+                console.log("Seller:" + result.args.seller + " Buyer:" + result.args.buyer + 
+                " Product:" + result.args.item)
             })
         })
         

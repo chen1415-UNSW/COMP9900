@@ -36,15 +36,15 @@ function removeFromCart(i){
     });
 }
 
-function  placeorder(cartInfo_list) {
+function  placeorder(isSuccess, cartInfo_list) {
    // console.log("cartInfo_list=");
    // console.log(cartInfo_list);
 
-    cartInof_json = {"cartInfo_list":cartInfo_list};
+    cartInof_json = {"flag":isSuccess, "cartInfo_list":cartInfo_list};
     $.ajax({
 
         type: 'POST',
-        url: '/trade',
+        url: '/checkout',
         contentType: "application/json",
         dataType: 'json',
         data: JSON.stringify(cartInof_json),
@@ -70,7 +70,7 @@ function  placeorder(cartInfo_list) {
         }
 });
 }
-
+// 放弃使用
 function placeorder_POST(cartInfo_list) {
     
     var form = $("<form method='post'></form>");

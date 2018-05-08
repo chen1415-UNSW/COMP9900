@@ -15,11 +15,7 @@ router.post('/', function(req, res, next){
         console.log("Data entry " + i)
         console.log(content[i])
     }
-    
-  
-    
     res.render('trade')
-    
 
 })
 

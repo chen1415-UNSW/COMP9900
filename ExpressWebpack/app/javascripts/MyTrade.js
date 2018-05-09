@@ -104,10 +104,21 @@ window.App = {
 
         for (var i in cart_list) {
             MyTrade.deployed().then(function(instance) {
+                // 如果买卖双方地址没有被赋值，使用默认地址交易
                 var tradeDetail = cart_list[i]
+                if (tradeDetail.buyerAddress === undefined) {
+                    tradeDetail.buyerAddress = default_buyer
+                }
+                if (tradeDetail.sellerAddress === undefined) {
+                    tradeDetail.sellerAddress = default_seller
+                }
+                console.log("Show addresses:")
+                console.log(tradeDetail.buyerAddress)
+                console.log(tradeDetail.sellerAddress)
+                //
                 var txHash = instance.setTrade(tradeDetail.selleruid, tradeDetail.uid, tradeDetail.pid,
-                    tradeDetail.number, tradeDetail.productPrice
-                    , {from:default_buyer, gas:3000000})
+                    tradeDetail.number, web3.toWei(tradeDetail.productPrice, 'ether')
+                    , tradeDetail.sellerAddress, {from:tradeDetail.buyerAddress, gas:3000000})
                 txHash.then(function(value) {
                     console.log("Waiting for transaction: " + i )
                     console.log(value.tx)
@@ -117,8 +128,8 @@ window.App = {
                     waitingEnd(waiting_for)
                 })
             }).then(function() {
-                console.log("Trade " + i + " Complete!")
-                self.refreshBalance(default_buyer)
+                console.log("Trade Complete!")
+                
             }).catch(function(e) {
                 console.log(e)
                 console.log("Error making trade, check log")

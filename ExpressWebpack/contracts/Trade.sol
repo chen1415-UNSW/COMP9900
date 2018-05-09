@@ -10,6 +10,7 @@ contract Trade is SafeMath {
     uint number;
     uint price;
     uint total;
+    address receiver;
 
     event showTrade(
         string seller,
@@ -21,13 +22,20 @@ contract Trade is SafeMath {
        
     );
 
-    function setTrade(string _seller, string _buyer, string _item, uint _number, uint _price) public {
+    function setTrade(string _seller, string _buyer, string _item, uint _number, uint _price, address _receiver) public {
         seller = _seller;
         buyer = _buyer;
         item = _item;
         number = _number;
         price = _price;
         total = safeMul(number, price);
+        // if (address(msg.sender).balance < total) {
+        //     return;
+        // } else {
+        //     address(_receiver).transfer(total);
+       
+            
+        // }
         emit showTrade(seller, buyer, item, number, price, total);
     }
 

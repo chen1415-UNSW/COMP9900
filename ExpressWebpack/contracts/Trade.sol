@@ -22,6 +22,14 @@ contract Trade is SafeMath {
        
     );
 
+    function () payable public{
+        
+    }  
+    
+    function getContractAddress() public view returns (address) {
+        return(address(this));
+    }
+    
     function setTrade(string _seller, string _buyer, string _item, uint _number, uint _price, address _receiver) public {
         seller = _seller;
         buyer = _buyer;

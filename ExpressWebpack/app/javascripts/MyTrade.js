@@ -112,17 +112,31 @@ window.App = {
                 if (tradeDetail.sellerAddress === undefined) {
                     tradeDetail.sellerAddress = default_seller
                 }
-                console.log("Show addresses:")
+                console.log("Show trade addresses:")
                 console.log(tradeDetail.buyerAddress)
                 console.log(tradeDetail.sellerAddress)
                 //
-                var txHash = instance.setTrade(tradeDetail.selleruid, tradeDetail.uid, tradeDetail.pid,
+                var contractAddress = instance.getContractAddress().value
+                var contractBalance = instance.getContractBalance()
+                console.log("Show contract info")
+                console.log(contractAddress)
+                console.log(contractBalance)
+
+                var txHash = instance.setTrade.sendTransaction(tradeDetail.selleruid, tradeDetail.uid, tradeDetail.pid,
                     tradeDetail.number, web3.toWei(tradeDetail.productPrice, 'ether')
-                    , tradeDetail.sellerAddress, {from:tradeDetail.buyerAddress, gas:3000000})
+                    , tradeDetail.sellerAddress, 
+                    {from:tradeDetail.buyerAddress, value:web3.toWei(total, 'ether'), gas:3000000})
+
                 txHash.then(function(value) {
-                    console.log("Waiting for transaction: " + i )
+                    console.log("Waiting for transaction:")
                     console.log(value.tx)
                     //在输入的购物车里面添加交易成功的Hash
+                   
+                    var contractBalance = instance.getContractBalance()
+                    console.log("Show contract balance")
+                    
+                    console.log(contractBalance)
+
                     tradeDetail.hash = value.tx
                     waiting_for += 1
                     waitingEnd(waiting_for)
@@ -136,6 +150,29 @@ window.App = {
             })
         }
        
+    },
+
+    testTrade: function() {
+        var tempAddr = "0x2b98f779b6eb273caa9cf73607be899625c3ac6d"
+        MyTrade.deployed().then(function(instance) {
+            var contractAddress = instance.getContractAddress()
+            contractAddress.then(function(value) {
+                var testAddr = value.toString()
+                console.log("Contract Address")
+                console.log(value)
+                console.log(typeof(value))
+                var contractBalance = web3.eth.getBalance(testAddr).toNumber()
+                console.log("Show contract info before trade")
+                console.log(contractBalance)
+                var txHash = web3.eth.sendTransaction(
+                    {from:default_buyer, to:testAddr, value:web3.toWei(5, 'ether')}, function(){
+                        contractBalance = web3.eth.getBalance(testAddr).toNumber()
+                        console.log("Show contract info after trade")
+                        console.log(contractBalance)
+                    })
+            })
+           
+        })
     },
 
     readTransaction: function(address) {

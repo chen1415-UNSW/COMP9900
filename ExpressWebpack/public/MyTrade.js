@@ -28227,10 +28227,10 @@ window.App = {
                 console.log(contractBalance)
 
                 //再把钱付给卖家
-                //var payHash = await instance.confirmTrade(currentIndex)
-                var payHash = await instance.confirmTradeByAddress(
-                "0x60EC8abbb9d6C807B0F2cd3D1E39c7D103EaF2f1", 
-                {from:tradeDetail.buyerAddress})
+                var payHash = await instance.confirmTrade(currentIndex, {from:tradeDetail.buyerAddress})
+                // var payHash = await instance.confirmTradeByAddress(
+                // "0x60EC8abbb9d6C807B0F2cd3D1E39c7D103EaF2f1", 
+                // {from:tradeDetail.buyerAddress})
 
                 waiting_for += 1
                 waitingEnd(waiting_for)

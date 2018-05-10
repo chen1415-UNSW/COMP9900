@@ -2,35 +2,51 @@
 <html>
 <head>
   <title>Trade</title>
-  <script src="./MyTrade.js"></script>
   <script src="./js/jquery-3.1.0.min.js"></script>
   <link href="./css/please-wait.css" rel="stylesheet">
   <link href="./css/spiner.css" rel="stylesheet">
 </head>
 <body>
   <h1 style="color:Orange;">Trade Info</h1>
+  <button type="button">Ethereum</button>
+  <div id="Ethereum">
+    <p id="show"></p>
+  </div>
+
 
 
 </body>
 <script type="text/javascript" src="./js/please-wait.min.js"></script>
 <script type="text/javascript">
-  window.loading_screen = window.pleaseWait({
-    logo: "./images/logo3.png",
-    backgroundColor: '#000000',
-    loadingHtml: '<div><h2 style="color:Orange;">Your purchase is processed on block-chain now</h2></div> \
-                  <div class="sk-folding-cube"> \
-                  <div class="sk-cube1 sk-cube"></div> \
-                  <div class="sk-cube2 sk-cube"></div> \
-                  <div class="sk-cube4 sk-cube"></div> \
-                  <div class="sk-cube3 sk-cube"></div> \
-                  </div>'
+  // window.loading_screen = window.pleaseWait({
+  //   logo: "./images/logo3.png",
+  //   backgroundColor: '#000000',
+  //   loadingHtml: '<div><h2 style="color:Orange;">Your purchase is processed on block-chain now</h2></div> \
+  //                 <div class="sk-folding-cube"> \
+  //                 <div class="sk-cube1 sk-cube"></div> \
+  //                 <div class="sk-cube2 sk-cube"></div> \
+  //                 <div class="sk-cube4 sk-cube"></div> \
+  //                 <div class="sk-cube3 sk-cube"></div> \
+  //                 </div>'
+  // })
+  // setTimeout("updateMessage('Complete!')", 3000)
+  // function updateMessage(words) {
+  //   window.loading_screen.updateLoadingHtml('<div><h2 style="color:Orange;">' + words + '</h2></div>')
+  // }
+
+  $(document).ready(function(){
+    $("button").click(function(){
+      console.log("check")
+    
+      $.get("https://api.coinmarketcap.com/v2/ticker/1027/?convert=AUD", function(result){
+        console.log(result)
+       
+        console.log("Extract quotes")
+        console.log(result.data.quotes.USD.price)
+        $("#show").text(result.data.quotes.USD.price)
+    })
+    })
   })
-  setTimeout("updateMessage('Complete!')", 3000)
-  function updateMessage(words) {
-    window.loading_screen.updateLoadingHtml('<div><h2 style="color:Orange;">' + words + '</h2></div>')
-  }
  
 </script>
-
- 
 </html>

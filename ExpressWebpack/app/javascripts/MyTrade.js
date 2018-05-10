@@ -174,10 +174,10 @@ window.App = {
                 console.log(contractBalance)
 
                 //再把钱付给卖家
-                //var payHash = await instance.confirmTrade(currentIndex)
-                var payHash = await instance.confirmTradeByAddress(
-                "0x60EC8abbb9d6C807B0F2cd3D1E39c7D103EaF2f1", 
-                {from:tradeDetail.buyerAddress})
+                var payHash = await instance.confirmTrade(currentIndex, {from:tradeDetail.buyerAddress})
+                // var payHash = await instance.confirmTradeByAddress(
+                // "0x60EC8abbb9d6C807B0F2cd3D1E39c7D103EaF2f1", 
+                // {from:tradeDetail.buyerAddress})
 
                 waiting_for += 1
                 waitingEnd(waiting_for)
@@ -229,8 +229,8 @@ window.App = {
         instance.showTradeIndex().watch( async function(error, result){
             let index = result.args.single_index.toNumber()
             console.log("Record trade index: " + index)
-            let value = await instance.getSellerAddress(index)
-            console.log(value)
+            // let value = await instance.getSellerAddress(index)
+            // console.log(value)
         })   
     }
 

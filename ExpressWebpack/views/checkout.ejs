@@ -198,14 +198,13 @@
                   </div>'
     })
     setTimeout("updateMessage('Complete!')", 2000)
-    // App.makeTrade(cart_list, function(txHashList) {
-    //   console.log("All transaction processed")
-    //   console.log(txHashList)
-    //   //注册event
-    //   App.tradeEvent()
+    console.log(cart_list)
+    App.makeTrade(cart_list, function(cart_list_withHash) {
+      console.log("All transaction processed")
+      console.log(cart_list_withHash)
       
-    // })
-    App.testTrade()
+    })
+    //App.testTrade()
     window.loading_screen.finish()
     
 

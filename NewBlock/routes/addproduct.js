@@ -4,7 +4,7 @@ module.exports = function (request, response, next) {
 
     if(request.session.user == undefined || request.session.user == "NULL")
     {
-        // console.log("Sign Up No username Yet!");
+
         response.redirect('/signup');
     }
     else

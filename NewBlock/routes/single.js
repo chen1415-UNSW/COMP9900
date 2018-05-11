@@ -60,6 +60,7 @@ router.get('/showproduct', function(req, res, next) {
                 productInfo = result.productInfo;
                 productPrice = result.productPrice;
                 imgPath = result.imgPath;
+                productStock = result.productStock;
 
                 console.log("db中找到了pid对应的 product=");
                 console.log(productName);
@@ -72,6 +73,7 @@ router.get('/showproduct', function(req, res, next) {
                     productName:productName,
                     productInfo:productInfo,
                     productPrice:productPrice,
+                    productStock:productStock,
                     imgPath: imgPath,
                     u_name: req.session.user.username,
                     uid:req.session.userid.uid
@@ -105,27 +107,43 @@ router.post('/delete', function(req, res, next) {
             console.error(err);
         } else {
 
-            // 5.1 bug == single seller删除product， cart 没有更新
-            Cart.update({'pid': pid},update_json,{'multi':true},function(err2,response2){
-                result2 = response2;
-                console.log("--------- 2. delete 去更新cart---------json=----");
-                if(result2 == null || err2)
-                {
-                    // return res.json({success:"didn't Update the EDIT product  IN CART !!!! with pid"});
-                    console.log("--------- 3. delete去 更新cart---------cart 没有这个pid----");
+            // 5.4 bug == single seller删除product， cart 没有更新
+
+            Cart.deleteMany({'pid': pid}, function (err3) {
+                if (err3){
+                    console.log("--------- 3. 删产品，delete cart---------cart 没有这个pid----");
                     res.send({
                         err: null,
                         msg:pid.toString()
                     });
                 }else{
-                    console.log("--------- 4. delete 去更新cart 成功-------------");
+                    console.log("--------- 4. 删产品，delete cart------- 成功-------------");
                     res.send({
                         err: null,
                         msg: "true"
                     });
-
                 }
             });
+            // Cart.update({'pid': pid},update_json,{'multi':true},function(err2,response2){
+            //     result2 = response2;
+            //     console.log("--------- 2. delete 去更新cart---------json=----");
+            //     if(result2 == null || err2)
+            //     {
+            //         // return res.json({success:"didn't Update the EDIT product  IN CART !!!! with pid"});
+            //         console.log("--------- 3. delete去 更新cart---------cart 没有这个pid----");
+            //         res.send({
+            //             err: null,
+            //             msg:pid.toString()
+            //         });
+            //     }else{
+            //         console.log("--------- 4. delete 去更新cart 成功-------------");
+            //         res.send({
+            //             err: null,
+            //             msg: "true"
+            //         });
+            //
+            //     }
+            // });
 
 
 
@@ -186,6 +204,7 @@ router.get('/edit', function(req, res, next) {
                 productInfo = result.productInfo;
                 productPrice = result.productPrice;
                 imgPath = result.imgPath;
+                productStock = parseInt(result.productStock);
 
                 console.log("db中找到了edit pid对应的 product=");
                 console.log(productName);
@@ -198,6 +217,7 @@ router.get('/edit', function(req, res, next) {
                     productName:productName,
                     productInfo:productInfo,
                     productPrice:productPrice,
+                    productStock:productStock,
                     imgPath: imgPath,
                     u_name: req.session.user.username,
                     uid:req.session.userid.uid
@@ -221,6 +241,7 @@ router.post('/addtocart', function(req, res, next) {
     var productPrice = req.body.productPrice;
     var imgPath = req.body.imgPath;
     var number = parseInt(req.body.number);
+    console.log("/*****2 addproduct number =" + number);
     // var pid = req.query.pid;
     console.log("single  addto cart backend pid=");
     console.log(pid);
@@ -229,58 +250,187 @@ router.post('/addtocart', function(req, res, next) {
     console.log("single  addto cart backend uid=");
     console.log(uid);
 
-    //4.28 bug 写不进去DB
-
-    Cart.findOne({'pid': pid, 'uid':uid},function(err,response){
+    // 减库存
+    Product.findOne({'_id': pid},function(err,response){
         result = response;
-        console.log("Need to creat cart tabele ===== ");
-        if(result == null)
-        {
-            // return res.json({success:"didn't find the product with pid"});
-            var cartentity=new Cart({pid:pid, uid:uid, selleruid:selleruid, productName:productName, productInfo:productInfo,productPrice:productPrice,imgPath:imgPath,number:number});
-            cartentity.save();
-            console.log("cartid=");
-            console.log(cartentity._id);
-            var cartid = cartentity._id;
-            if (cartid){
+        if(result ==null){
+            res.send({
+                err: "add to cart fail",
+            });
+
+        }
+        else{// stoch enough
+            stockNum = parseInt(result.productStock);
+            console.log("stockNum="+stockNum);
+            if(stockNum < number){
                 res.send({
-                    // 返回cartid给 处理addto cart的js code
-                    err: null,
-                    msg:cartid.toString()
+                    err: "Not enough items in stock",
                 });
             }else{
-                res.send({
-                    err: "add to cart fail",
+                Cart.findOne({'pid': pid, 'uid':uid},function(err,response){
+                    result = response;
+                    console.log("Need to creat cart tabele ===== ");
+                    if(result == null)
+                    {
+                        // return res.json({success:"didn't find the product with pid"});
+                        var cartentity=new Cart({pid:pid, uid:uid, selleruid:selleruid, productName:productName, productInfo:productInfo,productPrice:productPrice,imgPath:imgPath,number:number});
+                        cartentity.save();
+                        console.log("cartid=");
+                        console.log(cartentity._id);
+                        var cartid = cartentity._id;
+                        if (cartid){
+
+                            newStock = stockNum - number;
+                            console.log("--------- bug number="+number);
+                            console.log("newStock = "+newStock);
+
+                            Product.update({'_id': pid}, {productStock: newStock},function(err,result){
+                                if(err) {
+                                    console.log(err);
+                                }else{
+                                    console.log('更改cart+ Product stock 成功：');
+
+                                    res.send({
+                                        // 返回cartid给 处理addto cart的js code
+                                        err: null,
+                                        msg:"update cart successfully"
+                                    });
+                                }
+                            });
+
+
+
+
+
+
+                            // res.send({
+                            //     // 返回cartid给 处理addto cart的js code
+                            //     err: null,
+                            //     msg:cartid.toString()
+                            // });
+                        }else{
+                            res.send({
+                                err: "add to cart fail",
+                            });
+                        }
+
+
+                    }
+                    else
+                    {
+                        number_incart = parseInt(result.number);
+                        console.log("----- db中找到了cart 已有的对应的 product=");
+                        console.log(productName);
+                        console.log("number_incart=");
+                        console.log(number_incart);
+
+
+                        Cart.update({'pid': pid, 'uid':uid}, {number: number_incart+number},function(err,result){
+                            if(err) {
+                                console.log(err);
+                            }else{
+                                console.log('更改cart 成功：', result);
+                                newStock = stockNum - number;
+                                console.log("newStock = "+stockNum);
+
+                                Product.update({'_id': pid}, {productStock: newStock},function(err,result){
+                                    if(err) {
+                                        console.log(err);
+                                    }else{
+                                        console.log('更改cart+ Product stock 成功：', result);
+
+                                        res.send({
+                                            // 返回cartid给 处理addto cart的js code
+                                            err: null,
+                                            msg:"update cart successfully"
+                                        });
+                                    }
+                                });
+
+                                // res.send({
+                                //     // 返回cartid给 处理addto cart的js code
+                                //     err: null,
+                                //     msg:"update cart successfully"
+                                // });
+                            }
+                        });
+
+                    }
                 });
             }
 
 
-        }
-        else
-        {
-            number_incart = result.number;
-            console.log("----- db中找到了cart 已有的对应的 product=");
-            console.log(productName);
-            console.log("number_incart=");
-            console.log(number_incart);
 
 
-            Cart.update({'pid': pid, 'uid':uid}, {number: number_incart+1},function(err,result){
-                if(err) {
-                    console.log(err);
-                }else{
-                    console.log('更改cart 成功：', result);
 
-                    res.send({
-                        // 返回cartid给 处理addto cart的js code
-                        err: null,
-                        msg:"update cart successfully"
-                    });
-                }
-            });
+
+
 
         }
+
+
     });
+
+
+
+
+    //4.28 bug 写不进去DB
+
+    // Cart.findOne({'pid': pid, 'uid':uid},function(err,response){
+    //     result = response;
+    //     console.log("Need to creat cart tabele ===== ");
+    //     if(result == null)
+    //     {
+    //         // return res.json({success:"didn't find the product with pid"});
+    //         var cartentity=new Cart({pid:pid, uid:uid, selleruid:selleruid, productName:productName, productInfo:productInfo,productPrice:productPrice,imgPath:imgPath,number:number});
+    //         cartentity.save();
+    //         console.log("cartid=");
+    //         console.log(cartentity._id);
+    //         var cartid = cartentity._id;
+    //         if (cartid){
+    //             res.send({
+    //                 // 返回cartid给 处理addto cart的js code
+    //                 err: null,
+    //                 msg:cartid.toString()
+    //             });
+    //         }else{
+    //             res.send({
+    //                 err: "add to cart fail",
+    //             });
+    //         }
+    //
+    //
+    //     }
+    //     else
+    //     {
+    //         number_incart = result.number;
+    //         console.log("----- db中找到了cart 已有的对应的 product=");
+    //         console.log(productName);
+    //         console.log("number_incart=");
+    //         console.log(number_incart);
+    //
+    //
+    //         Cart.update({'pid': pid, 'uid':uid}, {number: number_incart+number},function(err,result){
+    //             if(err) {
+    //                 console.log(err);
+    //             }else{
+    //                 console.log('更改cart 成功：', result);
+    //
+    //                 res.send({
+    //                     // 返回cartid给 处理addto cart的js code
+    //                     err: null,
+    //                     msg:"update cart successfully"
+    //                 });
+    //             }
+    //         });
+    //
+    //     }
+    // });
+
+
+
+
+
 });
 
 

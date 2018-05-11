@@ -914,13 +914,17 @@ ul.qty li {
     font-size: 18px;
     font-family: 'Pathway Gothic One';
 }
-span.glyphicon.glyphicon-minus {
-    color: #fff;
-    background-color: #A5E126;
-    font-size: 12px;
-    padding: 0px 5px;
-    margin-right: 7px;
-}
+/*span.glyphicon.glyphicon-minus {*/
+    /*color: #fff;*/
+    /*background-color: #A5E126;*/
+    /*font-size: 12px;*/
+    /*padding: 0px 5px;*/
+    /*margin-right: 7px;*/
+/*}*/
+
+
+
+
 .col.col-4 {
     padding: 0px 0px 0px 15px;
 }

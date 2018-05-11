@@ -7,11 +7,13 @@ function removeFromCart(i){
     console.log("pid=");
     console.log(pid);
     var uid = document.getElementById("uid").innerText;
+    var removeNum = document.getElementById("oneItemIncartNum").innerText.valueOf();
+    console.log("removeNum="+removeNum)
 
     console.log("uid want remove ==> uid=");
     console.log(uid);
 
-    delFromCart_json = {pid:pid,uid:uid};
+    delFromCart_json = {pid:pid,uid:uid,removeNum:removeNum};
     //2. 数据库删除
     $.ajax({
         type: 'POST',
@@ -40,35 +42,39 @@ function  placeorder(cartInfo_list) {
     console.log(" cartInfo_list=");
     console.log(cartInfo_list);
 
-    cartInof_json = {cartInfo_list:cartInfo_list};
+    //cartInof_json = {cartInfo_list:cartInfo_list};
+    // 5.8 制造假的 block信息
+    block_json = {status:1, cartInfo_list:cartInfo_list, uid:document.getElementById("uid").innerText};
     $.ajax({
 
         type: 'POST',
         url: '/checkout/placeorder',
         contentType: "application/json",
         dataType: 'json',
-        data: JSON.stringify(cartInof_json),
+        //data: JSON.stringify(cartInof_json)
+        data: JSON.stringify(block_json),
         success: function (data) {
             // console.log("success delete frontend!!!");
             // console.log(data.msg);
             if (data.msg){
                 //
                 window.alert(data.msg);
-                // 未完成： 4.28 需要与订单一起
+                // 未完成： 5.8需要与订单一起
 
                 //1.清空购物车
-                //2.写入order history
-                //3.跳转成功页
+                //2.写入mongo block schma
+                //3.跳转order history 成功页
 
-                // window.location.href = "/success?oid="+oid;
+                window.location.href = "/ProfileControl";
 
-
-                // document.getElementById("simpleCart_quantity").innerText = itemNum;
-
+            }else if (data.err){
+                window.alert(data.err);
             }
+
         },
         error: function (err) {
             console.log(err.message);
+
         }
 });
 }

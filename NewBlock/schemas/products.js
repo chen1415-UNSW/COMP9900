@@ -8,6 +8,7 @@ var ProductSchema = new mongoose.Schema(
         productName:String,
         productInfo:String,
         productPrice:String,
+        productStock:String,
         imgPath: String,
         meta:{
             createAt:{

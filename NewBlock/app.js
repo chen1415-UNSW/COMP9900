@@ -43,6 +43,17 @@ mongoose.connect('mongodb://block_business:comp9900@ds259079.mlab.com:59079/comp
 var db=mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
+
+// 5.8 picture cloud
+var cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'blockbusiness',
+    api_key: '442659655369817',
+    api_secret: 'owZwd3ADFbqpfwXzHmrOEh5srFo'
+});
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

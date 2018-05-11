@@ -53,6 +53,7 @@ module.exports =
     getAddressAll: (flag) => {
         return Address.find({mask:flag})      
     },
+
     // update函数一定要接受回调，或者使用.update()后缀强制执行
     updateAddress: (address, flag) => {
         Address.update({address:address}, {$set:{mask:flag}}, 

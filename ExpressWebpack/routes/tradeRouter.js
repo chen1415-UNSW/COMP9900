@@ -18,8 +18,6 @@ router.get('/', function(req, res, next) {
     //     }
     // })()
    
-    
-    
     // console.log("------check set------")
     // addr = Address.getAddress(false)
     // console.log(addr)

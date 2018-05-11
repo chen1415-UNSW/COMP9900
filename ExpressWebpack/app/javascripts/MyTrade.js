@@ -74,7 +74,6 @@ window.App = {
             console.log("Refresh Balance")
             if (!err) {
                  var balance = web3.fromWei(result ,'ether').toString()
-                 console.log(balance)
                  return balance
             }
             else {
@@ -159,7 +158,7 @@ window.App = {
                     web3.toWei(tradeDetail.productPrice, 'ether'),
                     web3.toWei(total_ThisItem, 'ether'),
                     tradeDetail.sellerAddress, 
-                    {from:tradeDetail.buyerAddress, value:web3.toWei(1, 'ether'), gas:3000000})
+                    {from:tradeDetail.buyerAddress, value:web3.toWei(total_ThisItem, 'ether'), gas:3000000})
 
                 console.log("Waiting for transaction:" + i)
                 console.log(value.tx)

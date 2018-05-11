@@ -101,7 +101,7 @@
             for (var i=0 ; i<JSON.parse(JSON.stringify(result)).length; i++){
                 console.log(JSON.parse(JSON.stringify(result))[0]);
                 var each = JSON.parse(JSON.stringify(result))[i];
-                totalMoney = totalMoney + parseInt(each.productPrice) * parseInt(each.number);
+                totalMoney += parseFloat(each.productPrice) * parseInt(each.number);
                 console.log("each.pid=");
                 console.log(each.pid);
           %>
@@ -198,7 +198,7 @@
                   </div>'
     })
     setTimeout("updateMessage('Complete!')", 2000)
-    console.log(cart_list)
+    //console.log(cart_list)
     App.makeTrade(cart_list, function(cart_list_withHash) {
       console.log("All transaction processed")
       console.log(cart_list_withHash)

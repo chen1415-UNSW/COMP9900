@@ -52,7 +52,7 @@ contract Trade is SafeMath {
     }
 
     function confirmTrade(uint tradeIndex) public returns (bool) {
-        address(TradeList[tradeIndex].seller_addr).transfer(1 ether);
+        address(TradeList[tradeIndex].seller_addr).transfer(TradeList[tradeIndex].total);
         return(true);
     }
 

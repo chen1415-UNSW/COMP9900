@@ -45,31 +45,19 @@ module.exports =
         })
     },
 
-    getAddress: function() {
-        Address.findOne({mask:true}, function(err, result){
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(result)
-                return result
-            }  
-        })
+    getAddress: (flag) => {
+        return Address.findOne({mask:flag})
     },
+        
 
-    getAddresses: function(flag) {
-        Address.find({"mask":flag}, function(err, result){  
-            return result
-        })
+    getAddressAll: (flag) => {
+        return Address.find({mask:flag})      
     },
-
-    updateAddress: function(address, flag) {
-        Address.update({"address":address}, {$set:{"mask":flag}}, function(err){
-            if (err) {
-                console.log(err)
-            } else {
-                console.log("update complete")
-            }
-            
+    // update函数一定要接受回调，或者使用.update()后缀强制执行
+    updateAddress: (address, flag) => {
+        Address.update({address:address}, {$set:{mask:flag}}, 
+        (err)=>{
+            if (err) console.log(err)
         })
     }
     

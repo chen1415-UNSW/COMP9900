@@ -1,10 +1,24 @@
 var express = require('express')
 var router = express.Router()
 var bodyParser = require('body-parser')
+var Address = require('./addressInit')
+
 router.use(bodyParser.urlencoded({extend:false}))
 router.use(bodyParser.json())
 
 router.get('/', function(req, res, next) {
+    //Address.InitAllAddress()
+    let addr = Address.getAddress()
+    if (addr === undefined) {
+        console.log("No result matching")
+    } else {
+        console.log(addr.address)
+        //Address.updateAddress(addr.address, false)
+    }
+    
+    // console.log("------check set------")
+    // addr = Address.getAddress(false)
+    // console.log(addr)
     res.render('trade')
 })
 
@@ -16,7 +30,6 @@ router.post('/', function(req, res, next){
         console.log(content[i])
     }
     res.render('trade')
-
 })
 
 module.exports = router

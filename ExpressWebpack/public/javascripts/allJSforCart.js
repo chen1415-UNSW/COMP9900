@@ -36,7 +36,7 @@ function removeFromCart(i){
     });
 }
 
-function  placeorder(isSuccess, cartInfo_list) {
+function placeorder(isSuccess, cartInfo_list) {
    // console.log("cartInfo_list=");
    // console.log(cartInfo_list);
 

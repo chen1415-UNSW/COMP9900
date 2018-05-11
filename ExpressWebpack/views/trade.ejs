@@ -8,12 +8,10 @@
 </head>
 <body>
   <h1 style="color:Orange;">Trade Info</h1>
-  <button type="button">Ethereum</button>
+  <button type="button" id="eth">Ethereum</button>
   <div id="Ethereum">
     <p id="show"></p>
   </div>
-
-
 
 </body>
 <script type="text/javascript" src="./js/please-wait.min.js"></script>
@@ -35,7 +33,7 @@
   // }
 
   $(document).ready(function(){
-    $("button").click(function(){
+    $("eth").click(function(){
       console.log("check")
     
       $.get("https://api.coinmarketcap.com/v2/ticker/1027/?convert=AUD", function(result){

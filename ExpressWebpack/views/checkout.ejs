@@ -63,9 +63,7 @@
         <ol class="breadcrumb">
           <li><a href="/index">Home</a></li>
           <li class="active">CART</li>
-
-
-          uid: (testing well be hidden)<p id="uid"><%=uid%></p>
+          <p hidden id="uid"><%=uid%></p>
         </ol>
       </div>
     </div>
@@ -202,7 +200,7 @@
       var final_cart = {
         status:flag, 
         cartInfo_list:cart_list_withHash, 
-        uid:document.getElementById("uid").innerText
+        uid: $("#uid").text()
       }
       console.log(final_cart)
       placeorder(final_cart)

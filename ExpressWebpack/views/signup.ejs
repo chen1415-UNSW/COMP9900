@@ -48,7 +48,7 @@
 
     function LogInsubmitForm() {
         let frm = $('#LogInForm');
-        frm.submit(function (e) {
+        frm.unbind('submit').bind('submit', (function (e) {
             e.preventDefault();
             $.ajax({
                 type:"POST",
@@ -56,15 +56,21 @@
                 data:frm.serialize(),
                 success: function (response) {
                         if(response.success){
-                            alert("Login success!");
+                            //alert("Login success!");
+                            $("#notice").html("Login Successfully")
                             window.location='http://localhost:3000/index'
                             //在这里定义一个session对象，将这个表格里的username，存到session里面
 
                         }else{
-                            alert("Login Fail! Pleas try again.");
+                            //alert("Login Fail! Pleas try again.");
+                            $("#notice").html("Fail to log in!")
+                            console.log("Fail to log in")
                         }
                 }})
-        })}
+      
+        }))
+       
+        }
 
 
   </script>
@@ -91,7 +97,7 @@
           <div class="col-md-6 log">
             <h3>Login</h3>
             <div class="strip"></div>
-            <p>Welcome, please enter the following to continue.</p>
+            <p id="notice">Welcome, please enter the following to continue.</p>
 
             <form id="LogInForm">
                 <h5>User Name:</h5>

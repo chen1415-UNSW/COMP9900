@@ -6,7 +6,7 @@ module.exports = {
     MyTrade: './app/javascripts/MyTrade.js'
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public/javascripts'),
     filename: '[name].js'
   },
   // plugins: [

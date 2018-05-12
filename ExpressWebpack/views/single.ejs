@@ -96,25 +96,29 @@
           <div class="col-md-4 showcase">
             <div class="showcase-rt-top">
               <div class="pull-left shoe-name">
-
-
-                uid: for test (will be hidden)
-                <p id="uid"><%=uid%></p>
-                selleruid:
+                <p hidden id="uid"><%=uid%></p>
+                selleruid :
                 <p id="selleruid"><%=selleruid%></p>
 
 
                 <h3 id="showproductName"><%= productName %></h3>
                 <p id="showpid">pid:<%= pid %></p>
 
-
                 <!--<h4 id="showproductPrice"><span class="glyphicon glyphicon-usd"></span>&#36; <%= productPrice %></h4>-->
-
+                <!--5.10 增加计数器-->
                 <h4 id="showproductPrice"><span class="glyphicon glyphicon-usd"></span><%= productPrice %></h4>
-              </div>
 
+                <div class="row pull-right">
+                  <div class="form-inline">
+                    <td>
+                      avaliable : <span id="showProductStock"><%=productStock%></span>
+                    </td>
+                  </div>
+                </div>
+              </div>
               <div class="clearfix"></div>
             </div>
+
             <hr class="featurette-divider">
             <div class="shocase-rt-bot">
               <div class="float-qty-chart">
@@ -135,10 +139,51 @@
                   <a class="btn item_add" role="button" href="/single/edit?pid=<%=pid%>&uid=<%=selleruid%>" > <span class="">&nbsp</span>Edit</a>
                   <!--<a class="btn item_add" role="button" onclick="editProduct()" > <span class="">&nbsp</span>Edit</a>-->
                 </li>
+
+
                 <%
-                }else{
+                }else if (uid!=selleruid && parseInt(productStock)>0){
                 %>
 
+                <div class="input-group number-spinner" style="margin-top: 20px">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                  </span>
+
+                  <input id="shownumber" type="text" class="form-control text-center" value="1">
+
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                  </span>
+                </div>
+
+                <script>
+                    $(document).on('click', '.number-spinner button', function () {
+                        var btn = $(this),
+                            oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+                            newVal = 0;
+                        console.log("oldValue = "+oldValue);
+
+
+                        var productStock = document.getElementById("showProductStock").innerText;
+                        console.log("productStock="+productStock);
+
+
+                        if (btn.attr('data-dir') == 'up'){
+                            newVal = parseInt(oldValue) + 1;
+                            if (newVal >= productStock){
+                                newVal = productStock;
+                            }
+                        } else {
+                            if (oldValue > 1) {
+                                newVal = parseInt(oldValue) - 1;
+                            } else {
+                                newVal = 1;
+                            }
+                        }
+                        btn.closest('.number-spinner').find('input').val(newVal);
+                    });
+                </script>
 
 
                 <li class="ad-2-crt simpleCart_shelfItem">
@@ -251,9 +296,6 @@
 
       <!--5. foot start -->
       <%include footer.ejs%>
-
-
-
 
 </body>
 

@@ -3,6 +3,7 @@ var moment = require("moment");
 var express = require("express");
 var multer  = require('multer');
 var router = express.Router();
+var imageCloud = require('../image');
 
 
 const storage = multer.diskStorage({
@@ -25,10 +26,34 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', upload.single('avatar'), function (req, res, next) {
-    res.send({
-        err: null,
-        filePath: 'uploads/' + path.basename(req.file.path)
+
+    var imgPath = '/uploads/' + path.basename(req.file.path);
+    console.log("-------------- 5.8 调试照片 cloud-----------")
+    console.log("1. imgPath = "+ imgPath);
+
+
+   // 5.8 bug
+    imageCloud.uploadimage(imgPath, function(url) {
+        console.log("3");
+
+
+        res.send({
+            err: null,
+            filePath: url
+        });
+
     });
+    // console.log("3 . imgPathInCloud="+ imgPathInCloud);
+    //
+    //
+    // res.send({
+    //     err: null,
+    //     filePath: imgPathInCloud
+    // });
+    // res.send({
+    //     err: null,
+    //     filePath: 'uploads/' + path.basename(req.file.path)
+    // });
 });
 
 

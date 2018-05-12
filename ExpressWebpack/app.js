@@ -20,6 +20,9 @@ var LogInControlRoute = require('./routes/LogInControl');
 var SignOutRoute = require('./routes/SignOut');
 var ProfileRoute = require('./routes/ProfileControl');
 var ChangeDetailsRoute = require('./routes/ChangeDetailsControl');
+var ViewOrderHistoryRoute = require('./routes/ViewOrderHistory');
+var ViewOrderHistorySaleRoute = require('./routes/ViewOrderSelling');
+
 
 // yuli 4.22 -- 5.3
 var addProductRouter = require('./routes/addProduct');
@@ -43,6 +46,17 @@ var mongoose=require('mongoose');
 mongoose.connect('mongodb://block_business:comp9900@ds259079.mlab.com:59079/comp9900');
 var db=mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+
+
+// 5.8 picture cloud
+var cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'blockbusiness',
+    api_key: '442659655369817',
+    api_secret: 'owZwd3ADFbqpfwXzHmrOEh5srFo'
+});
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -72,6 +86,8 @@ app.use('/LogInControl', LogInControlRoute);
 app.use('/SignOut', SignOutRoute);
 app.use('/ProfileControl', ProfileRoute);
 app.use('/ChangeDetails', ChangeDetailsRoute);
+app.use('/ViewOrder', ViewOrderHistoryRoute);
+app.use('/ViewOrderSale', ViewOrderHistorySaleRoute);
 
 // 4.22 for product -- 5.3
 app.use('/uploadfile',uploadRouter);

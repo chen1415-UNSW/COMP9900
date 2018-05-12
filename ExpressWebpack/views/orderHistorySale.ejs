@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Order History</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="N-Air"
+    />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <meta charset utf="8">
+    <!--fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+
+    <!--fonts-->
+    <!--bootstrap-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--coustom css-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!--shop-kart-js-->
+    <script src="js/simpleCart.min.js"></script>
+    <!--default-js-->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <!--bootstrap-js-->
+    <script src="js/bootstrap.min.js"></script>
+    <!--script-->
+    <!-- FlexSlider -->
+    <script src="js/imagezoom.js"></script>
+    <script defer src="js/jquery.flexslider.js"></script>
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/javascripts/allJSforCart.js"></script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+    <!-- //FlexSlider-->
+</head>
+
+<body>
+<%include header.ejs%>
+
+
+
+<div class="head-bread">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/index">Home</a></li>
+            <li class="active">Profile</li>
+            <li class="active">Order History</li>
+
+
+            uid: (testing well be hidden)<p id="uid"><%=uid%></p>
+        </ol>
+    </div>
+</div>
+
+<!--cart 展示区-->
+<div class="check">
+    <div class="container">
+        <div class="col-md-9 cart-items">
+
+            <h1 id="totalItemsNum">My Order Selling History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
+
+            <!--循环输出order history 内容-->
+
+            <%
+            var totalMoney = 0;
+
+            for (var i=0 ; i<JSON.parse(JSON.stringify(result)).length; i++)
+            {
+                console.log("[0]: ",JSON.parse(JSON.stringify(result))[0]);
+                var each = JSON.parse(JSON.stringify(result))[i];
+
+                // console.log("====each.meta.updateAt:=======", each.meta.updateAt)
+                console.log("each.pid=");
+                console.log(each.pid);
+            %>
+
+            <div class="cart-header<%=i%>">
+
+                <div class="cart-sec simpleCart_shelfItem" style="border: grey">
+                    <div class="cart-item cyc" >
+                        <a href="/single/showproduct?pid=<%=each.pid%>"><img src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
+                    </div>
+
+                    <div class="cart-item-info">
+                        <h3><%=each.productName%></h3>
+                        <p hidden id="pid<%=i%>"><%=each.pid%></p>
+                    </div>
+                    <div  class="remove<%=i%>" onclick="removeFromCart(<%=i%>)" style="cursor:pointer">
+                        <p class="pull-right"></p>
+                    </div>
+
+                    <div class="cart-item-info">
+                        <ul class="qty">
+                            <li>
+                                <p>Qty : <%=each.number%></p>
+                            </li>
+                            <li>
+                                <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>
+                            </li>
+                            <li>
+                                <p>Total cost : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice*each.productPrice%></p>
+                            </li>
+                            <li>
+                                <p>Transition block : <%=each.blockhash%></p>
+                            </li>
+                            <li>
+                                <p>Transition time: <%=each.meta.updateAt%></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+            <br/>
+
+            <%
+            }
+            %>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--5. foot start -->
+<%include footer.ejs%>
+</body>
+
+</html>

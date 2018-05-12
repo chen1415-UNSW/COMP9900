@@ -10,6 +10,7 @@ module.exports = function (request, response, next) {
     var email = request.body.p_email;
     var pwd = request.body.p_password;
     var re_pwd = request.body.pr_password;
+    var n_address = request.body.p_address;
 
     console.log(uname +"   ChangDetail Name");
     console.log(email + "ChangeDetail Email");
@@ -20,7 +21,7 @@ module.exports = function (request, response, next) {
     {
         return response.json({success:false});
     }else{
-        Client.findOneAndUpdate({'username':uname},{'password':pwd,'email':email},function(err,res){
+        Client.findOneAndUpdate({'username':uname},{'password':pwd,'email':email, 'address':n_address},function(err,res){
             if(err)
             {
                 console.log(err);

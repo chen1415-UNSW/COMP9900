@@ -39,8 +39,8 @@ window.App = {
             }
             // 以后需要替换为用户的实际账户
             account_list = accs
-            default_buyer = account_list[2]
-            default_seller = account_list[1]
+            default_buyer = account_list[1]
+            default_seller = account_list[2]
            
             console.log("Check account")
             console.log(default_buyer)

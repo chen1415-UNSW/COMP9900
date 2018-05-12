@@ -101,20 +101,32 @@
     </div>
 
 
+
+
+
+
     <!--商品展示-->
     <div class="shop-grid">
       <div class="container">
+
+        <%
+        for (var i=0 ; i<JSON.parse(JSON.stringify(result)).length; i++){
+          console.log(JSON.parse(JSON.stringify(result))[0]);
+          var each = JSON.parse(JSON.stringify(result))[i];
+          console.log("each=");
+          console.log(each);
+        %>
         <div class="col-md-4 grid-stn simpleCart_shelfItem">
           <!-- normal -->
           <div class="ih-item square effect3 bottom_to_top">
             <div class="bottom-2-top">
-              <div class="img"><img src="images/grid4.jpg" alt="/" class="img-responsive gri-wid"></div>
+              <div class="img"><img src="<%=each.imgPath%>" alt="/" class="img-responsive gri-wid"></div>
               <div class="info">
                 <div class="pull-left styl-hdn">
-                  <h3>style 01</h3>
+                  <h3><%=each.productName%></h3>
                 </div>
                 <div class="pull-right styl-price">
-                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
+                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$1</span></a></p>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -122,121 +134,18 @@
           </div>
           <!-- end normal -->
           <div class="quick-view">
-            <a href="/single">Quick view</a>
+            <a href="/single/showproduct?pid=<%=each._id%>">Quick view</a>
           </div>
         </div>
-        <div class="col-md-4 grid-stn simpleCart_shelfItem">
-          <!-- normal -->
-          <div class="ih-item square effect3 bottom_to_top">
-            <div class="bottom-2-top">
-              <div class="img"><img src="images/grid6.jpg" alt="/" class="img-responsive gri-wid"></div>
-              <div class="info">
-                <div class="pull-left styl-hdn">
-                  <h3>style 01</h3>
-                </div>
-                <div class="pull-right styl-price">
-                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- end normal -->
-          <div class="quick-view">
-            <a href="/single">Quick view</a>
-          </div>
-        </div>
-        <div class="col-md-4 grid-stn simpleCart_shelfItem">
-          <!-- normal -->
-          <div class="ih-item square effect3 bottom_to_top">
-            <div class="bottom-2-top">
-              <div class="img"><img src="images/grid3.jpg" alt="/" class="img-responsive gri-wid"></div>
-              <div class="info">
-                <div class="pull-left styl-hdn">
-                  <h3>style 01</h3>
-                </div>
-                <div class="pull-right styl-price">
-                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- end normal -->
-          <div class="quick-view">
-            <a href="/single">Quick view</a>
-          </div>
-        </div>
-        <div class="col-md-4 grid-stn simpleCart_shelfItem">
-          <!-- normal -->
-          <div class="ih-item square effect3 bottom_to_top">
-            <div class="bottom-2-top">
-              <div class="img"><img src="images/grid5.jpg" alt="/" class="img-responsive gri-wid"></div>
-              <div class="info">
-                <div class="pull-left styl-hdn">
-                  <h3>style 01</h3>
-                </div>
-                <div class="pull-right styl-price">
-                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- end normal -->
-          <div class="quick-view">
-            <a href="/single">Quick view</a>
-          </div>
-        </div>
-        <div class="col-md-4 grid-stn simpleCart_shelfItem">
-          <!-- normal -->
-          <div class="ih-item square effect3 bottom_to_top">
-            <div class="bottom-2-top">
-              <div class="img"><img src="images/grid7.jpg" alt="/" class="img-responsive gri-wid"></div>
-              <div class="info">
-                <div class="pull-left styl-hdn">
-                  <h3>style 01</h3>
-                </div>
-                <div class="pull-right styl-price">
-                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- end normal -->
-          <div class="quick-view">
-            <a href="/single">Quick view</a>
-          </div>
-        </div>
-        <div class="col-md-4 grid-stn simpleCart_shelfItem">
-          <!-- normal -->
-          <div class="ih-item square effect3 bottom_to_top">
-            <div class="bottom-2-top">
-              <div class="img"><img src="images/grid8.jpg" alt="/" class="img-responsive gri-wid"></div>
-              <div class="info">
-                <div class="pull-left styl-hdn">
-                  <h3>style 01</h3>
-                </div>
-                <div class="pull-right styl-price">
-                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> <span class=" item_price">$190</span></a></p>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <!-- end normal -->
-          <div class="quick-view">
-            <a href="/single">Quick view</a>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-    <!--4. 展示商品 end -->
+
+        <%
+        }
+        %>
+
 
     <!--5. foot start -->
     <%include footer.ejs%>
+      </div>
+    </div>
 </body>
-
 </html>

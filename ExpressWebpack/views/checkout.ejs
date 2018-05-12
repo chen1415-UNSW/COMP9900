@@ -110,7 +110,8 @@
 
             <div class="cart-sec simpleCart_shelfItem">
               <div class="cart-item cyc">
-                <a href="/single/showproduct?pid=<%=each.pid%>"><img src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
+                <a href="/single/showproduct?pid=<%=each.pid%>">
+                  <img style="width:200px; height:120px;" src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
               </div>
 
               <div class="cart-item-info">
@@ -124,7 +125,7 @@
               <div class="cart-item-info">
                 <ul class="qty">
                   <li>
-                    <p>Qty : <%=each.number%></p>
+                    Qty : <span id="oneItemIncartNum"><%=each.number%></span>
                   </li>
                   <li>
                     <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>

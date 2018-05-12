@@ -1,15 +1,17 @@
 var mongoose = require('mongoose');
 
 
-var ProductSchema = new mongoose.Schema(
+var BlockSchema = new mongoose.Schema(
     {
-        pid:Number,
+        blockhash:String,
+        uid:String,
+        pid:String,
         selleruid:String,
         productName:String,
-        productInfo:String,
         productPrice:String,
-        productStock:String,
+        number:Number,
         imgPath: String,
+
         meta:{
             createAt:{
                 type:Date,
@@ -23,7 +25,7 @@ var ProductSchema = new mongoose.Schema(
     }
 )
 
-ProductSchema.pre("save",function (next) {
+BlockSchema.pre("save",function (next) {
     if (this.isNew){
         this.meta.createAt = this.meta.updateAt=Date.now()
     }else{
@@ -32,7 +34,7 @@ ProductSchema.pre("save",function (next) {
     next()
 })
 
-ProductSchema.statics={
+BlockSchema.statics={
     fetch:function (cb) {
         return this.find().sort('meta.updateAt')
             .exec(cb)
@@ -42,4 +44,4 @@ ProductSchema.statics={
     }
 }
 
-module.exports=ProductSchema
+module.exports=BlockSchema

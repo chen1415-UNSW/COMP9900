@@ -1,3 +1,6 @@
+var Blocks=require('../models/block');
+
+
 module.exports = function (request, response, next) {
 
     console.log("View Order History session: ", request.session.user);
@@ -12,8 +15,22 @@ module.exports = function (request, response, next) {
     else
     {
         console.log("可以进入orderhistory页面");
-        response.render('orderhistory', {title:'View History Page', u_name:request.session.user.username,
-            uid:request.session.userid.uid});
+        console.log("Profile Control:  UID   ", request.session.userid.uid);
+
+        Blocks.find({'uid':request.session.userid.uid}, function(err, res){
+
+            ViewOrderList = res;
+            console.log("============block resultList===111=========");
+            console.log(ViewOrderList);
+
+            response.render('orderHistory', {title:'View History Page', u_name:request.session.user.username,
+                uid:request.session.userid.uid, result:ViewOrderList});
+        });
+
+
+
+
+
     }
 
 };

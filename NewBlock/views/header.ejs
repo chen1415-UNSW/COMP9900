@@ -14,14 +14,14 @@ if(u_name != "NULL")   //现在是有用户登录的情况
     <div class="container">
         <div class="header-top">
             <div class="logo">
-                <a href="/index">N-AIR</a>
+                <a href="/index">BLOCK BUSINESS</a>
             </div>
             <div class="login-bars">
                 <a class="btn btn-default log-bar" href="/ProfileControl" role="button">User Name: <%=u_name%></a>
                 <a class="btn btn-default log-bar" href="/addproduct" role="button">Add product</a>
+                <a class="btn btn-default log-bar" href="/myproducts?uid=<%=uid%>" role="button">My products</a>
                 <a class="btn btn-default log-bar" href="/SignOut" role="button">Sign Out</a>
                 <div class="cart box_1">
-                    <!--有session， uid-->
                     <!--<a href="/checkout?uid=<%=uid%>"></a>-->
                     <script>
                         $(function(){
@@ -40,13 +40,11 @@ if(u_name != "NULL")   //现在是有用户登录的情况
                                 cache:false,
                                 success: function (data) {
                                     if (data.result){
-                                        console.log("cart item num = backend data.result = "+data.result);
+                                        //console.log("cart item num = backend data.result = "+data.result);
                                         document.getElementById("simpleCart_quantity").innerText = data.result;
                                     }
                                     else{
-                                        // 4.28 bug fix
-
-                                        console.log("cart item num = backend data.result = 0");
+                                        //console.log("cart item num = backend data.result = 0");
                                         document.getElementById("simpleCart_quantity").innerText = "0";
                                     }
 
@@ -64,6 +62,7 @@ if(u_name != "NULL")   //现在是有用户登录的情况
 
                     <h3>
                         <div class="total">
+                            <p id="uid"><%=uid%></p>
                             <a href="/checkout?uid=<%=uid%>">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                             items  : <span id="simpleCart_quantity" class="badge" ></span></a></br>
@@ -87,7 +86,7 @@ if(u_name != "NULL")   //现在是有用户登录的情况
     <div class="container">
         <div class="header-top">
             <div class="logo">
-                <a href="/index">N-AIR</a>
+                <a href="/index">BLOCK BUSINESS</a>
             </div>
             <div class="login-bars">
                 <a class="btn btn-default log-bar" href="/register" role="button">Sign up</a>

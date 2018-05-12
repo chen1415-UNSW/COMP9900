@@ -1,7 +1,4 @@
 var Client=require('../models/clients');
-//harvey
-var cryptoscript = require('../routes/encrypter');
-
 
 module.exports = function (request, response, next) {
 
@@ -22,34 +19,42 @@ module.exports = function (request, response, next) {
             }
             else {
                 var r_name = res.username;
+                var r_pwd = res.password;
                 var r_email = res.email;
 
                 console.log("r_name: ",r_name);
+                console.log("r_pwd: ", r_pwd);
                 console.log("r_email: ",r_email);
 
-                var n_email = "";
-                for(i =0; i<r_email.length;i++)
+                // var nr_pwd = "*".repeat(r_pwd.length-1).concat(r_pwd.substring(r_pwd.length-1));
+                var en_email = "";
+                for(i=0; i<r_email.length;i++)
                 {
-                    if(r_email.charAt(i) == "@")
+                    if(r_email.charAt(i) !== "@")
                     {
-                        n_email = n_email.substring(0,n_email.length-1);
-                        n_email += r_email.charAt(i-1);
-                        n_email += r_email.charAt(i);
-                        // console.log(r_email.substring(0,i))
-                        n_email += r_email.substring(i+1);
-                        break;
+                        en_email += "*";
                     }
                     else
                     {
-                        n_email += "*";
+                        en_email = en_email.substring(0, en_email.length-1);
+                        en_email += r_email.charAt(i-1);
+                        en_email += r_email.charAt(i);
+                        break
                     }
                 }
-                console.log("n_email: ", n_email);
-                // var n_email = "*".repeat(r_email.length-1).concat(r_email.substring(r_email.length-1));
+                for(i=0;i<r_email.length;i++)
+                {
+                    if(r_email.charAt(i)==="@")
+                    {
+                        en_email += r_email.substring(i+1, r_email.length)
+                        break;
+                    }
+                }
 
-                console.log("Transfered email: ", n_email);
 
-                response.render('profile', {title:'Profile Page', u_name:r_name, u_email:n_email, uid:request.session.userid.uid});
+                console.log("Transfered email: ", en_email);
+
+                response.render('profile', {title:'Profile Page', u_name:r_name, u_email:en_email, uid:request.session.userid.uid});
 
             }
         });

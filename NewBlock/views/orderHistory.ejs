@@ -1,4 +1,3 @@
-<!--此页面显示已成交的订单记录-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +36,7 @@
     <script src="js/imagezoom.js"></script>
     <script defer src="js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-
+    <script type="text/javascript" src="/javascripts/allJSforCart.js"></script>
     <script>
         // Can also be used with $(document).ready()
         $(window).load(function() {
@@ -60,7 +59,7 @@
         <ol class="breadcrumb">
             <li><a href="/index">Home</a></li>
             <li class="active">Profile</li>
-            <li class="active">View order history</li>
+            <li class="active">Order History</li>
 
 
             uid: (testing well be hidden)<p id="uid"><%=uid%></p>
@@ -75,23 +74,25 @@
 
             <h1 id="totalItemsNum">My Order History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
-
+            <!--循环输出order history 内容-->
 
             <%
             var totalMoney = 0;
 
-            for (var i=0 ; i<JSON.parse(JSON.stringify(result)).length; i++){
-                console.log(JSON.parse(JSON.stringify(result))[0]);
+            for (var i=0 ; i<JSON.parse(JSON.stringify(result)).length; i++)
+            {
+                console.log("[0]: ",JSON.parse(JSON.stringify(result))[0]);
                 var each = JSON.parse(JSON.stringify(result))[i];
-                totalMoney = totalMoney + parseInt(each.productPrice) * parseInt(each.number);
+
+                // console.log("====each.meta.updateAt:=======", each.meta.updateAt)
                 console.log("each.pid=");
                 console.log(each.pid);
             %>
 
             <div class="cart-header<%=i%>">
 
-                <div class="cart-sec simpleCart_shelfItem">
-                    <div class="cart-item cyc">
+                <div class="cart-sec simpleCart_shelfItem" style="border: grey">
+                    <div class="cart-item cyc" >
                         <a href="/single/showproduct?pid=<%=each.pid%>"><img src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
                     </div>
 
@@ -100,7 +101,7 @@
                         <p hidden id="pid<%=i%>"><%=each.pid%></p>
                     </div>
                     <div  class="remove<%=i%>" onclick="removeFromCart(<%=i%>)" style="cursor:pointer">
-                        <p class="pull-right"><span class="glyphicon glyphicon-remove"></span></p>
+                        <p class="pull-right"></p>
                     </div>
 
                     <div class="cart-item-info">
@@ -111,12 +112,22 @@
                             <li>
                                 <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>
                             </li>
+                            <li>
+                                <p>Total cost : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice*each.productPrice%></p>
+                            </li>
+                            <li>
+                                <p>Transition block : <%=each.blockhash%></p>
+                            </li>
+                            <li>
+                                <p>Transition time: <%=each.meta.updateAt%></p>
+                            </li>
                         </ul>
                     </div>
                     <div class="clearfix"></div>
 
                 </div>
             </div>
+            <br/>
 
             <%
             }
@@ -126,36 +137,7 @@
 </div>
 
 
-<!-- check-out -->
-<div class="check">
-    <div class="container">
-        <div class="col-md-12 cart-total">
-            <!--<a class="continue" href="#">Continue to basket</a>-->
-            <div class="price-details">
-                <h3>Total Details</h3>
-                <div class="clearfix"></div>
-            </div>
-            <hr class="featurette-divider">
-            <ul class="total_price">
-                <li class="last_price">
-                    <h4>TOTAL</h4></li>
-                <li class="last_price"><span class="glyphicon glyphicon-usd"></span><text><%=totalMoney%></text></li>
-                <div class="clearfix"> </div>
-            </ul>
-            <div class="clearfix"></div>
-            <%
-            if (totalMoney>0){
 
-            %>
-            <a class="order" onclick="placeorder(<%=JSON.stringify(result)%>)">Place Order</a>
-            <%
-            }
-            %>
-
-
-        </div>
-    </div>
-</div>
 
 <!--5. foot start -->
 <%include footer.ejs%>

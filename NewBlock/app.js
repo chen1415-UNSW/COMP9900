@@ -24,13 +24,17 @@ var ChangeDetailsRoute = require('./routes/ChangeDetailsControl');
 var ViewOrderHistoryRoute = require('./routes/ViewOrderHistory');
 
 
-// me 4.22
+
+// yuli 4.22 -- 5.3
 var addProductRouter = require('./routes/addProduct');
 var uploadRouter = require('./routes/uploadfile');
 var addProductProcessRouter = require('./routes/addproductprocess');
 var editProductProcessRouter = require('./routes/editproductprocess');
 var searchRouter = require('./routes/search');
 var searchResultRouter = require('./routes/result');
+var myproductsRouter = require('./routes/myproducts');
+
+
 var flash = require('connect-flash');
 
 var app = express();
@@ -40,6 +44,17 @@ var mongoose=require('mongoose');
 mongoose.connect('mongodb://block_business:comp9900@ds259079.mlab.com:59079/comp9900');
 var db=mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+
+
+// 5.8 picture cloud
+var cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'blockbusiness',
+    api_key: '442659655369817',
+    api_secret: 'owZwd3ADFbqpfwXzHmrOEh5srFo'
+});
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -74,13 +89,16 @@ app.use('/ProfileControl', ProfileRoute);
 app.use('/ChangeDetails', ChangeDetailsRoute);
 app.use('/ViewOrder', ViewOrderHistoryRoute);
 
-// 4.22 for product
+
+// 4.22 for product -- 5.3
 app.use('/uploadfile',uploadRouter);
 app.use('/addProduct', addProductRouter);
 app.use('/addproductprocess',addProductProcessRouter);
 app.use('/editproductprocess',editProductProcessRouter);
 app.use('/search',searchRouter);
 app.use('/searchresult',searchResultRouter);
+app.use('/myproducts',myproductsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

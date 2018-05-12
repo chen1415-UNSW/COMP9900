@@ -1,7 +1,4 @@
 var Client=require('../models/clients');
-//harvey
-var cryptoscript = require('../routes/encrypter');
-
 
 
 module.exports = function (request, response, next)
@@ -21,16 +18,17 @@ module.exports = function (request, response, next)
 
     Client.findOne({'username':username},function (err,res) {
         result=res;
+
         if(result == null)
         {
             if(pwd === pwd2)
             {
-                var en_pwd = cryptoscript.cryptPwd(pwd);
-                console.log("en_pwd: ",en_pwd);
+                // 5.8 创建 user fake hash
+                var hash = "userhash12345678";
 
-                var cliententity=new Client({username:username,password:en_pwd, email:email});
-
+                var cliententity=new Client({username:username,password:pwd, email:email,hash:hash});
                 cliententity.save();
+
                 return response.json({success:true});
             }else {
                 return response.json({success:false});

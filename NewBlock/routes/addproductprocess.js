@@ -14,18 +14,19 @@ router.post('/', function(req, res, next) {
     var productInfo = req.body.productInfo;
     var productPrice = req.body.productPrice;
     var imgPath= req.body.imgPath;
+    var productStock = req.body.productStock;
 
     var selleruid = req.session.userid.uid;
-    console.log("addProduct: seller uid=");
-    console.log(selleruid);
-
-    console.log("addPro: productName=");
-    console.log(productName);
+    // console.log("addProduct: seller uid=");
+    // console.log(selleruid);
+    //
+    // console.log("addPro: productName=");
+    // console.log(productName);
     //调用数据库，写入4个商品参数，返回pid
-    var productentity=new Product({selleruid:selleruid,productName:productName,productInfo:productInfo, productPrice:productPrice, imgPath:imgPath});
+    var productentity=new Product({selleruid:selleruid,productName:productName,productInfo:productInfo, productPrice:productPrice, productStock:productStock,imgPath:imgPath});
     productentity.save();
-    console.log("pid=");
-    console.log(productentity._id);
+    // console.log("pid=");
+    // console.log(productentity._id);
     var pid = productentity._id;
     res.send({
         err: null,

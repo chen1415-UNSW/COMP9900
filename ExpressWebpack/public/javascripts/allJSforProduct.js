@@ -187,6 +187,41 @@ function addToCart(){
             console.log(err.message);
         }
     });
+}
+
+function searchByPrice(){
+    console.log("----- searchBy price")
+    var min = parseFloat(document.getElementById("min").value);
+    var max = parseFloat(document.getElementById("max").value);
+
+    console.log(searchInfo);
+    if (min>=max){
+        window.alert("Invalid input. Min must larger than Max. ");
+    }else{
+
+        $.ajax({
+            type: 'GET',
+            url: '/search?searchInfo='+searchInfo+'&min='+min+'&max='+max,
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(),
+            success: function (data) {
+                // console.log("success delete frontend!!!");
+                // console.log(data.msg);
+                if (data.msg){
+                    var searchresult = data.searchresult;
+                    window.alert("Search min max successfully..");
+                    window.location.href = '/search?searchInfo='+searchInfo+'&min='+min+'&max='+max;
+                }
+            },
+            error: function (err) {
+                console.log(err.message);
+            }
+        });
+
+
+    }
+
 
 
 

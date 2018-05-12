@@ -50,7 +50,7 @@
     <script type="text/javascript">
         function ChangesubmitForm() {
             let frm = $('#ChangPersonalDetailsForm');
-            frm.submit(function (e) {
+            frm.unbind('submit').bind('submit',(function (e) {
                 e.preventDefault();
                 $.ajax({
                     type:"POST",

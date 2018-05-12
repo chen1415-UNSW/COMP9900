@@ -60,9 +60,6 @@
             <li><a href="/index">Home</a></li>
             <li class="active">Profile</li>
             <li class="active">Order History</li>
-
-
-            uid: (testing well be hidden)<p id="uid"><%=uid%></p>
         </ol>
     </div>
 </div>
@@ -113,7 +110,7 @@
                                 <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>
                             </li>
                             <li>
-                                <p>Total cost : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice*each.productPrice%></p>
+                                <p>Total cost : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice*each.number%></p>
                             </li>
                             <li>
                                 <p>Transition block : <%=each.blockhash%></p>

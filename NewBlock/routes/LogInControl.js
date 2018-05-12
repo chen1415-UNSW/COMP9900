@@ -7,24 +7,21 @@ module.exports = function (request, response, next)
     var uname = request.body.u_name;
     var pwd = request.body.u_password;
 
-    console.log(uname +"   LogInName");
-    console.log(pwd +"   LogInPwd");
+    console.log(uname +"   LogIn");
+    console.log(pwd +"   LogIn");
 
     Client.findOne({'username':uname},function(err,res){
-        if(res == null)
+        result = res;
+        if(result == null)
         {
             return response.json({success:false});
         }
-        else if(res!=null)
+        else
         {
-            if(res.password == pwd)
+            if(result.password == pwd)
             {
-                request.session.user = {'username': uname};
-                request.session.userid = {'uid': res._id};
-
-
                 return response.json({success:true});
-            }else if(res.password != pwd)
+            }else
             {
                 return response.json({success:false});
             }
@@ -32,4 +29,5 @@ module.exports = function (request, response, next)
     });
 
     console.log("----Complete the LogInControl----");
+
 };

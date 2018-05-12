@@ -40,16 +40,6 @@ body{
     font-size: 50px;
     color: #fff;
 }
-
-.footer a, .footer a:hover {
-    font-family: 'Pathway Gothic One';
-    background-color: #A5E126;
-    padding: 10px 36px;
-    font-size: 24px;
-    color: #fff;
-}
-
-
 a.log-bar {
     background-color: #100B0B;
     color: #aaa;
@@ -842,12 +832,6 @@ li.last_price span {
     font-size: 20px;
     color: #655858;
 }
-
-li.last_price text {
-    font-size: 24px;
-    color: #655858;
-}
-
 .cart-items h1 {
     font-family: 'Pathway Gothic One';
     font-size: 35px;
@@ -864,7 +848,7 @@ li.last_price text {
 .cart-item-info {
     width: 75%;
     float: left;
-    margin-top: 2em;
+    margin-top: 3em;
 }
 ul.qty {
     list-style-type: none;
@@ -891,7 +875,7 @@ ul.qty li {
 .cart-header,.cart-header2 {
     position: relative;
 }
-.close1,.close2,close3,close4{
+.close1,.close2{
     position: absolute;
     right: 0%;
     color: #D2D2D2;
@@ -914,17 +898,13 @@ ul.qty li {
     font-size: 18px;
     font-family: 'Pathway Gothic One';
 }
-/*span.glyphicon.glyphicon-minus {*/
-    /*color: #fff;*/
-    /*background-color: #A5E126;*/
-    /*font-size: 12px;*/
-    /*padding: 0px 5px;*/
-    /*margin-right: 7px;*/
-/*}*/
-
-
-
-
+span.glyphicon.glyphicon-minus {
+    color: #fff;
+    background-color: #A5E126;
+    font-size: 12px;
+    padding: 0px 5px;
+    margin-right: 7px;
+}
 .col.col-4 {
     padding: 0px 0px 0px 15px;
 }
@@ -1110,7 +1090,6 @@ input.textbox {
     border: none;
     border: 1px solid #e6e6e6;
     margin-top: 20px;
-    margin-bottom: 20px;
     width: 100%;
     padding: 15px;
     outline: none;
@@ -1344,7 +1323,6 @@ div textarea {
     }
     .cart-items {
         margin-top: 20px;
-
     }
     span.fel-fal-bar,span.fel-fal-bar2 {
         margin-left: 93px;
@@ -1675,10 +1653,6 @@ div textarea {
 		padding: 10px 36px;
 		font-size: 45px;
 	}
-    .footer a, .footer a:hover {
-        padding: 10px 36px;
-        font-size: 24px;
-    }
 }
 @media screen and (max-width: 384px){
 .logo a, .logo a:hover {

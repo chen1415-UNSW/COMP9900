@@ -12,6 +12,7 @@ var ClientSchema = new mongoose.Schema(
 
         //5.8 user block chain Hash
         hash:String,
+        address:String,
 
         meta:{
             createAt:{

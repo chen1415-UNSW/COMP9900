@@ -17,12 +17,13 @@ var signupRoute = require('./routes/signup');
 var singleRoute = require('./routes/single');
 var SignUpControlRoute = require('./routes/SignUpControl');
 var LogInControlRoute = require('./routes/LogInControl');
+
 //Harvey
 var SignOutRoute = require('./routes/SignOut');
 var ProfileRoute = require('./routes/ProfileControl');
 var ChangeDetailsRoute = require('./routes/ChangeDetailsControl');
 var ViewOrderHistoryRoute = require('./routes/ViewOrderHistory');
-
+var ViewOrderHistorySaleRoute = require('./routes/ViewOrderSelling');
 
 
 // yuli 4.22 -- 5.3
@@ -88,7 +89,7 @@ app.use('/SignOut', SignOutRoute);
 app.use('/ProfileControl', ProfileRoute);
 app.use('/ChangeDetails', ChangeDetailsRoute);
 app.use('/ViewOrder', ViewOrderHistoryRoute);
-
+app.use('/ViewOrderSale', ViewOrderHistorySaleRoute);
 
 // 4.22 for product -- 5.3
 app.use('/uploadfile',uploadRouter);

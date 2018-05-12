@@ -9,6 +9,7 @@ module.exports = function (request, response, next)
     var email = request.body.rej_email;
     var pwd = request.body.rej_password;
     var pwd2 = request.body.re_password;
+    var address = request.body.rej_address;
 
     console.log(username);
     console.log(email);
@@ -26,7 +27,7 @@ module.exports = function (request, response, next)
                 // 5.8 创建 user fake hash
                 var hash = "userhash12345678";
 
-                var cliententity=new Client({username:username,password:pwd, email:email,hash:hash});
+                var cliententity=new Client({username:username,password:pwd, email:email,hash:hash, address:address});
                 cliententity.save();
 
                 return response.json({success:true});

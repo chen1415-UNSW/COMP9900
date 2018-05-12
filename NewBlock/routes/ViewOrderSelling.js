@@ -3,7 +3,7 @@ var Blocks=require('../models/block');
 
 module.exports = function (request, response, next) {
 
-    console.log("View Order History session: ", request.session.user);
+    console.log("View Order History Sale session: ", request.session.user);
 
     //功能待添加
 
@@ -14,16 +14,16 @@ module.exports = function (request, response, next) {
     }
     else
     {
-        console.log("可以进入orderhistory页面");
+        console.log("可以进入orderhistorySale页面");
         console.log("Profile Control:  UID   ", request.session.userid.uid);
 
-        Blocks.find({'uid':request.session.userid.uid}, function(err, res){
+        Blocks.find({'selleruid':request.session.userid.uid}, function(err, res){
 
             ViewOrderList = res;
             console.log("============block resultList===111=========");
             console.log(ViewOrderList);
 
-            response.render('orderHistory', {title:'View History Page', u_name:request.session.user.username,
+            response.render('orderHistorySale', {title:'View History Page', u_name:request.session.user.username,
                 uid:request.session.userid.uid, result:ViewOrderList});
         });
 

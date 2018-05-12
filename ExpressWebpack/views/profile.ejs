@@ -94,24 +94,37 @@
                 <div class="strip"></div>
                 <p>Please check your information before modification.</p>
 
-                <h5>User Name:</h5>
-                <h6><%=u_name%></h6>
-                <br>
-                <br>
-                <h5>Password:</h5>
-                <h6><%=nu_pwd%></h6>
-                <br>
-                <br>
                 <h5>Email:</h5>
                 <h6><%=u_email%></h6>
                 <br>
                 <br>
+                <h5>Address:</h5>
+                <%
+                    console.log("u_address: PROFILE---",u_address);
+                if(u_address===undefined)
+                {
+                    u_address="NULL";
+                }
+                %>
+
+                <h6><%=u_address%></h6>
+                <br>
+                <br>
+
                 <h5>Hash Address:</h5>
-                <h6>12sdf31sdf23WEdwed</h6>
+                <h6>FakeOne: 12sdf31sdf23WEdwed</h6>
                 <br>
                 <br>
-                <h5>Your Published Products:</h5>
-                <h6>Shoes#1</h6>
+                <h5>Order history for buying:</h5>
+                <h6><a href="/ViewOrder">View</a></h6>
+                <br>
+                <br>
+                <h5>Order history for selling:</h5>
+                <h6><a href="/ViewOrderSale">View</a></h6>
+                <br>
+                <br>
+                <h5>Your current balance: </h5>
+                <h6><button>Refresh</button></h6>
 
             </div>
 
@@ -122,6 +135,8 @@
                 <p>Please change your personal details here</p>
 
                 <form id="ChangPersonalDetailsForm">
+                    <h5>New Mail Address:</h5>
+                    <input type="text" id="p_address" name="p_address" required/><br>
                     <h5>New Email Address:</h5>
                     <input type="text" id="p_email" name="p_email" required/><br>
                     <h5>New Password:</h5>

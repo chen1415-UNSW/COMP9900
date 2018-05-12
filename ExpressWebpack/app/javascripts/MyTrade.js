@@ -78,6 +78,7 @@ window.App = {
             }
             else {
                 console.log(err)
+                return -1
             }
         })
         
@@ -95,9 +96,9 @@ window.App = {
         console.log(contractAddress)
     },
 
-    checkBalanceEnough: function(account, total) {
+    checkBalanceEnough: async function(account, total) {
         var self = this
-        if (total < self.refreshBalance(account)) {
+        if (total < await self.refreshBalance(account)) {
             return false
         }
         else {
@@ -117,7 +118,7 @@ window.App = {
 
         function waitingEnd(flag) {
             if (flag === cartSize) {
-                callback(flag, cart_list)
+                callback(1, cart_list)
             }
         }
         //统计购物车总价是否超过用户余额
@@ -125,7 +126,14 @@ window.App = {
         for (var i in cart_list){
             total += cart_list[i].number * cart_list[i].price
         }
-        //尚未添加价格确认
+        //添加价格确认
+        var thisBuyer = cart_list[0].buyerAddress
+        if (thisBuyer === undefined) thisBuyer = default_buyer
+        if (! await self.checkBalanceEnough(thisBuyer, total)) {
+            callback(0, cart_list)
+        }
+        
+        console.log("Prcie check done!")
 
         contractBalance = web3.eth.getBalance(contractAddress).toNumber()
         console.log("Show contract balance before trade")

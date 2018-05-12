@@ -44,7 +44,9 @@ function  placeorder(cartInfo_list) {
 
     //cartInof_json = {cartInfo_list:cartInfo_list};
     // 5.8 制造假的 block信息
-    block_json = {status:1, cartInfo_list:cartInfo_list, uid:document.getElementById("uid").innerText};
+    // block_json = {
+    //     status:1, cartInfo_list:cartInfo_list, uid:document.getElementById("uid").innerText};
+    block_json = cartInfo_list;
     $.ajax({
 
         type: 'POST',

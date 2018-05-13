@@ -68,20 +68,22 @@ window.App = {
         return message
     },
 
-    refreshBalance: function(account) {
+    refreshBalance: async function(account) {
         
-        web3.eth.getBalance(account, function(err, result){
-            console.log("Refresh Balance")
-            if (!err) {
-                 var balance = web3.fromWei(result ,'ether').toString()
-                 return balance
-            }
-            else {
-                console.log(err)
-                return -1
-            }
-        })
-        
+        // web3.eth.getBalance(account, function(err, result){
+        //     console.log("Refresh Balance")
+        //     if (!err) {
+        //          var balance = web3.fromWei(result ,'ether').toString()
+        //          console.log("MyTrade:" + balance)
+        //          return balance
+        //     }
+        //     else {
+        //         console.log(err)
+        //         return -1
+        //     }
+        // })
+        var balance = await web3.eth.getBalance(account)
+        return web3.fromWei(balance ,'ether').toNumber()
     },
 
     getCurrentIndexFromBlock: async function() {

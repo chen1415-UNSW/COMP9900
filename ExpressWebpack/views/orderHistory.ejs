@@ -115,9 +115,21 @@
                             <li>
                                 <p>Transition block : <%=each.blockhash%></p>
                             </li>
+
+                            <% var time_old = each.meta.updateAt;
+                                console.log("time_old: ", time_old)
+
+                                time_new = time_old.substring(0,10) + " " + time_old.substring(11,16);
+                                console.log("=====VIEW HISTORY==== time", time_new)
+                            %>
+
+
                             <li>
-                                <p>Transition time: <%=each.meta.updateAt%></p>
+                                <p>Transition time: <%=time_new%></p>
                             </li>
+
+
+
                         </ul>
                     </div>
                     <div class="clearfix"></div>

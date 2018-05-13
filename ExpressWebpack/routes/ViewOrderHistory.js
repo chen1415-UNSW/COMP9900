@@ -20,9 +20,9 @@ module.exports = function (request, response, next) {
         Blocks.find({'uid':request.session.userid.uid}, function(err, res){
 
             ViewOrderList = res;
-            console.log("============block resultList===111=========");
+            console.log("============block resultList start============");
             console.log(ViewOrderList);
-
+            console.log("============block resultList end============");
             response.render('orderHistory', {title:'View History Page', u_name:request.session.user.username,
                 uid:request.session.userid.uid, result:ViewOrderList});
         });

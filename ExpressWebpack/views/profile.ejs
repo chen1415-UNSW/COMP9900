@@ -34,6 +34,9 @@
     <!--script-->
     <!-- FlexSlider -->
     <script src="js/imagezoom.js"></script>
+    <!-- Web3 component -->
+    <script src="javascripts/MyTrade.js"></script>
+
     <script defer src="js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 
@@ -67,6 +70,17 @@
                         }
                     }})
             }))}
+
+        function Refresh() {
+            console.log("refresh")
+            var addr = "<%=u_hash%>"
+            App.refreshBalance(addr).then(function(value){
+                //console.log("inside: " + value)
+                $("#balance").html(value)
+            })
+           
+        }
+      
     </script>
 
 
@@ -94,38 +108,36 @@
                 <div class="strip"></div>
                 <p>Please check your information before modification.</p>
 
-                <h5>Email:</h5>
-                <h6><%=u_email%></h6>
+                <h3>Email:</h3>
+                    <h4><%=u_email%></h4>
                 <br>
                 <br>
-                <h5>Address:</h5>
-                <%
-                    console.log("u_address: PROFILE---",u_address);
-                if(u_address===undefined)
-                {
-                    u_address="NULL";
-                }
-                %>
-
-                <h6><%=u_address%></h6>
+                <h3>Address:</h3>
+                    <%
+                        console.log("u_address: PROFILE---",u_address);
+                        if(u_address===undefined)
+                        {
+                            u_address="NULL";
+                        }
+                    %>
+                    <h4><%=u_address%></h4>
                 <br>
                 <br>
-
-                <h5>Hash Address:</h5>
-                <h6>FakeOne: 12sdf31sdf23WEdwed</h6>
+                <h3>Hash Address:</h3>
+                    <h4><%=u_hash%></h4>
                 <br>
                 <br>
-                <h5>Order history for buying:</h5>
-                <h6><a href="/ViewOrder">View</a></h6>
+                <h3>Order history for buying:</h3>
+                    <h4><a href="/ViewOrder">View</a></h4>
                 <br>
                 <br>
-                <h5>Order history for selling:</h5>
-                <h6><a href="/ViewOrderSale">View</a></h6>
+                <h3>Order history for selling:</h3>
+                    <h4><a href="/ViewOrderSale">View</a></h4>
                 <br>
                 <br>
-                <h5>Your current balance: </h5>
-                <h6><button>Refresh</button></h6>
-
+                <h3>Your current balance: </h3>
+                    <button id="showBalance" class="btn btn-success" onclick="Refresh()">Refresh</button>
+                    <h4 id="balance"></h4>
             </div>
 
 
@@ -135,15 +147,14 @@
                 <p>Please change your personal details here</p>
 
                 <form id="ChangPersonalDetailsForm">
-                    <h5>New Mail Address:</h5>
+                    <h3>New Mail Address:</h3>
                     <input type="text" id="p_address" name="p_address" required/><br>
-                    <h5>New Email Address:</h5>
+                    <h3>New Email Address:</h3>
                     <input type="text" id="p_email" name="p_email" required/><br>
-                    <h5>New Password:</h5>
+                    <h3>New Password:</h3>
                     <input type="password" id="p_password" name="p_password" required/><br>
-                    <h5>Confirm New Password:</h5>
+                    <h3>Confirm New Password:</h3>
                     <input type="password" id="pr_password" name="pr_password" required/><br>
-
                     <input type="submit" value="Save" onclick="ChangesubmitForm()"/>
                 </form>
 

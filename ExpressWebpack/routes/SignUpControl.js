@@ -1,5 +1,6 @@
 var Client=require('../models/clients');
 var cryptoscript = require('../routes/encrypter');
+var Address = require('./addressInit');
 
 module.exports = function (request, response, next)
 {
@@ -17,7 +18,7 @@ module.exports = function (request, response, next)
     console.log(pwd2);
 
 
-    Client.findOne({'username':username},function (err,res) {
+    Client.findOne({'username':username}, async function (err,res) {
         result=res;
 
         if(result == null)
@@ -25,12 +26,27 @@ module.exports = function (request, response, next)
             if(pwd === pwd2)
             {
                 // 5.8 创建 user fake hash
-                var hash = "userhash12345678";
-
+                var hash = await Address.getAddress(true)
+                if (hash === undefined) {
+                    console.log("All address used");
+                    return response.json({success:false});
+                } else {
+                    console.log(hash.address);
+                    Address.updateAddress(hash.address, false);
+                    
+                }
+                
                 var en_pwd = cryptoscript.cryptPwd(pwd);
                 console.log("en_pwd: ",en_pwd);
 
-                var cliententity=new Client({username:username,password:en_pwd, email:email});
+                var cliententity=new Client(
+                    {username:username, 
+                     password:en_pwd, 
+                     email:email,
+                     address:address,
+                     hash:hash.address
+
+                    });
                 cliententity.save();
 
                 return response.json({success:true});

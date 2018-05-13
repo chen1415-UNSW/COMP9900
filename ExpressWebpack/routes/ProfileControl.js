@@ -22,6 +22,7 @@ module.exports = function (request, response, next) {
                 var r_pwd = res.password;
                 var r_email = res.email;
                 var r_address = res.address;
+                var r_hash = res.hash;
 
                 console.log("r_name: ",r_name);
                 console.log("r_pwd: ", r_pwd);
@@ -55,7 +56,14 @@ module.exports = function (request, response, next) {
 
                 console.log("Transfered email: ", en_email);
 
-                response.render('profile', {title:'Profile Page', u_name:r_name, u_email:en_email, uid:request.session.userid.uid, u_address:r_address});
+                response.render('profile', 
+                {title:'Profile Page', 
+                u_name:r_name, 
+                u_email:en_email, 
+                uid:request.session.userid.uid, 
+                u_address:r_address,
+                u_hash:r_hash
+                });
 
             }
         });

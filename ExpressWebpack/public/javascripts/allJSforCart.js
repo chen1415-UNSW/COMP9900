@@ -61,8 +61,6 @@ function  placeorder(cartInfo_list) {
             if (data.msg){
                 //
                 window.alert(data.msg);
-                // 未完成： 5.8需要与订单一起
-
                 //1.清空购物车
                 //2.写入mongo block schma
                 //3.跳转order history 成功页
@@ -78,5 +76,5 @@ function  placeorder(cartInfo_list) {
             console.log(err.message);
 
         }
-});
+    });
 }

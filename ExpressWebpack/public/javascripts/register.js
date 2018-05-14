@@ -7,7 +7,7 @@ $(window).load(function() {
 });
 function submitForm() {
     let frm = $('#signUpForm');
-    frm.submit(function (e) {
+    frm.unbind('submit').bind('submit', function (e) {
         e.preventDefault();
         $.ajax({
             type:"POST",

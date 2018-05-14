@@ -160,7 +160,16 @@ function addToCart(){
     console.log("/***** addproduct number =" + number);
 
 
-    addToCart_json = {pid:pid, uid:uid, selleruid:selleruid, productName:productName, productInfo:productInfo,productPrice:productPrice,imgPath:imgPath,number:number};
+    addToCart_json = {
+        pid:pid, 
+        uid:uid, 
+        selleruid:selleruid, 
+        productName:productName, 
+        productInfo:productInfo,
+        productPrice:productPrice,
+        imgPath:imgPath,
+        number:number
+    };
 
     $.ajax({
         type: 'POST',

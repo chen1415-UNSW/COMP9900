@@ -7,10 +7,16 @@ var BlockSchema = new mongoose.Schema(
         uid:String,
         pid:String,
         selleruid:String,
+
+        buyerHash: String,
+        sellerHash: String,
+
         productName:String,
         productPrice:String,
         number:Number,
         imgPath: String,
+        blockIndex: Number,
+        status: Boolean,
 
         meta:{
             createAt:{

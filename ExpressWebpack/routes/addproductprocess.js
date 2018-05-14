@@ -1,13 +1,9 @@
-var Product=require('../models/products');
-
+var Product = require('../models/products');
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({extend:false}));
 router.use(bodyParser.json());
-
-
-
 
 router.post('/', function(req, res, next) {
     var productName = req.body.productName;
@@ -17,13 +13,17 @@ router.post('/', function(req, res, next) {
     var productStock = req.body.productStock;
 
     var selleruid = req.session.userid.uid;
-    // console.log("addProduct: seller uid=");
-    // console.log(selleruid);
-    //
-    // console.log("addPro: productName=");
-    // console.log(productName);
+
     //调用数据库，写入4个商品参数，返回pid
-    var productentity=new Product({selleruid:selleruid,productName:productName,productInfo:productInfo, productPrice:productPrice, productStock:productStock,imgPath:imgPath});
+    var productentity=new Product(
+        {
+            selleruid:selleruid,
+            productName:productName,
+            productInfo:productInfo, 
+            productPrice:productPrice, 
+            productStock:productStock,
+            imgPath:imgPath
+        });
     productentity.save();
     // console.log("pid=");
     // console.log(productentity._id);

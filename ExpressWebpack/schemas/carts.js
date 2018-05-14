@@ -11,6 +11,9 @@ var CartSchema = new mongoose.Schema(
         productPrice:String,
         number:Number,
         imgPath: String,
+        buyerHash: String,
+        sellerHash: String,
+
         meta:{
             createAt:{
                 type:Date,

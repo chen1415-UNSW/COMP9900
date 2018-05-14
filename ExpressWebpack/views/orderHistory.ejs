@@ -36,7 +36,7 @@
     <script src="js/imagezoom.js"></script>
     <script defer src="js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-    <script type="text/javascript" src="/javascripts/allJSforCart.js"></script>
+    <script type="text/javascript" src="/javascripts/MyTrade.js"></script>
     <script>
         // Can also be used with $(document).ready()
         $(window).load(function() {
@@ -45,14 +45,41 @@
                 controlNav: "thumbnails"
             });
         });
+
+        function TradeConfirm(index, address, id) {
+            console.log("Get block index: " + index)
+            console.log(address)
+            console.log(id)
+            App.confirmTransaction(index, address)
+            block_json = {id:id}
+            $.ajax({
+                type: 'POST',
+                url: '/checkout/confirmorder',
+                contentType: "application/json",
+                dataType: 'json',
+                data: JSON.stringify(block_json),
+                success: function (data) {
+                    if (data.msg){
+                        window.alert(data.msg);
+                        window.location.href = "/ViewOrder";
+
+                    } else if (data.err){
+                        window.alert(data.err);
+                    }
+                },
+                error: function (err) {
+                    console.log(err.message);
+
+                }
+            });
+
+        }
     </script>
     <!-- //FlexSlider-->
 </head>
 
 <body>
 <%include header.ejs%>
-
-
 
 <div class="head-bread">
     <div class="container">
@@ -69,7 +96,7 @@
     <div class="container">
         <div class="col-md-9 cart-items">
 
-            <h1 id="totalItemsNum">My Order Buying History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
+            <h1 id="totalItemsNum">My Order History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
             <!--循环输出order history 内容-->
 
@@ -80,10 +107,12 @@
             {
                 console.log("[0]: ",JSON.parse(JSON.stringify(result))[0]);
                 var each = JSON.parse(JSON.stringify(result))[i];
-
+              
                 // console.log("====each.meta.updateAt:=======", each.meta.updateAt)
                 console.log("each.pid=");
                 console.log(each.pid);
+                console.log(each.buyerHash);
+                
             %>
 
             <div class="cart-header<%=i%>">
@@ -97,10 +126,15 @@
                         <h3><%=each.productName%></h3>
                         <p hidden id="pid<%=i%>"><%=each.pid%></p>
                     </div>
-                    <div  class="remove<%=i%>" onclick="removeFromCart(<%=i%>)" style="cursor:pointer">
-                        <div class="pull-right"><button type="button" class="btn btn-primary">Confirm</button></div>
+                    <% if (!each.status) { %>
+                    <div style="cursor:pointer">     
+                        <div class="pull-right"><button type="button" class="btn btn-primary" onclick='TradeConfirm(<%=each.blockIndex%>, "<%=each.buyerHash%>", "<%=each._id%>")'>Confirm</button></div>
                     </div>
-
+                    <% } else { %>
+                        <div class="pull-right">
+                            <span class="label label-success">Complete</span>
+                        </div>
+                    <% } %>
                     <div class="cart-item-info">
                         <ul class="qty">
                             <li>
@@ -151,5 +185,6 @@
 <!--5. foot start -->
 <%include footer.ejs%>
 </body>
+
 
 </html>

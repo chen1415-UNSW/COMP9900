@@ -13,6 +13,7 @@ contract Trade is SafeMath {
         uint price;
         uint total;
         address seller_addr;
+        bool finish;
     }
 
     uint totalTrades;
@@ -52,8 +53,15 @@ contract Trade is SafeMath {
     }
 
     function confirmTrade(uint tradeIndex) public returns (bool) {
-        address(TradeList[tradeIndex].seller_addr).transfer(TradeList[tradeIndex].total);
-        return(true);
+        if (!TradeList[tradeIndex].finish) {
+            address(TradeList[tradeIndex].seller_addr).transfer(TradeList[tradeIndex].total);
+            TradeList[tradeIndex].finish = true;
+            return(true);
+        }
+        else {
+            return(false);
+        }
+        
     }
 
     function confirmTradeByAddress(address seller_addr) public returns (bool) {
@@ -78,7 +86,7 @@ contract Trade is SafeMath {
         //   address(_receiver).transfer(total);   
         // }
         // emit showTrade(_seller, _buyer, _item, _number, _price, _total);
-        TradeList[totalTrades] = SingleTrade(_seller, _buyer, _item,  _number, _price, _total, _receiver);
+        TradeList[totalTrades] = SingleTrade(_seller, _buyer, _item,  _number, _price, _total, _receiver, false);
         emit showTradeIndex(totalTrades);
         
         totalTrades++;

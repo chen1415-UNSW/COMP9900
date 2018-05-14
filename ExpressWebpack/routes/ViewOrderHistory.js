@@ -21,7 +21,7 @@ module.exports = function (request, response, next) {
 
             ViewOrderList = res;
             console.log("============block resultList start============");
-            console.log(ViewOrderList);
+            //console.log(ViewOrderList);
             console.log("============block resultList end============");
             response.render('orderHistory', {title:'View History Page', u_name:request.session.user.username,
                 uid:request.session.userid.uid, result:ViewOrderList});

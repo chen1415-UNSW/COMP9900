@@ -1,4 +1,3 @@
-
 var Cart=require('../models/carts');
 var Block=require('../models/block');
 var Product =require('../models/products');
@@ -30,7 +29,7 @@ router.get('/', function(req, res, next) {
 
             if(pidList == null)
             {
-                return res.json({success:"didn't get products  need to checkout with this uid"});
+                return res.json({success:"didn't get products, checkout with this uid"});
             }
             else
             {
@@ -149,13 +148,12 @@ router.post("/itemtotalnum",function(req,res,next){
 });
 
 router.post("/placeorder",function(req,res,next){
-
-
     // 5.8 Blockchain返回数据后: 添加block schema + 删除cart
     console.log("--------------1. /placeorder 获取blockId list-------------------");
     var status = req.body.status;
     var cartInfo_list = req.body.cartInfo_list;
     var uid = req.body.uid;
+    
     console.log("status=",status);
     console.log("uid=",uid);
 
@@ -164,16 +162,21 @@ router.post("/placeorder",function(req,res,next){
         // 1. loop 写入交易记录
         for (var i=0; i<cartInfo_list.length;i++){
             block_json = {
-                // 5.8 伪造的hash
-                //blockhash:cartInfo_list[i].hash,
-                blockhash:"#blockhash"+i.toString(),
+                // 5.14 正式的Hash
+                blockhash:cartInfo_list[i].hash,
                 uid:cartInfo_list[i].uid,
                 pid:cartInfo_list[i].pid,
                 selleruid:cartInfo_list[i].selleruid,
+
+                buyerHash:cartInfo_list[i].buyerHash.toString(),
+                sellerHash:cartInfo_list[i].sellerHash.toString(),
+
                 productName:cartInfo_list[i].productName,
                 productPrice:cartInfo_list[i].productPrice,
                 number:cartInfo_list[i].number,
-                imgPath: cartInfo_list[i].imgPath
+                imgPath: cartInfo_list[i].imgPath,
+                blockIndex: cartInfo_list[i].blockIndex,
+                status: false
             };
             var blockentity = new Block(block_json);
             blockentity.save();
@@ -205,5 +208,25 @@ router.post("/placeorder",function(req,res,next){
     }
 
 });
+
+router.post("/confirmorder", function(req, res, next){
+    
+    console.log("--------------confirm the order------------------")
+    var id = req.body.id
+    Block.findOneAndUpdate({'_id':id}, {status:true}, function(err, result) {
+        if (err) {
+            res.send({
+                err: err,
+                msg: null
+            })} else {
+                console.log("Update block status successfully")
+                res.send({
+                    err: null,
+                    msg: "Confirmed with smart contract successfully!"
+                })
+            }
+        })
+})
+        
 
 module.exports = router;

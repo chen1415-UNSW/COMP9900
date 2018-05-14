@@ -1,4 +1,5 @@
-var Product=require('../models/products');
+var Product = require('../models/products');
+var Client = require('../models/clients')
 var Cart = require('../models/carts');
 var express = require('express');
 var router = express.Router();
@@ -124,38 +125,7 @@ router.post('/delete', function(req, res, next) {
                     });
                 }
             });
-            // Cart.update({'pid': pid},update_json,{'multi':true},function(err2,response2){
-            //     result2 = response2;
-            //     console.log("--------- 2. delete 去更新cart---------json=----");
-            //     if(result2 == null || err2)
-            //     {
-            //         // return res.json({success:"didn't Update the EDIT product  IN CART !!!! with pid"});
-            //         console.log("--------- 3. delete去 更新cart---------cart 没有这个pid----");
-            //         res.send({
-            //             err: null,
-            //             msg:pid.toString()
-            //         });
-            //     }else{
-            //         console.log("--------- 4. delete 去更新cart 成功-------------");
-            //         res.send({
-            //             err: null,
-            //             msg: "true"
-            //         });
-            //
-            //     }
-            // });
-
-
-
-
-
-
-
-
-            // res.send({
-            //     err: null,
-            //     msg: "true"
-            // });
+           
         }
     });
 });
@@ -231,7 +201,7 @@ router.get('/edit', function(req, res, next) {
 });
 
 
-router.post('/addtocart', function(req, res, next) {
+router.post('/addtocart', async function(req, res, next) {
     var pid = req.body.pid;
     var uid = req.body.uid;
     var selleruid = req.body.selleruid;
@@ -249,6 +219,10 @@ router.post('/addtocart', function(req, res, next) {
     console.log(productName);
     console.log("single  addto cart backend uid=");
     console.log(uid);
+
+    // 查询买卖双方的Hash地址 Important
+    var buyer = await Client.findOne({'_id':uid})
+    var seller = await Client.findOne({'_id':selleruid})
 
     // 减库存
     Product.findOne({'_id': pid},function(err,response){
@@ -273,7 +247,20 @@ router.post('/addtocart', function(req, res, next) {
                     if(result == null)
                     {
                         // return res.json({success:"didn't find the product with pid"});
-                        var cartentity=new Cart({pid:pid, uid:uid, selleruid:selleruid, productName:productName, productInfo:productInfo,productPrice:productPrice,imgPath:imgPath,number:number});
+                        var cartentity=new Cart(
+                            {
+                                pid:pid, 
+                                uid:uid, 
+                                selleruid:selleruid, 
+                                productName:productName, 
+                                
+                                productPrice:productPrice,
+                                imgPath:imgPath,
+                                number:number,
+                                buyerHash:buyer.hash,
+                                sellerHash:seller.hash
+                                
+                            });
                         cartentity.save();
                         console.log("cartid=");
                         console.log(cartentity._id);

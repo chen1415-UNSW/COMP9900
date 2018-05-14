@@ -129,7 +129,7 @@ window.App = {
             total += cart_list[i].number * cart_list[i].price
         }
         //添加价格确认
-        var thisBuyer = cart_list[0].buyerAddress
+        var thisBuyer = cart_list[0].buyerHash
         if (thisBuyer === undefined) thisBuyer = default_buyer
         if (! await self.checkBalanceEnough(thisBuyer, total)) {
             callback(0, cart_list)
@@ -146,16 +146,16 @@ window.App = {
             ( async function(i){ 
                 // 如果买卖双方地址没有被赋值，使用默认地址交易
                 let tradeDetail = cart_list[i]
-                if (tradeDetail.buyerAddress === undefined) {
-                    tradeDetail.buyerAddress = default_buyer
+                if (tradeDetail.buyerHash === undefined) {
+                    tradeDetail.buyerHash = default_buyer
                 }
-                if (tradeDetail.sellerAddress === undefined) {
-                    tradeDetail.sellerAddress = default_seller
+                if (tradeDetail.sellerHash === undefined) {
+                    tradeDetail.sellerHash = default_seller
                 }
                 
                 console.log("Show trade addresses:")
-                console.log(tradeDetail.buyerAddress)
-                console.log(tradeDetail.sellerAddress)
+                console.log(tradeDetail.buyerHash)
+                console.log(tradeDetail.sellerHash)
             
                 // 该商品的总价
                 let total_ThisItem = tradeDetail.productPrice * tradeDetail.number
@@ -167,8 +167,8 @@ window.App = {
                     tradeDetail.number, 
                     web3.toWei(tradeDetail.productPrice, 'ether'),
                     web3.toWei(total_ThisItem, 'ether'),
-                    tradeDetail.sellerAddress, 
-                    {from:tradeDetail.buyerAddress, value:web3.toWei(total_ThisItem, 'ether'), gas:3000000})
+                    tradeDetail.sellerHash, 
+                    {from:tradeDetail.buyerHash, value:web3.toWei(total_ThisItem, 'ether'), gas:3000000})
 
                 console.log("Waiting for transaction:" + i)
                 console.log(value.tx)
@@ -177,16 +177,20 @@ window.App = {
                 console.log("Trade Index here: " + currentIndex)
                 //在输入的购物车里面添加交易成功的Hash
                 cart_list[i].hash = value.tx
+                //添加储存在区块中的索引，便于confirm
+                cart_list[i].blockIndex =  currentIndex
+                cart_list[i].buyerHash = tradeDetail.buyerHash
+                cart_list[i].sellerHash = tradeDetail.sellerHash
 
                 contractBalance = web3.eth.getBalance(contractAddress).toNumber()
                 console.log("Show contract balance after trade")
                 console.log(contractBalance)
 
                 //再把钱付给卖家
-                var payHash = await instance.confirmTrade(currentIndex, {from:tradeDetail.buyerAddress})
+                // var payHash = await instance.confirmTrade(currentIndex, {from:tradeDetail.buyerHash})
                 // var payHash = await instance.confirmTradeByAddress(
                 // "0x60EC8abbb9d6C807B0F2cd3D1E39c7D103EaF2f1", 
-                // {from:tradeDetail.buyerAddress})
+                // {from:tradeDetail.buyerHash})
 
                 waiting_for += 1
                 waitingEnd(waiting_for)
@@ -224,6 +228,17 @@ window.App = {
             makeBuy()
             
         })    
+    },
+
+    confirmTransaction: async function(currentIndex, buyerHash) {
+        var self = this
+        console.log("Confirm transaction: " + currentIndex)
+        let payHash = await instance.confirmTrade(currentIndex, {from:buyerHash})
+        console.log(payHash)
+        let balance = await web3.eth.getBalance(contractAddress)
+        console.log("Contract balance after confirmation:")
+        console.log(balance.toNumber())
+        return payHash
     },
 
     readTransaction: function(address) {

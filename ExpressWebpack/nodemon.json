@@ -12,7 +12,7 @@
     "watch": [
         "public/*",
         "routes/",
-        "views/",
+        
         "app.js"
     ],
     "ignore": [

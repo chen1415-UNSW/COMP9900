@@ -15,8 +15,7 @@ router.get('/', function(req, res, next) {
     else
     {
         var selleruid = req.query.uid;
-        console.log("MYproducts backend uid=");
-        console.log(selleruid);
+        var sellername = req.query.sellername;
 
         Product.find({'selleruid': selleruid},function(err,result){
             pidList = result;
@@ -36,7 +35,8 @@ router.get('/', function(req, res, next) {
                     result: pidList,
                     u_name: req.session.user.username,
                     uid:req.session.userid.uid,
-                    title:"My Store"};
+                    title:sellername + "'s Store"
+                };
 
                 res.render('myproducts',pidList_json);
             }

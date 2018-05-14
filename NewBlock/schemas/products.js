@@ -4,11 +4,9 @@ var mongoose = require('mongoose');
 var ProductSchema = new mongoose.Schema(
     {
         pid:Number,
-        selleruid:String,
         productName:String,
         productInfo:String,
         productPrice:String,
-        productStock:String,
         imgPath: String,
         meta:{
             createAt:{

@@ -3,14 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    if(req.session.user){
-        var user=req.session.user;
-        var name=user.name;
-        res.send('你好'+name+'，欢迎来到我的家园。');
-    }else{
-        res.send('你还没有登录，先登录下再试试！');
-    }
-  // res.send('respond with a resource');
+  res.send('respond with a resource');
 });
 
 module.exports = router;

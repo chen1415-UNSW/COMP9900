@@ -9,10 +9,6 @@ var ClientSchema = new mongoose.Schema(
         //address:String,
         password:String,
         email:String,
-
-        //5.8 user block chain Hash
-        hash:String,
-
         meta:{
             createAt:{
               type:Date,

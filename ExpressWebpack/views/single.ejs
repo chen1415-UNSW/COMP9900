@@ -62,7 +62,7 @@
       var rate = new Number(result.data.quotes.AUD.price).toFixed(2)
       console.log("Extract quotes")
       console.log(rate)
-      $("#showproductPrice").attr('title', (rate*price).toFixed(2) + " AUD")
+      $("#showproductPrice").attr('title', (rate*price).toFixed(2) + " AUD Current Ratio: " + rate + " AUD")
     })
 
     });
@@ -108,7 +108,7 @@
             <div class="showcase-rt-top">
               <div class="pull-left shoe-name">
                 <p hidden id="uid"><%=uid%></p>
-                selleruid :
+                
                 <p hidden id="selleruid"><%=selleruid%></p>
 
 
@@ -120,11 +120,8 @@
                 
                 <h4 id="showproductPrice" title="unknown AUD">
                     <span>
-
-                        <img class="eth" src="/images/eth.png"></img>
-                        
+                        <img class="eth" src="/images/eth.png"></img>  
                     </span>
-                  
                     <%= productPrice %>
                 </h4>
 

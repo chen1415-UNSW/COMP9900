@@ -58,7 +58,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="/index">Home</a></li>
-            <li class="active">Profile</li>
+            <li class="active" >Profile</li>
             <li class="active">Order History</li>
         </ol>
     </div>
@@ -98,7 +98,7 @@
                         <p hidden id="pid<%=i%>"><%=each.pid%></p>
                     </div>
                     <div  class="remove<%=i%>" onclick="removeFromCart(<%=i%>)" style="cursor:pointer">
-                        <p class="pull-right"></p>
+                        <div class="pull-right"><button type="button" class="btn btn-primary">Deliver</button></div>
                     </div>
 
                     <div class="cart-item-info">

@@ -24,7 +24,11 @@
   <button type="button" id="tip" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on top">
     Tooltip on top
   </button>
-  <textarea id="comment" rows="3" cols="50">thefaf</textarea>
+
+  <form id="comment_form">
+    <textarea id="comment" rows="3" cols="50"></textarea>
+    <input type="submit" onclick="saveComment()"/>
+  </form>
 
 </body>
 
@@ -62,8 +66,11 @@
       $("#tip").attr('title', rate + " AUD")
       $("#tip").html(rate+"AUD")
     })
- 
-
   }) 
+
+  function saveComment() {
+    
+  }
+ 
 </script>
 </html>

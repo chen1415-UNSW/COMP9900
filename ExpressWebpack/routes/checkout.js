@@ -251,6 +251,13 @@ router.post("/delivery", function(req, res, next){
             }
         })
 })
+
+router.post("/comment", function(req, res, next){
+    console.log("-------Save Comment--------")
+    var comment = req.body.comment
+    console.log(comment)
+
+})
         
 
 module.exports = router;

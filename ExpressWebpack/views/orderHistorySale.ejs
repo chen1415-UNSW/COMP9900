@@ -89,8 +89,8 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="/index">Home</a></li>
-            <li class="active" >Profile</li>
-            <li class="active">Order History</li>
+            <li><a href="/ProfileControl">Profile</a></li>
+            <li class="active">Sale History</li>
         </ol>
     </div>
 </div>
@@ -100,7 +100,7 @@
     <div class="container">
         <div class="col-md-9 cart-items">
 
-            <h1 id="totalItemsNum">My Order Selling History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
+            <h1 id="totalItemsNum">My Sale History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
             <!--循环输出order history 内容-->
 

@@ -114,8 +114,8 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="/index">Home</a></li>
-            <li class="active">Profile</li>
-            <li class="active">Order History</li>
+            <li><a href="/ProfileControl">Profile</a></li>
+            <li class="active">Purchase History</li>
         </ol>
     </div>
 </div>
@@ -125,7 +125,7 @@
     <div class="container">
         <div class="col-md-12 cart-items">
 
-            <h1 id="totalItemsNum">My Order History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
+            <h1 id="totalItemsNum">My Purchase History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
             <!--循环输出order history 内容-->
 
@@ -143,11 +143,10 @@
                 console.log(each.buyerHash);
 
             %>
-
             <div class="cart-header<%=i%>">
 
                 <div class="cart-sec simpleCart_shelfItem" style="border: grey">
-                    <div class="cart-item cyc" >
+                    <div class="cart-item cyc">
                         <a href="/single/showproduct?pid=<%=each.pid%>"><img src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
                     </div>
 
@@ -169,8 +168,7 @@
                             <span class="label label-success">Complete</span>
                         </div>
                     <% } %>
-
-
+    
                     <div class="cart-item-info">
                         <ul class="qty">
                             <li>
@@ -182,35 +180,22 @@
                             <li>
                                 <p>Total cost : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice*each.number%></p>
                             </li>
-                            <li>
-                                <p>Transition block : <%=each.blockhash%></p>
-                            </li>
-                            <li>
-                                <p>Freight: <%=each.delivery%></p>
-                            </li>
-
                             <% var time_old = each.meta.updateAt;
                                 console.log("time_old: ", time_old)
 
                                 time_new = time_old.substring(0,10) + " " + time_old.substring(11,16);
                                 console.log("=====VIEW HISTORY==== time", time_new)
-                            %>
-
-
-                            <li>
-                                <p>Transition time: <%=time_new%></p>
-                            </li>
-
-
-
+                            %>                                    
                         </ul>
+                        <p>Seller: <%=each.sellerName%></p>
+                        <p>Transition time: <%=time_new%></p>
+                        <p>Transition block : <%=each.blockhash%></p>
+                        <p>Freight: <%=each.delivery%></p>
                     </div>
                     <div class="clearfix"></div>
-
                 </div>
             </div>
             <br/>
-
             <%
             }
             %>
@@ -218,9 +203,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <!--5. foot start -->
 <%include footer.ejs%>

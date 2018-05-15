@@ -23,6 +23,8 @@ module.exports = function (request, response, next) {
                 var r_email = res.email;
                 var r_address = res.address;
                 var r_hash = res.hash;
+                // 添加哈希地址到session，方便充值页面使用
+                request.session.user.userhash = r_hash;
 
                 console.log("r_name: ",r_name);
                 console.log("r_pwd: ", r_pwd);

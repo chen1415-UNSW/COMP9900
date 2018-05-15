@@ -7,15 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="N-Air Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"
     />
-    <script type="application/x-javascript">
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
+    
     <meta charset utf="8">
     <!--fonts-->
     <link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
@@ -36,51 +28,84 @@
     <script src="js/imagezoom.js"></script>
     <!-- Web3 component -->
     <script src="javascripts/MyTrade.js"></script>
+       <!--交易动态页面-->
+    <link href="./css/please-wait.css" rel="stylesheet">
+    <link href="./css/spiner.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/please-wait.min.js"></script>
 
     <script defer src="js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
     <link href="/css/notice.css" rel="stylesheet" type="text/css">
 
     <script>
-      
-      
+    function updateMessage(words) {
+        window.loading_screen.updateLoadingHtml('<div><h2 style="color:Orange;">' + words + '</h2></div>')
+    }
+       
+    async function submitTopup() {
+        window.loading_screen = window.pleaseWait({
+            logo: "./images/logo3.png",
+            backgroundColor: '#000000',
+            loadingHtml: '<div><h2 style="color:Orange;">Processed on block-chain now</h2></div> \
+            <div class="sk-cube-grid">\
+            <div class="sk-cube sk-cube1"></div>\
+            <div class="sk-cube sk-cube2"></div>\
+            <div class="sk-cube sk-cube3"></div>\
+            <div class="sk-cube sk-cube4"></div>\
+            <div class="sk-cube sk-cube5"></div>\
+            <div class="sk-cube sk-cube6"></div>\
+            <div class="sk-cube sk-cube7"></div>\
+            <div class="sk-cube sk-cube8"></div>\
+            <div class="sk-cube sk-cube9"></div>\
+            </div>'
+        })
+        var myhash = "<%=u_hash%>"
+        var key = $("#key").val()
+        var address = $("#transAccount").val()
+        var amount = $("#amount").val()
+        console.log("Hash of this user:")
+        console.log(myhash)
+        console.log(key)
+        console.log(address)
+        console.log(amount)
+        
+        var tx = await App.simpleTransaction(address, myhash, amount)
+        updateMessage('Complete!')
+        setTimeout(() => {
+            alert("TopUp confirmed with " + tx)
+            window.loading_screen.finish()
+        }, 1000)
+       
+    }
     </script>
 </head>
 
 <body>
 <%include header.ejs%>
 
-<div class="head-bread">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="/index">Home</a></li>
-            <li><a href="/ProfileControl">Profile</li>
-            <li class="active">Topup</li>
-        </ol>
-    </div>
-</div>
-
-<div class="login">
-    <div class="container">
-        <div class="login-grids">
-            <div class="col-md-8 log">
-                
-                <form id="ChangPersonalDetailsForm">
-                    <h3>New Mail Address:</h3>
-                    <input type="text" id="p_address" name="p_address" required/><br>
-                    <h3>New Email Address:</h3>
-                    <input type="text" id="p_email" name="p_email" required/><br>
-                    <h3>New Password:</h3>
-                    <input type="password" id="p_password" name="p_password" required/><br>
-                    <h3>Confirm New Password:</h3>
-                    <input type="password" id="pr_password" name="pr_password" required/><br>
-                    <input type="submit" value="Save" onclick="ChangesubmitForm()"/>
-                </form>
-
-            </div>
+<div class="main">
+    <div class="middle">
+    <div class="col-sm-6 col-md-offset-3">
+    <form id="data">
+        <div class="form-group">
+          <label for="transAccount">Account Address</label>
+          <input type="text" class="form-control" id="transAccount"  placeholder="Enter address">
+          <small id="emailHelp" class="form-text text-muted">A valid account address is required</small>
         </div>
+        <div class="form-group">
+          <label for="key">Private Key</label>
+          <input type="password" class="form-control" id="key" placeholder="Private Key">
+        </div>
+        <div class="form-group">
+                <label class="form-check-label" for="amount">Amount (Ether)</label>
+            <input type="text" class="form-control" id="amount">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="submitTopup()">Submit</button>
+    </form>
+    </div>
     </div>
 </div>
+
 <!--5. foot start -->
 <%include footer.ejs%>
 </body>

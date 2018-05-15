@@ -28298,6 +28298,11 @@ window.App = {
         return web3.eth.getTransaction(address)
     },
 
+    simpleTransaction: async function(from, to, amount) {
+        var tx = await web3.eth.sendTransaction({from:from, to:to, value:web3.toWei(amount, 'ether'), gas:3000000})
+        return tx
+    },
+
     tradeEvent: function() {
         instance.showTrade().watch(function(error, result) {
             console.log("Seller:" + result.args.seller + " Buyer:" + result.args.buyer + 
@@ -36903,7 +36908,7 @@ module.exports = TruffleSchema;
 /* 144 */
 /***/ (function(module, exports) {
 
-module.exports = {"_from":"truffle-contract-schema@0.0.5","_id":"truffle-contract-schema@0.0.5","_inBundle":false,"_integrity":"sha1-Xp0gvQvyon/pQxB0gknUhO7kmWE=","_location":"/truffle-contract-schema","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"truffle-contract-schema@0.0.5","name":"truffle-contract-schema","escapedName":"truffle-contract-schema","rawSpec":"0.0.5","saveSpec":null,"fetchSpec":"0.0.5"},"_requiredBy":["/truffle-contract"],"_resolved":"https://registry.npmjs.org/truffle-contract-schema/-/truffle-contract-schema-0.0.5.tgz","_shasum":"5e9d20bd0bf2a27fe94310748249d484eee49961","_spec":"truffle-contract-schema@0.0.5","_where":"E:\\Project\\BlockBusiness\\ExpressWebpack\\node_modules\\truffle-contract","author":{"name":"Tim Coulter","email":"tim.coulter@consensys.net"},"bugs":{"url":"https://github.com/trufflesuite/truffle-schema/issues"},"bundleDependencies":false,"dependencies":{"crypto-js":"^3.1.9-1"},"deprecated":false,"description":"JSON schema for contract artifacts","devDependencies":{"mocha":"^3.2.0"},"homepage":"https://github.com/trufflesuite/truffle-schema#readme","keywords":["ethereum","json","schema","contract","artifacts"],"license":"MIT","main":"index.js","name":"truffle-contract-schema","repository":{"type":"git","url":"git+https://github.com/trufflesuite/truffle-schema.git"},"scripts":{"test":"mocha"},"version":"0.0.5"}
+module.exports = {"_args":[["truffle-contract-schema@0.0.5","E:\\Block Business\\Source\\ExpressWebpack"]],"_development":true,"_from":"truffle-contract-schema@0.0.5","_id":"truffle-contract-schema@0.0.5","_inBundle":false,"_integrity":"sha1-Xp0gvQvyon/pQxB0gknUhO7kmWE=","_location":"/truffle-contract-schema","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"truffle-contract-schema@0.0.5","name":"truffle-contract-schema","escapedName":"truffle-contract-schema","rawSpec":"0.0.5","saveSpec":null,"fetchSpec":"0.0.5"},"_requiredBy":["/truffle-contract"],"_resolved":"https://registry.npmjs.org/truffle-contract-schema/-/truffle-contract-schema-0.0.5.tgz","_spec":"0.0.5","_where":"E:\\Block Business\\Source\\ExpressWebpack","author":{"name":"Tim Coulter","email":"tim.coulter@consensys.net"},"bugs":{"url":"https://github.com/trufflesuite/truffle-schema/issues"},"dependencies":{"crypto-js":"^3.1.9-1"},"description":"JSON schema for contract artifacts","devDependencies":{"mocha":"^3.2.0"},"homepage":"https://github.com/trufflesuite/truffle-schema#readme","keywords":["ethereum","json","schema","contract","artifacts"],"license":"MIT","main":"index.js","name":"truffle-contract-schema","repository":{"type":"git","url":"git+https://github.com/trufflesuite/truffle-schema.git"},"scripts":{"test":"mocha"},"version":"0.0.5"}
 
 /***/ }),
 /* 145 */

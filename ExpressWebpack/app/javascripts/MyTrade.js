@@ -245,6 +245,11 @@ window.App = {
         return web3.eth.getTransaction(address)
     },
 
+    simpleTransaction: async function(from, to, amount) {
+        var tx = await web3.eth.sendTransaction({from:from, to:to, value:web3.toWei(amount, 'ether'), gas:3000000})
+        return tx
+    },
+
     tradeEvent: function() {
         instance.showTrade().watch(function(error, result) {
             console.log("Seller:" + result.args.seller + " Buyer:" + result.args.buyer + 

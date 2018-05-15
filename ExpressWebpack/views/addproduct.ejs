@@ -90,17 +90,17 @@
           </form>
           <!--2. add product info-->
           <form name="addProduct" id="addProduct" class="form-horizontal" method='get' action='javascript:;'>
-            <img name="newPic" id="newPic" class="newImg" width="200" height="200" />
+            <img name="newPic" id="newPic" class="newImg" style="width:50%; height=50%;" />
 
             <h3>Product Name : </h3>
             <!--<input name="productName" id="productName" required="required" type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Product Name';}">-->
-            <input name="productName" id="productName" required="required" type="text" class="textbox" value=""  onblur="if (this.value == '') {this.value = 'Product Name';}">
+            <input name="productName" required id="productName" required="required" type="text" class="textbox" value=""  onblur="if (this.value == '') {this.value = 'Product Name';}">
 
             <div>
               <h3>Price : </h3>
-              <input style="width:200px" name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="0"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Price';}"><br>
+              <input required style="width:200px" name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="0"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Price';}"><br>
               <h3>Avaliable in stock : </h3>
-              <input style="width:200px" name="productStock" id="productStock" required="required" type="number" min="1" class="textbox" value="1"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Stock';}"><br>
+              <input required style="width:200px" name="productStock" id="productStock" required="required" type="number" min="1" class="textbox" value="1"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Stock';}"><br>
             </div>
 
 

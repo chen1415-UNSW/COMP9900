@@ -38,6 +38,7 @@ var sellerproductsRouter = require('./routes/sellerproducts');
 
 // Yikhan Blockchain
 var tradeRouter = require('./routes/tradeRouter');
+var topupRouter = require('./routes/topup');
 
 
 var flash = require('connect-flash');
@@ -105,6 +106,7 @@ app.use('/myproducts',myproductsRouter);
 app.use('/sellerproducts',sellerproductsRouter);
 // 5.4 trade page for blockchain
 app.use('/trade', tradeRouter);
+app.use('/topup',topupRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

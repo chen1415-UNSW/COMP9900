@@ -259,20 +259,4 @@ router.post("/comment", function(req, res, next){
 
 })
 
-router.get('/topup', function(req, res, next) {
-
-    if(req.session.user == undefined)
-    {
-        res.redirect('/signup')
-    }
-    else
-    {
-       
-        res.render('topup')
-        
-    }
-
-});
-        
-
 module.exports = router;

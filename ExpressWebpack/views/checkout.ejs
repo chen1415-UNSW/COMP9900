@@ -125,6 +125,9 @@
                   <li>
                     <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>
                   </li>
+                  <li>
+                    <p>SellerId: <a href="/sellerproducts?uid=<%=selleruid%>&sellername=<%=sellername%>"><%=each.sellerName%></a></p>
+                  </li>
                 </ul>
               </div>
               <div class="clearfix"></div>
@@ -198,20 +201,20 @@
     <div class="sk-cube sk-cube9"></div>\
     </div>'
     })
-    
+
     //console.log(cart_list)
     App.makeTrade(cart_list, function(flag, cart_list_withHash) {
       console.log("All transaction processed")
       var final_cart = {
-        status:flag, 
-        cartInfo_list:cart_list_withHash, 
+        status:flag,
+        cartInfo_list:cart_list_withHash,
         uid: $("#uid").text()
       }
       console.log(final_cart)
       placeorder(final_cart)
       updateMessage('Complete!')
     })
-   
+
     window.loading_screen.finish()
   }
 </script>

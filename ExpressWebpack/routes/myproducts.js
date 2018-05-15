@@ -32,8 +32,11 @@ router.get('/', function(req, res, next) {
             {
                 console.log("pidList len=");
                 console.log(pidList.length);
-                var pidList_json = {result: pidList,u_name: req.session.user.username,
-                    uid:req.session.userid.uid};
+                var pidList_json = {
+                    result: pidList,
+                    u_name: req.session.user.username,
+                    uid:req.session.userid.uid,
+                    title:"My Store"};
 
                 res.render('myproducts',pidList_json);
             }

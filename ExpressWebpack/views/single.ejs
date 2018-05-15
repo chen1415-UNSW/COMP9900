@@ -50,7 +50,7 @@
         animation: "slide",
         controlNav: "thumbnails"
       });
-      
+
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })
@@ -80,7 +80,7 @@
         <div class="container">
           <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
-            <li class="active">Single Product</li>
+            <li class="active"><%=productName%></li>
           </ol>
         </div>
       </div>
@@ -108,7 +108,8 @@
             <div class="showcase-rt-top">
               <div class="pull-left shoe-name">
                 <p hidden id="uid"><%=uid%></p>
-                
+                sellerId:
+                <a href="/sellerproducts?uid=<%=selleruid%>&sellername=<%=sellername%>"><%=sellername%></a>
                 <p hidden id="selleruid"><%=selleruid%></p>
 
 
@@ -117,10 +118,10 @@
 
                 <!--<h4 id="showproductPrice"><span class="glyphicon glyphicon-usd"></span>&#36; <%= productPrice %></h4>-->
                 <!--5.10 增加计数器-->
-                
+
                 <h4 id="showproductPrice" title="unknown AUD">
                     <span>
-                        <img class="eth" src="/images/eth.png"></img>  
+                        <img class="eth" src="/images/eth.png"></img>
                     </span>
                     <%= productPrice %>
                 </h4>
@@ -230,7 +231,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <!--<div role="tabpanel" class="tab-pane active" id="home">-->
-              <h4 id="showproductInfo"><%= productInfo %></p>
+              <h4 id="showproductInfo"><%= productInfo %></h4>
             </div>
           </div>
         </div>

@@ -62,6 +62,7 @@ router.get('/showproduct', function(req, res, next) {
                 productPrice = result.productPrice;
                 imgPath = result.imgPath;
                 productStock = result.productStock;
+                sellername = result.sellername;
 
                 console.log("db中找到了pid对应的 product=");
                 console.log(productName);
@@ -75,6 +76,7 @@ router.get('/showproduct', function(req, res, next) {
                     productInfo:productInfo,
                     productPrice:productPrice,
                     productStock:productStock,
+                    sellername:sellername,
                     imgPath: imgPath,
                     u_name: req.session.user.username,
                     uid:req.session.userid.uid
@@ -125,7 +127,7 @@ router.post('/delete', function(req, res, next) {
                     });
                 }
             });
-           
+
         }
     });
 });
@@ -249,11 +251,11 @@ router.post('/addtocart', async function(req, res, next) {
                         // return res.json({success:"didn't find the product with pid"});
                         var cartentity=new Cart(
                             {
-                                pid:pid, 
-                                uid:uid, 
-                                selleruid:selleruid, 
-                                productName:productName, 
-                                
+                                pid:pid,
+                                uid:uid,
+                                selleruid:selleruid,
+                                productName:productName,
+
                                 productPrice:productPrice,
                                 imgPath:imgPath,
                                 number:number,
@@ -262,7 +264,7 @@ router.post('/addtocart', async function(req, res, next) {
 
                                 buyerName:buyer.username,
                                 sellerName:seller.username,
-                                
+
                             });
                         cartentity.save();
                         console.log("cartid=");

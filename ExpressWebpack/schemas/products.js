@@ -5,6 +5,7 @@ var ProductSchema = new mongoose.Schema(
     {
         pid:Number,
         selleruid:String,
+        sellername:String,
         productName:String,
         productInfo:String,
         productPrice:String,

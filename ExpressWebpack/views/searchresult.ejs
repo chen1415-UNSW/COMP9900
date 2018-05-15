@@ -118,9 +118,8 @@
 
             %>
             <div>
-                <h3 align="middle">0 results for your search. But you may like these items</h3>
+                <h3 align="middle">0 results for your search.</h3>
             </div>
-            
 
             <%
             }
@@ -143,13 +142,28 @@
                             <div class="col-md-12" >
                                 <form method="get" action="/search" id="searchForm2">
                                     <input hidden value="<%=searchInfo%>" name="searchInfo">
-                                    <input style="width: 50px" value="Min" type="text" id="min" name="min" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Min';}">
+                                    <%
+                                      if (max==undefined){max="Max"};
+                                      if (min==undefined){min="Min"};
+                                    %>
+                                    <input style="width: 50px" value="<%=min%>" type="text" id="min" name="min" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Min';}">
                                     &nbsp to &nbsp
-                                    <input style="width: 50px" value="Max" type="text" id="max" name="max" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Max';}">
+                                    <input style="width: 50px" value="<%=max%>" type="text" id="max" name="max" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Max';}">
                                     &nbsp &nbsp
+                                    <div style="margin-top: 10px">
+                                        <%
+                                          if (sellername == undefined){sellername = "sellername"}
+                                        %>
+                                        <input style="width: 120px" value="<%=sellername%>" type="text" id="sellername" name="sellername" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'sellername';}">
 
-                                    <a name="searchButton" type ="submit" class="btn btn-default log-bar"
-                                       href= "javascript:document.getElementById('searchForm2').submit();"  role="button">Submit</a>
+                                    </div>
+                                    <div style="margin-top: 10px">
+                                        <a name="searchButton" type ="submit" class="btn btn-default log-bar"
+                                           href= "javascript:document.getElementById('searchForm2').submit();"  role="button">Submit</a>
+                                    </div>
+
+                                    <!--<a name="searchButton" type ="submit" class="btn btn-default log-bar"-->
+                                       <!--href= "javascript:document.getElementById('searchForm2').submit();"  role="button">Submit</a>-->
                                 </form>
                             </div>
                         </div>
@@ -171,10 +185,10 @@
                     //     });
                     //     $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
-                    // }); 
+                    // });
                 </script>
 
-               
+
             </div>
         </div>
         <div class="clearfix"></div>

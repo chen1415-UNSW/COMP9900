@@ -33,6 +33,9 @@ var searchRouter = require('./routes/search');
 var searchResultRouter = require('./routes/result');
 var myproductsRouter = require('./routes/myproducts');
 
+// 5.14
+var sellerproductsRouter = require('./routes/sellerproducts');
+
 // Yikhan Blockchain
 var tradeRouter = require('./routes/tradeRouter');
 
@@ -98,6 +101,8 @@ app.use('/search',searchRouter);
 app.use('/searchresult',searchResultRouter);
 app.use('/myproducts',myproductsRouter);
 
+// 5.14
+app.use('/sellerproducts',sellerproductsRouter);
 // 5.4 trade page for blockchain
 app.use('/trade', tradeRouter);
 

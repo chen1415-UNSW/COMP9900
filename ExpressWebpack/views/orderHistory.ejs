@@ -78,7 +78,7 @@
                 <div class="sk-cube sk-cube9"></div>\
                 </div>'
                 })
-            
+
             App.confirmTransaction(index, address)
             block_json = {id:id}
             $.ajax({
@@ -123,7 +123,7 @@
 <!--cart 展示区-->
 <div class="check">
     <div class="container">
-        <div class="col-md-9 cart-items">
+        <div class="col-md-12 cart-items">
 
             <h1 id="totalItemsNum">My Order History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
@@ -136,12 +136,12 @@
             {
                 console.log("[0]: ",JSON.parse(JSON.stringify(result))[0]);
                 var each = JSON.parse(JSON.stringify(result))[i];
-              
+
                 // console.log("====each.meta.updateAt:=======", each.meta.updateAt)
                 console.log("each.pid=");
                 console.log(each.pid);
                 console.log(each.buyerHash);
-                
+
             %>
 
             <div class="cart-header<%=i%>">
@@ -156,21 +156,21 @@
                         <p hidden id="pid<%=i%>"><%=each.pid%></p>
                     </div>
                     <% if (!each.status) { %>
-                    <div style="cursor:pointer">     
-                        <div class="pull-right"><button type="button" class="btn btn-primary" onclick='TradeConfirm(<%=each.blockIndex%>, "<%=each.buyerHash%>", "<%=each._id%>")'>Confirm</button></div>
+                    <div style="cursor:pointer">
+                        <div class="pull-right"><button type="button" class="btn btn-primary" onclick='TradeConfirm("<%=each.blockIndex%>", "<%=each.buyerHash%>", "<%=each._id%>")'>Confirm</button></div>
                         <% if (each.delivery) { %>
                             <span class="label label-info">Delivering</span>
-                        <% } else { %>  
+                        <% } else { %>
                             <span class="label label-warning">Waiting</span>
                         <% } %>
                     </div>
                     <% } else { %>
                         <div class="pull-right">
                             <span class="label label-success">Complete</span>
-                        
-                    <% } %>
-                   
                         </div>
+                    <% } %>
+
+
                     <div class="cart-item-info">
                         <ul class="qty">
                             <li>
@@ -214,6 +214,7 @@
             <%
             }
             %>
+
         </div>
     </div>
 </div>

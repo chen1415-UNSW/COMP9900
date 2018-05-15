@@ -1,4 +1,4 @@
-var Product = require('../models/products');
+var Product=require('../models/products');
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -13,14 +13,16 @@ router.post('/', function(req, res, next) {
     var productStock = req.body.productStock;
 
     var selleruid = req.session.userid.uid;
+    var sellername = req.session.user.username;
 
     //调用数据库，写入4个商品参数，返回pid
     var productentity=new Product(
         {
             selleruid:selleruid,
+            sellername:sellername,
             productName:productName,
-            productInfo:productInfo, 
-            productPrice:productPrice, 
+            productInfo:productInfo,
+            productPrice:productPrice,
             productStock:productStock,
             imgPath:imgPath
         });

@@ -8,6 +8,9 @@ var BlockSchema = new mongoose.Schema(
         pid:String,
         selleruid:String,
 
+        buyerName: String,
+        sellerName: String,
+
         buyerHash: String,
         sellerHash: String,
 
@@ -17,6 +20,8 @@ var BlockSchema = new mongoose.Schema(
         imgPath: String,
         blockIndex: Number,
         status: Boolean,
+
+        delivery: String,
 
         meta:{
             createAt:{

@@ -45,15 +45,46 @@
                 controlNav: "thumbnails"
             });
         });
+
+        function Deliver(id) {
+            console.log("Trade ID: " + id)
+            var note = prompt("Freight Note:")
+                if (note != null && note != "")
+                    {
+                        console.log(note)
+                        block_json = {id:id, note:note}
+                        $.ajax({
+                            type: 'POST',
+                            url: '/checkout/delivery',
+                            contentType: "application/json",
+                            dataType: 'json',
+                            data: JSON.stringify(block_json),
+                            success: function (data) {
+                                if (data.msg){
+                                    window.alert(data.msg)
+                                    window.location.href = "/ViewOrderSale"
+                                } else if (data.err){
+                                    window.alert(data.err)
+                                }
+                            },
+                            error: function (err) {
+                                console.log(err.message)
+
+                            }
+                        })
+                } else {
+                    alert("Freight note shall not be empty!")
+                }
+        }
+            
+        
+        
     </script>
     <!-- //FlexSlider-->
 </head>
 
 <body>
 <%include header.ejs%>
-
-
-
 <div class="head-bread">
     <div class="container">
         <ol class="breadcrumb">
@@ -97,8 +128,18 @@
                         <h3><%=each.productName%></h3>
                         <p hidden id="pid<%=i%>"><%=each.pid%></p>
                     </div>
-                    <div  class="remove<%=i%>" onclick="removeFromCart(<%=i%>)" style="cursor:pointer">
-                        <div class="pull-right"><button type="button" class="btn btn-primary">Deliver</button></div>
+
+                    <div style="cursor:pointer">
+                    <% if (!each.delivery) { %>
+                        <div class="pull-right"><button id="delivery" type="button" class="btn btn-primary" onclick='Deliver("<%=each._id%>")'>Deliver</button></div>
+                    <% } else {%>
+                        <span class="label label-info">Delivered</span>
+                        <% if (each.status) {%>
+                            <div class="pull-right">
+                                <span class="label label-success">Buyer Confirmed</span>
+                            </div>
+                        <% }%>
+                    <% } %>
                     </div>
 
                     <div class="cart-item-info">

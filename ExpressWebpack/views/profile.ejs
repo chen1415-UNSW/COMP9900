@@ -39,6 +39,7 @@
 
     <script defer src="js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <link href="/css/notice.css" rel="stylesheet" type="text/css">
 
     <script>
         // Can also be used with $(document).ready()
@@ -76,7 +77,8 @@
             var addr = "<%=u_hash%>"
             App.refreshBalance(addr).then(function(value){
                 //console.log("inside: " + value)
-                $("#balance").html("Your current balance: " + value)
+                $("#balance").html(value +  
+                ' Ether' + '<span><img class="eth" src="/images/eth.png"></img></span>')
             })
            
         }
@@ -136,7 +138,8 @@
                 <br>
                 <br>
                 
-                <h3 id="balance">Your current balance: </h3>
+                <h3 >Your current balance:</h3>
+                <h3 id="balance"></h3>
                     <button id="showBalance" class="btn btn-success" onclick="Refresh()">Refresh</button>
                     <!-- <h4 id="balance"></h4> -->
             </div>
@@ -163,8 +166,6 @@
         </div>
     </div>
 </div>
-
-
 <!--5. foot start -->
 <%include footer.ejs%>
 </body>

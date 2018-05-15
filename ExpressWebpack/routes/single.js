@@ -258,7 +258,10 @@ router.post('/addtocart', async function(req, res, next) {
                                 imgPath:imgPath,
                                 number:number,
                                 buyerHash:buyer.hash,
-                                sellerHash:seller.hash
+                                sellerHash:seller.hash,
+
+                                buyerName:buyer.username,
+                                sellerName:seller.username,
                                 
                             });
                         cartentity.save();

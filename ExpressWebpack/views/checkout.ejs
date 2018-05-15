@@ -186,14 +186,19 @@
     logo: "./images/logo3.png",
     backgroundColor: '#000000',
     loadingHtml: '<div><h2 style="color:Orange;">Your purchase is processed on block-chain now</h2></div> \
-                  <div class="sk-folding-cube"> \
-                  <div class="sk-cube1 sk-cube"></div> \
-                  <div class="sk-cube2 sk-cube"></div> \
-                  <div class="sk-cube4 sk-cube"></div> \
-                  <div class="sk-cube3 sk-cube"></div> \
-                  </div>'
+    <div class="sk-cube-grid">\
+    <div class="sk-cube sk-cube1"></div>\
+    <div class="sk-cube sk-cube2"></div>\
+    <div class="sk-cube sk-cube3"></div>\
+    <div class="sk-cube sk-cube4"></div>\
+    <div class="sk-cube sk-cube5"></div>\
+    <div class="sk-cube sk-cube6"></div>\
+    <div class="sk-cube sk-cube7"></div>\
+    <div class="sk-cube sk-cube8"></div>\
+    <div class="sk-cube sk-cube9"></div>\
+    </div>'
     })
-    setTimeout("updateMessage('Complete!')", 2000)
+    
     //console.log(cart_list)
     App.makeTrade(cart_list, function(flag, cart_list_withHash) {
       console.log("All transaction processed")
@@ -204,7 +209,7 @@
       }
       console.log(final_cart)
       placeorder(final_cart)
-      
+      updateMessage('Complete!')
     })
    
     window.loading_screen.finish()

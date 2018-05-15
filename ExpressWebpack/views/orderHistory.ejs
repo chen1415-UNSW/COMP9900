@@ -37,6 +37,10 @@
     <script defer src="js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
     <script type="text/javascript" src="/javascripts/MyTrade.js"></script>
+    <!--交易动态页面-->
+    <link href="./css/please-wait.css" rel="stylesheet">
+    <link href="./css/spiner.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/please-wait.min.js"></script>
     <script>
         // Can also be used with $(document).ready()
         $(window).load(function() {
@@ -46,10 +50,35 @@
             });
         });
 
+         function updateMessage(words) {
+            window.loading_screen.updateLoadingHtml('<div><h2 style="color:Orange;">' + words + '</h2></div>')
+        }
+
         function TradeConfirm(index, address, id) {
+            var r = confirm("Your ether will be released to seller. Make sure you have received the item.")
+            if (!r) {
+                return 0
+            }
             console.log("Get block index: " + index)
             console.log(address)
             console.log(id)
+            window.loading_screen = pleaseWait({
+                logo: "./images/logo3.png",
+                backgroundColor: '#000000',
+                loadingHtml: '<div><h2 style="color:Orange;">Release your ether now</h2></div> \
+                <div class="sk-cube-grid">\
+                <div class="sk-cube sk-cube1"></div>\
+                <div class="sk-cube sk-cube2"></div>\
+                <div class="sk-cube sk-cube3"></div>\
+                <div class="sk-cube sk-cube4"></div>\
+                <div class="sk-cube sk-cube5"></div>\
+                <div class="sk-cube sk-cube6"></div>\
+                <div class="sk-cube sk-cube7"></div>\
+                <div class="sk-cube sk-cube8"></div>\
+                <div class="sk-cube sk-cube9"></div>\
+                </div>'
+                })
+            
             App.confirmTransaction(index, address)
             block_json = {id:id}
             $.ajax({
@@ -60,18 +89,18 @@
                 data: JSON.stringify(block_json),
                 success: function (data) {
                     if (data.msg){
-                        window.alert(data.msg);
-                        window.location.href = "/ViewOrder";
-
+                        window.alert(data.msg)
+                        window.loading_screen.finish()
+                        window.location.href = "/ViewOrder"
                     } else if (data.err){
-                        window.alert(data.err);
+                        window.alert(data.err)
                     }
                 },
                 error: function (err) {
-                    console.log(err.message);
+                    console.log(err.message)
 
                 }
-            });
+            })
 
         }
     </script>
@@ -129,12 +158,19 @@
                     <% if (!each.status) { %>
                     <div style="cursor:pointer">     
                         <div class="pull-right"><button type="button" class="btn btn-primary" onclick='TradeConfirm(<%=each.blockIndex%>, "<%=each.buyerHash%>", "<%=each._id%>")'>Confirm</button></div>
+                        <% if (each.delivery) { %>
+                            <span class="label label-info">Delivering</span>
+                        <% } else { %>  
+                            <span class="label label-warning">Waiting</span>
+                        <% } %>
                     </div>
                     <% } else { %>
                         <div class="pull-right">
                             <span class="label label-success">Complete</span>
-                        </div>
+                        
                     <% } %>
+                   
+                        </div>
                     <div class="cart-item-info">
                         <ul class="qty">
                             <li>
@@ -148,6 +184,9 @@
                             </li>
                             <li>
                                 <p>Transition block : <%=each.blockhash%></p>
+                            </li>
+                            <li>
+                                <p>Freight: <%=each.delivery%></p>
                             </li>
 
                             <% var time_old = each.meta.updateAt;

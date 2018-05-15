@@ -147,7 +147,7 @@ router.post("/itemtotalnum",function(req,res,next){
     });
 });
 
-router.post("/placeorder",function(req,res,next){
+router.post("/placeorder", function(req,res,next){
     // 5.8 Blockchain返回数据后: 添加block schema + 删除cart
     console.log("--------------1. /placeorder 获取blockId list-------------------");
     var status = req.body.status;
@@ -171,12 +171,16 @@ router.post("/placeorder",function(req,res,next){
                 buyerHash:cartInfo_list[i].buyerHash.toString(),
                 sellerHash:cartInfo_list[i].sellerHash.toString(),
 
+                buyerName: cartInfo_list[i].buyerName,
+                sellerName: cartInfo_list[i].sellerName,
+
                 productName:cartInfo_list[i].productName,
                 productPrice:cartInfo_list[i].productPrice,
                 number:cartInfo_list[i].number,
                 imgPath: cartInfo_list[i].imgPath,
                 blockIndex: cartInfo_list[i].blockIndex,
-                status: false
+                status: false,
+                
             };
             var blockentity = new Block(block_json);
             blockentity.save();
@@ -223,6 +227,26 @@ router.post("/confirmorder", function(req, res, next){
                 res.send({
                     err: null,
                     msg: "Confirmed with smart contract successfully!"
+                })
+            }
+        })
+})
+
+router.post("/delivery", function(req, res, next){
+    
+    console.log("--------------Make delivery-----------------")
+    var id = req.body.id
+    var note = req.body.note
+    Block.findOneAndUpdate({'_id':id}, {delivery:note}, function(err, result) {
+        if (err) {
+            res.send({
+                err: err,
+                msg: null
+            })} else {
+                console.log("Record delievery successfully")
+                res.send({
+                    err: null,
+                    msg: "Your delivery is recorded."
                 })
             }
         })

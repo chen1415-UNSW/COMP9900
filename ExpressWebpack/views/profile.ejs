@@ -77,8 +77,10 @@
             var addr = "<%=u_hash%>"
             App.refreshBalance(addr).then(function(value){
                 //console.log("inside: " + value)
+                
                 $("#balance").html(value +  
                 ' Ether' + '<span><img class="eth" src="/images/eth.png"></img></span>')
+                $("#balance").slideDown()
             })
            
         }
@@ -139,7 +141,7 @@
                 <br>
                 
                 <h3 >Your current balance:</h3>
-                <h3 id="balance"></h3>
+                <h3 id="balance" style="display:none"></h3>
                     <button id="showBalance" class="btn btn-success" onclick="Refresh()">Refresh</button>
                     <!-- <h4 id="balance"></h4> -->
             </div>

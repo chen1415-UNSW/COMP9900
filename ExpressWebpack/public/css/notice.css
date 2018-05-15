@@ -5,6 +5,12 @@
     padding-left: 10px;
 }
 
+.eth_small {
+    max-width: 30%;
+    height: auto;
+    
+}
+
 .main {
     text-align: center; /*让div内部文字居中*/
     background-color: #ccccc5;

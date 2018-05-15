@@ -175,10 +175,10 @@
                                 <p>Qty : <%=each.number%></p>
                             </li>
                             <li>
-                                <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>
+                                <p>Price each : <%=each.productPrice%></p>
                             </li>
                             <li>
-                                <p>Total cost : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice*each.number%></p>
+                                <p>Total cost : <%=each.productPrice*each.number%></p>
                             </li>
                             <% var time_old = each.meta.updateAt;
                                 console.log("time_old: ", time_old)
@@ -187,10 +187,10 @@
                                 console.log("=====VIEW HISTORY==== time", time_new)
                             %>                                    
                         </ul>
-                        <p>Seller: <%=each.sellerName%></p>
                         <p>Transition time: <%=time_new%></p>
                         <p>Transition block : <%=each.blockhash%></p>
                         <p>Freight: <%=each.delivery%></p>
+                        <p>Seller: <%=each.sellerName%></p>
                     </div>
                     <div class="clearfix"></div>
                 </div>

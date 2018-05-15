@@ -98,7 +98,7 @@
 <!--cart 展示区-->
 <div class="check">
     <div class="container">
-        <div class="col-md-9 cart-items">
+        <div class="col-md-12 cart-items">
 
             <h1 id="totalItemsNum">My Sale History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
@@ -148,10 +148,10 @@
                                 <p>Qty : <%=each.number%></p>
                             </li>
                             <li>
-                                <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>
+                                <p>Price each : <%=each.productPrice%></p>
                             </li>
                             <li>
-                                <p>Total cost : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice*each.number%></p>
+                                <p>Total Income : <%=each.productPrice*each.number%></p>
                             </li>
                             <li>
                                 <p>Transition block : <%=each.blockhash%></p>
@@ -166,6 +166,7 @@
                                 <p>Transition time: <%=time_new%></p>
                             </li>
                         </ul>
+                        <p>Buyer: <%=each.buyerName%></p>
                     </div>
                     <div class="clearfix"></div>
 

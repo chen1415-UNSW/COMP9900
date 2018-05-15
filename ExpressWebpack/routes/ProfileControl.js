@@ -52,8 +52,6 @@ module.exports = function (request, response, next) {
                         break;
                     }
                 }
-
-
                 console.log("Transfered email: ", en_email);
 
                 response.render('profile', 
@@ -67,12 +65,6 @@ module.exports = function (request, response, next) {
 
             }
         });
-
-
-
-
-
-
         // response.render('profile', {title:'Profile Page', u_name:request.session.user.username,
         //     uid:request.session.userid.uid});
     }

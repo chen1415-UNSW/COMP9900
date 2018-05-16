@@ -44,6 +44,18 @@
     }
        
     async function submitTopup() {
+
+         var myhash = "<%=u_hash%>"
+        var key = $("#key").val()
+        var address = $("#transAccount").val()
+        var amount = $("#amount").val()
+        
+        if (address == undefined || address == "" || key == undefined || key == "" || 
+            amount == undefined || amount == ""){
+                alert("Please fill in all fields!")
+                return
+        }
+
         window.loading_screen = window.pleaseWait({
             logo: "./images/logo3.png",
             backgroundColor: '#000000',
@@ -60,10 +72,8 @@
             <div class="sk-cube sk-cube9"></div>\
             </div>'
         })
-        var myhash = "<%=u_hash%>"
-        var key = $("#key").val()
-        var address = $("#transAccount").val()
-        var amount = $("#amount").val()
+       
+        
         console.log("Hash of this user:")
         console.log(myhash)
         console.log(key)
@@ -78,7 +88,7 @@
         }, 1000)
        
     }
-    </script>
+</script>
 </head>
 
 <body>
@@ -108,7 +118,7 @@
 </div>
 
 <!--5. foot start -->
-<%include footer.ejs%>
+
 </body>
 
 </html>

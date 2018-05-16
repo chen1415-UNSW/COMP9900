@@ -4,6 +4,7 @@
 /MongoDB/*
 /ExpressWebpack/node_modules/*
 /ExpressWebpack/.vscode/*
+/ExpressWebpack/build/*
 /ExpressDemo/node_modules*
 /ExpressDemo/*
 /NewBlock/*

@@ -143,15 +143,15 @@
                 console.log(each.buyerHash);
 
             %>
-            <div class="cart-header<%=i%>">
+            <div class="cart-header<%=i%>" style="margin-top: 15px">
 
-                <div class="cart-sec simpleCart_shelfItem" style="border: grey">
+                <div class="cart-sec simpleCart_shelfItem" style="border:1px solid #f0f0f0;">
                     <div class="cart-item cyc">
-                        <a href="/single/showproduct?pid=<%=each.pid%>"><img src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
+                        <a href="/single/showproduct?pid=<%=each.pid%>"><img style="width: 200px; height: 130px" src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
                     </div>
 
                     <div class="cart-item-info">
-                        <h3><%=each.productName%></h3>
+                        <h4 style="white-space: nowrap;max-width: 400px; overflow: hidden "><%=each.productName%></h4>
                         <p hidden id="pid<%=i%>"><%=each.pid%></p>
                     </div>
                     <% if (!each.status) { %>
@@ -168,7 +168,7 @@
                             <span class="label label-success">Complete</span>
                         </div>
                     <% } %>
-    
+
                     <div class="cart-item-info">
                         <ul class="qty">
                             <li>
@@ -185,7 +185,7 @@
 
                                 time_new = time_old.substring(0,10) + " " + time_old.substring(11,16);
                                 console.log("=====VIEW HISTORY==== time", time_new)
-                            %>                                    
+                            %>
                         </ul>
                         <p>Transition time: <%=time_new%></p>
                         <p>Transition block : <%=each.blockhash%></p>

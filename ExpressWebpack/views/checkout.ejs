@@ -71,7 +71,7 @@
    <!--cart 展示区-->
     <div class="check">
       <div class="container">
-        <div class="col-md-9 cart-items">
+        <div class="col-md-12 cart-items">
 
           <h1 id="totalItemsNum">My Shopping Bag (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
@@ -101,20 +101,20 @@
                 console.log(each.pid);
           %>
 
-          <div class="cart-header<%=i%>">
+          <div class="cart-header<%=i%>" style="margin-top: 15px">
 
-            <div class="cart-sec simpleCart_shelfItem">
-              <div class="cart-item cyc">
+            <div class="cart-sec simpleCart_shelfItem" style="border:1px solid #f0f0f0;">
+              <div class="cart-item cyc ">
                 <a href="/single/showproduct?pid=<%=each.pid%>">
-                  <img style="width:200px; height:120px;" src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
+                  <img style="width: 200px; height: 130px"  src="<%=each.imgPath%>" class="img-responsive" alt="" /></a>
               </div>
 
               <div class="cart-item-info">
-                <h3><%=each.productName%></h3>
+                <h4 style="white-space: nowrap;max-width: 400px; overflow: hidden "><%=each.productName%></h4>
                 <p hidden id="pid<%=i%>"><%=each.pid%></p>
               </div>
               <div  class="remove<%=i%>" onclick="removeFromCart(<%=i%>)" style="cursor:pointer">
-                <p class="pull-right"><span class="glyphicon glyphicon-remove">Remove</span></p>
+                <p style="margin-right: 15px" class="pull-right" style=""><span class="label label-default">Remove</span></p>
               </div>
 
               <div class="cart-item-info">
@@ -126,7 +126,7 @@
                     <p>Price each : <span class="glyphicon glyphicon-usd"></span><%=each.productPrice%></p>
                   </li>
                   <li>
-                    <p>SellerId: <a href="/sellerproducts?uid=<%=selleruid%>&sellername=<%=sellername%>"><%=each.sellerName%></a></p>
+                    <p>Seller: <a href="/sellerproducts?uid=<%=selleruid%>&sellername=<%=sellername%>"><%=each.sellerName%></a></p>
                   </li>
                 </ul>
               </div>

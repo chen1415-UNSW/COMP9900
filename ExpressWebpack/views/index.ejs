@@ -108,13 +108,13 @@
           <!-- normal -->
           <div class="ih-item square effect3 bottom_to_top">
             <div class="bottom-2-top">
-              <div class="img"><img src="<%=each.imgPath%>" alt="/" class="img-responsive gri-wid"></div>
+              <div class="img img-thumbnail"><img style="width: 300px; height: 200px" src="<%=each.imgPath%>" alt="/" class="img-responsive gri-wid"></div>
               <div class="info">
                 <div class="pull-left styl-hdn">
-                  <h3><%=each.productName%></h3>
+                  <h3 style="white-space: nowrap;max-width: 200px; overflow: hidden "><%=each.productName%></h3>
                 </div>
                 <div class="pull-right styl-price">
-                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span> 
+                  <p><a href="#" class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span>
                     <span>
                       <img class="eth_small" src="/images/eth.png"></img>
                     </span><%=each.productPrice%></a></p>

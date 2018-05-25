@@ -22,6 +22,7 @@ Week 4
 1. obtain my task as a database admin in this project
 2. leaning about nodejs and web site building
 3. discuss about our database design
+4. study blockchain shopping website case on blockgeeks and medium. 
 --------------------------------------------------------------
 Week 5
 
@@ -31,8 +32,10 @@ Week 5
 -------------------------------------------------------------
 week 6
 
-1. try using firebase but give up later
-2. start using webstorm(used to be subline)
+1. try using firebase but give up later since I found promise 
+   type is hard to operate and extract imformation contained.
+2. start using webstorm(used to use subline),so dev env need to
+   be set up again
 3. start building website template
 ------------------------------------------------------------
 week 7
@@ -44,4 +47,30 @@ week 7
 week 8
 
 1. move database online
-2. static sql method coding, frontend can use it as nomal function. 
+2. static sql method coding, frontend can use it as nomal function.
+   make the module easy to use in other module of the project.
+--------------------------------------------------------
+week 9
+
+1. add password encryption module,renew database.
+2. move image hosting to cloud service,release server side storage.
+3. try to fix client side image upload
+------------------------------------------------------------
+week 10
+
+1. add more product to website
+2. renew client and product schema, add user hash in client table.
+3. renew picture to higher resolution.
+---------------------------------------------------------------
+week 11
+
+1. frontend bug fix, mostly about image display
+2. edit project logo 
+3. prepare demo ppt
+----------------------------------------------------------------
+week 12
+
+1. fix picture display problem
+2. fix button display problem
+3. prepare presentation for final demo.
+

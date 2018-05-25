@@ -6,7 +6,7 @@ Chenwei Qian: z5107753@ad.unsw.edu.au
 Hao Chen:     z5102446@ad.unsw.edu.au
 
 Final Demo accomplished. Well done!
-![front page](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/FrontPage.png?raw=true){:height="50%" width="50%"}
+![front page](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/FrontPage.png?raw=true)
 
 ## Initialization:
 The project is based on Node.js, which requires NPM environment to install all needed package. Start terminal at the root directory.   

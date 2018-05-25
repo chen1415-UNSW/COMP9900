@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
         Product.find({'selleruid': selleruid},function(err,result){
             pidList = result;
             console.log("backend checkout pidList=");
-            console.log(pidList);
+            //console.log(pidList);
 
 
             if(pidList == null)
@@ -30,8 +30,7 @@ router.get('/', function(req, res, next) {
             }
             else
             {
-                console.log("pidList len=");
-                console.log(pidList.length);
+
                 var pidList_json = {
                     result: pidList,
                     u_name: req.session.user.username,

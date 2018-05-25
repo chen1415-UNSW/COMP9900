@@ -26,9 +26,9 @@ module.exports = function (request, response, next) {
                 // session added
                 request.session.user.userhash = r_hash;
 
-                console.log("r_name: ",r_name);
-                console.log("r_pwd: ", r_pwd);
-                console.log("r_email: ",r_email);
+                // console.log("r_name: ",r_name);
+                // console.log("r_pwd: ", r_pwd);
+                // console.log("r_email: ",r_email);
 
                 // var nr_pwd = "*".repeat(r_pwd.length-1).concat(r_pwd.substring(r_pwd.length-1));
                 var en_email = "";
@@ -54,7 +54,7 @@ module.exports = function (request, response, next) {
                         break;
                     }
                 }
-                console.log("Transfered email: ", en_email);
+                // console.log("Transfered email: ", en_email);
 
                 response.render('profile', 
                 {title:'Profile Page', 

@@ -134,13 +134,8 @@
 
             for (var i=0 ; i<JSON.parse(JSON.stringify(result)).length; i++)
             {
-                console.log("[0]: ",JSON.parse(JSON.stringify(result))[0]);
+          
                 var each = JSON.parse(JSON.stringify(result))[i];
-
-                // console.log("====each.meta.updateAt:=======", each.meta.updateAt)
-                console.log("each.pid=");
-                console.log(each.pid);
-                console.log(each.buyerHash);
 
             %>
             <div class="cart-header<%=i%>" style="margin-top: 15px">
@@ -181,10 +176,9 @@
                                 <p>Total cost : <%=each.productPrice*each.number%></p>
                             </li>
                             <% var time_old = each.meta.updateAt;
-                                console.log("time_old: ", time_old)
 
                                 time_new = time_old.substring(0,10) + " " + time_old.substring(11,16);
-                                console.log("=====VIEW HISTORY==== time", time_new)
+                               
                             %>
                         </ul>
                         <p>Transition time: <%=time_new%></p>

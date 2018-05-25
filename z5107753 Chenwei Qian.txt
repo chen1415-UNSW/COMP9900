@@ -16,10 +16,6 @@ Week3:
 2. Wrote aim part for project proposal
 3. continue learning solidity and DApp
 4. project proposal submited
-<<<<<<< .merge_file_YOosq0
-
- 
-=======
 --------------------------------------------------------------
 Week 4
 
@@ -49,4 +45,3 @@ week 8
 
 1. move database online
 2. static sql method coding, frontend can use it as nomal function. 
->>>>>>> .merge_file_eU6JfT

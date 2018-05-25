@@ -146,7 +146,6 @@
 <script>
    
     if (typeof web3 !== 'undefined') {
-        
            web3 = new Web3(web3.currentProvider);
        } else {
            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
@@ -241,8 +240,7 @@
 
     tradeEvent.watch(function(error, result){
         if (!error)
-            {
-                
+            {  
                 $("#contract").html(result.args.seller + " " + result.args.buyer + " " + result.args.item + " cost: " + result.args.price);
                 var number = web3.eth.blockNumber; //get the block number of current transaction
                 console.log(number); 

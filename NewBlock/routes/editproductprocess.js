@@ -17,9 +17,10 @@ router.post('/', function(req, res, next) {
     var imgPath= req.body.imgPath;
     var pid = req.body.pid;
     var selleruid = req.body.selleruid;
+    var productStock = parseInt(req.body.productStock);
 
 
-    update_json = {$set: { 'productName':productName, 'productPrice':productPrice, 'productInfo':productInfo ,'imgPath':imgPath}};
+    update_json = {$set: { 'productName':productName, 'productPrice':productPrice, 'productInfo':productInfo,'productStock':productStock,'imgPath':imgPath}};
 
 
 

@@ -17,13 +17,10 @@ router.post('/', function(req, res, next) {
     var productStock = req.body.productStock;
 
     var selleruid = req.session.userid.uid;
-    // console.log("addProduct: seller uid=");
-    // console.log(selleruid);
-    //
-    // console.log("addPro: productName=");
-    // console.log(productName);
+    var sellername = req.session.user.username;
+
     //调用数据库，写入4个商品参数，返回pid
-    var productentity=new Product({selleruid:selleruid,productName:productName,productInfo:productInfo, productPrice:productPrice, productStock:productStock,imgPath:imgPath});
+    var productentity=new Product({selleruid:selleruid,sellername:sellername,productName:productName,productInfo:productInfo, productPrice:productPrice, productStock:productStock,imgPath:imgPath});
     productentity.save();
     // console.log("pid=");
     // console.log(productentity._id);

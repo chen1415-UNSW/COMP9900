@@ -1,5 +1,5 @@
 var Client=require('../models/clients');
-var cryptoscript = require('../routes/encrypter');
+
 
 module.exports = function (request, response, next)
 {
@@ -9,7 +9,6 @@ module.exports = function (request, response, next)
     var email = request.body.rej_email;
     var pwd = request.body.rej_password;
     var pwd2 = request.body.re_password;
-    var address = request.body.rej_address;
 
     console.log(username);
     console.log(email);
@@ -26,13 +25,8 @@ module.exports = function (request, response, next)
             {
                 // 5.8 创建 user fake hash
                 var hash = "userhash12345678";
-
-                var en_pwd = cryptoscript.cryptPwd(pwd);
-                console.log("en_pwd: ",en_pwd);
-
-                var cliententity=new Client({username:username,password:en_pwd, email:email});
+                var cliententity=new Client({username:username,password:pwd, email:email,hash:hash});
                 cliententity.save();
-
                 return response.json({success:true});
             }else {
                 return response.json({success:false});

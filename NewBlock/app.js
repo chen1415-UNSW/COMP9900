@@ -17,13 +17,10 @@ var signupRoute = require('./routes/signup');
 var singleRoute = require('./routes/single');
 var SignUpControlRoute = require('./routes/SignUpControl');
 var LogInControlRoute = require('./routes/LogInControl');
-
 //Harvey
 var SignOutRoute = require('./routes/SignOut');
 var ProfileRoute = require('./routes/ProfileControl');
 var ChangeDetailsRoute = require('./routes/ChangeDetailsControl');
-var ViewOrderHistoryRoute = require('./routes/ViewOrderHistory');
-var ViewOrderHistorySaleRoute = require('./routes/ViewOrderSelling');
 
 
 // yuli 4.22 -- 5.3
@@ -35,6 +32,8 @@ var searchRouter = require('./routes/search');
 var searchResultRouter = require('./routes/result');
 var myproductsRouter = require('./routes/myproducts');
 
+// 5.14
+var sellerproductsRouter = require('./routes/sellerproducts');
 
 var flash = require('connect-flash');
 
@@ -88,8 +87,6 @@ app.use('/LogInControl', LogInControlRoute);
 app.use('/SignOut', SignOutRoute);
 app.use('/ProfileControl', ProfileRoute);
 app.use('/ChangeDetails', ChangeDetailsRoute);
-app.use('/ViewOrder', ViewOrderHistoryRoute);
-app.use('/ViewOrderSale', ViewOrderHistorySaleRoute);
 
 // 4.22 for product -- 5.3
 app.use('/uploadfile',uploadRouter);
@@ -100,6 +97,9 @@ app.use('/search',searchRouter);
 app.use('/searchresult',searchResultRouter);
 app.use('/myproducts',myproductsRouter);
 
+
+// 5.14
+app.use('/sellerproducts',sellerproductsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -98,8 +98,17 @@
             <h3>Product Name : </h3>
             <input name="productName" id="productName" required="required" type="text" class="textbox" value="<%=productName%>" onfocus="if (this.value == '') this.value = '<%=productName%>';">
 
-            <h3>Price : </h3>
-            <input name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="<%=productPrice%>" onfocus=" if (this.value == '') this.value = '<%=productPrice%>';"><br>
+            <!--<h3>Price : </h3>-->
+            <!--<input name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="<%=productPrice%>" onfocus=" if (this.value == '') this.value = '<%=productPrice%>';"><br>-->
+
+            <div>
+              <h3>Price : </h3>
+              <input style="width:200px" name="productPrice" id="productPrice" required="required" type="number" min="0" class="textbox" value="<%=productPrice%>" onfocus=" if (this.value == '') this.value = '<%=productPrice%>';"><br>
+              <h3>Avaliable in stock : </h3>
+              <input style="width:200px" name="productStock" id="productStock" required="required" type="number" min="1" class="textbox" value="<%=productStock%>"  onfocus=" if (this.value == '') this.value = '<%=productStock%>';"><br>
+            </div>
+
+
 
             <h3>Product Description : </h3>
             <textarea name="productInfo" id="productInfo" required="required" value="" onfocus=" if (this.value == '')  this.value = '<%=productInfo%>';"><%=productInfo%></textarea><br>

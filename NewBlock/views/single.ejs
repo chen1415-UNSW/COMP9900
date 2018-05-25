@@ -69,7 +69,8 @@
         <div class="container">
           <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
-            <li class="active">Single Product</li>
+            <!--<li class="active">Single Product</li>-->
+            <li class="active"><%=productName%></li>
           </ol>
         </div>
       </div>
@@ -96,16 +97,14 @@
           <div class="col-md-4 showcase">
             <div class="showcase-rt-top">
               <div class="pull-left shoe-name">
-
-
-                uid: for test (will be hidden)
-                <p id="uid"><%=uid%></p>
-                selleruid:
-                <p id="selleruid"><%=selleruid%></p>
+                <p hidden id="uid"><%=uid%></p>
+                seller:
+                <a href="/sellerproducts?uid=<%=selleruid%>&sellername=<%=sellername%>"><%=sellername%></a>
+                <p hidden id="selleruid"><%=selleruid%></p>
 
 
                 <h3 id="showproductName"><%= productName %></h3>
-                <p id="showpid">pid:<%= pid %></p>
+                <p hidden id="showpid">pid:<%= pid %></p>
 
                 <!--<h4 id="showproductPrice"><span class="glyphicon glyphicon-usd"></span>&#36; <%= productPrice %></h4>-->
                 <!--5.10 增加计数器-->
@@ -113,15 +112,40 @@
 
                 <div class="row pull-right">
                   <div class="form-inline">
-
                     <td>
-                      <!--<input type="number" style="width: 45px; padding: 1px" value="0">-->
                       avaliable : <span id="showProductStock"><%=productStock%></span>
                     </td>
                   </div>
                 </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <hr class="featurette-divider">
+            <div class="shocase-rt-bot">
+              <div class="float-qty-chart">
+                <div class="clearfix">
+
+                </div>
+              </div>
+              <ul>
+
+                <%
+                if (uid==selleruid){
+                %>
+
+                <li class="ad-2-crt simpleCart_shelfItem">
+                  <a class="btn item_add" role="button" onclick="deleteProduct()" > <span class="">&nbsp</span>Delete</a>
+                </li>
+                <li class="ad-2-crt simpleCart_shelfItem">
+                  <a class="btn item_add" role="button" href="/single/edit?pid=<%=pid%>&uid=<%=selleruid%>" > <span class="">&nbsp</span>Edit</a>
+                  <!--<a class="btn item_add" role="button" onclick="editProduct()" > <span class="">&nbsp</span>Edit</a>-->
+                </li>
 
 
+                <%
+                }else if (uid!=selleruid && parseInt(productStock)>0){
+                %>
 
                 <div class="input-group number-spinner" style="margin-top: 20px">
                   <span class="input-group-btn">
@@ -162,48 +186,6 @@
                         btn.closest('.number-spinner').find('input').val(newVal);
                     });
                 </script>
-
-
-
-
-
-
-                <!--<p>in stock : 20</p>-->
-                <!--<td></td>-->
-                <!--<td>-->
-                  <!--<input type="number" style="width: 45px; padding: 1px" value="0">-->
-                <!--</td>-->
-
-
-
-              </div>
-
-              <div class="clearfix"></div>
-            </div>
-            <hr class="featurette-divider">
-            <div class="shocase-rt-bot">
-              <div class="float-qty-chart">
-                <div class="clearfix">
-
-                </div>
-              </div>
-              <ul>
-
-                <%
-                if (uid==selleruid){
-                %>
-
-                <li class="ad-2-crt simpleCart_shelfItem">
-                  <a class="btn item_add" role="button" onclick="deleteProduct()" > <span class="">&nbsp</span>Delete</a>
-                </li>
-                <li class="ad-2-crt simpleCart_shelfItem">
-                  <a class="btn item_add" role="button" href="/single/edit?pid=<%=pid%>&uid=<%=selleruid%>" > <span class="">&nbsp</span>Edit</a>
-                  <!--<a class="btn item_add" role="button" onclick="editProduct()" > <span class="">&nbsp</span>Edit</a>-->
-                </li>
-                <%
-                }else{
-                %>
-
 
 
                 <li class="ad-2-crt simpleCart_shelfItem">
@@ -316,9 +298,6 @@
 
       <!--5. foot start -->
       <%include footer.ejs%>
-
-
-
 
 </body>
 

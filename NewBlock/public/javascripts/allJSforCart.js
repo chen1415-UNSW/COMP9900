@@ -7,11 +7,13 @@ function removeFromCart(i){
     console.log("pid=");
     console.log(pid);
     var uid = document.getElementById("uid").innerText;
+    var removeNum = document.getElementById("oneItemIncartNum").innerText.valueOf();
+    console.log("removeNum="+removeNum)
 
     console.log("uid want remove ==> uid=");
     console.log(uid);
 
-    delFromCart_json = {pid:pid,uid:uid};
+    delFromCart_json = {pid:pid,uid:uid,removeNum:removeNum};
     //2. 数据库删除
     $.ajax({
         type: 'POST',

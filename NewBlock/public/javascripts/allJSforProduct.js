@@ -98,6 +98,7 @@ function editProduct(){
     var productName = document.getElementById("productName").value;
     var productPrice = document.getElementById("productPrice").value;
     var productInfo = document.getElementById("productInfo").value;
+    var productStock = document.getElementById("productStock").value;
 
 
 
@@ -107,8 +108,9 @@ function editProduct(){
     // console.log("productName="+productName);
     // console.log("productPrice="+productPrice);
     // console.log("productInfo="+productInfo);
+    console.log("edit productStock="+productStock);
 
-    edit_json = {"pid":pid, "selleruid":selleruid,"productName":productName, "productInfo":productInfo, "productPrice":productPrice, "imgPath":imgPath};
+    edit_json = {"pid":pid, "selleruid":selleruid,"productName":productName, "productInfo":productInfo, "productPrice":productPrice, "productStock":productStock,"imgPath":imgPath};
 
 
     $.ajax({
@@ -177,12 +179,49 @@ function addToCart(){
                 console.log("itemNum=",itemNum);
                 document.getElementById("simpleCart_quantity").innerText = itemNum;
 
+                window.location='http://localhost:3000/single/showproduct?pid='+pid;
+
             }
         },
         error: function (err) {
             console.log(err.message);
         }
     });
+}
+
+function searchByPrice(){
+    console.log("----- searchBy price")
+    var min = parseFloat(document.getElementById("min").value);
+    var max = parseFloat(document.getElementById("max").value);
+
+    console.log(searchInfo);
+    if (min>=max){
+        window.alert("Invalid input. Min must larger than Max. ");
+    }else{
+
+        $.ajax({
+            type: 'GET',
+            url: '/search?searchInfo='+searchInfo+'&min='+min+'&max='+max,
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(),
+            success: function (data) {
+                // console.log("success delete frontend!!!");
+                // console.log(data.msg);
+                if (data.msg){
+                    var searchresult = data.searchresult;
+                    window.alert("Search min max successfully..");
+                    window.location.href = '/search?searchInfo='+searchInfo+'&min='+min+'&max='+max;
+                }
+            },
+            error: function (err) {
+                console.log(err.message);
+            }
+        });
+
+
+    }
+
 
 
 

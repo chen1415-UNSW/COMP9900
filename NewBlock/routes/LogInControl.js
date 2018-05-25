@@ -1,6 +1,4 @@
 var Client=require('../models/clients');
-var cryptoscript = require('../routes/encrypter');
-
 
 module.exports = function (request, response, next)
 {
@@ -19,18 +17,14 @@ module.exports = function (request, response, next)
         }
         else if(res!=null)
         {
-            var en_pwd = cryptoscript.cryptPwd(pwd);
-            console.log("en_pwd: ",en_pwd);
-
-
-            if(res.password == en_pwd)
+            if(res.password == pwd)
             {
                 request.session.user = {'username': uname};
                 request.session.userid = {'uid': res._id};
 
 
                 return response.json({success:true});
-            }else if(res.password != en_pwd)
+            }else if(res.password != pwd)
             {
                 return response.json({success:false});
             }

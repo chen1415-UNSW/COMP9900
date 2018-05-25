@@ -1,6 +1,7 @@
 
 var Cart=require('../models/carts');
 var Block=require('../models/block');
+var Product =require('../models/products');
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -11,7 +12,7 @@ router.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
 
-    if(req.session.user == undefined || req.session.user == "NULL")
+    if(req.session.user == undefined)
     {
         res.redirect('/signup');
     }
@@ -49,6 +50,8 @@ router.get('/', function(req, res, next) {
 router.post("/delfromcart",function(req,res,next){
     var pid = req.body.pid;
     var uid = req.body.uid;
+    var removeNum = parseInt(req.body.removeNum);
+
     // console.log("/delfromcart pid=");
     // console.log(pid);
     //
@@ -63,10 +66,52 @@ router.post("/delfromcart",function(req,res,next){
             });
             console.error(err);
         } else {
-            res.send({
-                err: null,
-                msg: "true"
+
+            // delete from cart 成功，向product写回number
+            Product.findOne({'_id': pid},function(err,response){
+                result = response;
+                if(result ==null){
+                    res.send({
+                        err: "delete cart+ add number back error fail",
+                    });
+                }else{
+                    productStockNum = parseInt(result.productStock);
+                    console.log("productStockNum="+productStockNum);
+                    Product.update({'_id': pid}, {productStock: productStockNum+removeNum},function(err,result){
+                        result = response;
+                        if(result ==null){
+                            res.send({
+                                err: "delete cart+ add number back error fail",
+                            });
+                        } else{
+                            console.log('remove cart+ Product stock add 成功：');
+
+                            // res.send({
+                            //     // 返回cartid给 处理addto cart的js code
+                            //     err: null,
+                            //     msg:"remove cart + addback numbers successfully"
+                            // });
+                            res.send({
+                                err: null,
+                                msg: "true"
+                            });
+                        }
+                    });
+
+
+                }
+
             });
+
+
+
+
+
+
+            // res.send({
+            //     err: null,
+            //     msg: "true"
+            // });
         }
     });
 });

@@ -5,7 +5,10 @@
 /ExpressWebpack/node_modules/*
 /ExpressWebpack/.vscode/*
 /ExpressWebpack/build/*
-/ExpressDemo/node_modules*
+/ExpressDemo/node_modules/*
 /ExpressDemo/*
 /NewBlock/*
 /backup/*
+/BlockBusiness/node_modules/*
+/BlockBusiness/build/*
+/BlockBusiness/vscode/*

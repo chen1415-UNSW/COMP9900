@@ -1,0 +1,96 @@
+Work Diary
+
+z5099956 Yihan Xiao
+
+--------------------------------------------------------------
+Week2:
+ 
+- Group formed
+- Basic study of DApp and syntax of Solidity
+- Go through practice of MetaMask
+--------------------------------------------------------------
+Week3: 
+
+- Begin to cooperate in Trello
+- In charge of Epic section of project proposal
+- Continue to study use of Solidity and Web3.js
+
+--------------------------------------------------------------
+Week4：
+- Finish fundamental study of smart contract
+- Try to deploy smart contract with Ganache
+- Successfully implement basic feature of smart contract based on simple variables
+- Build Web project with Express(Node.js)
+- Tried alternative way to build Web project with Python(Flask) which I've been familiarized with, give up   
+  eventually since web3.py is not well supported and maintained as web3.js. 
+
+--------------------------------------------------------------
+Week5:
+- Update the basic smart contract project with new features
+- Learned how to use event in Solidity, which can go along with JS to obtain data from contract instantly.
+- Build a simple demo page for simulating purchasing event and showing the hash record of each purchase on web page.
+- Web project is now working with Ganache and Remix independently, which need to be integrated in the future.
+
+--------------------------------------------------------------
+Week6:
+- Prepare for Mide-term Demo in this week.
+
+--------------------------------------------------------------
+Week7:
+- Go through integrated process of Truffle.
+- The Solidity code can be combined within Project now, rather then work in Remix independently.
+- Resign smart contract
+- Implementing the trade page from which the transaction hash will be read automatically after each trade.
+- Refine the structure of Web3 calling, packing into a seperate file which is relatively easy and clean to use
+- Conquer the concurrent strategy of Javascript, learnt the async/await method and Promise, which helps to solve
+  the call-back problem from Blockchain.
+
+--------------------------------------------------------------
+Week8:
+- Adding balance checking function, now users can refresh their balance instantly on the profile page.
+- Implementing a loading page with JS, which is useful when the trade needs time to deploy on Blockchain.
+- Refine the mongoDB database design.
+- Fix several bugs of web pages, including the erroreous price calculation.
+- Refine the structure of smart contract, trying to implement escrow payment function.
+- Connected with the purchase/sale history page, now the block address can be displayed automatically.
+
+--------------------------------------------------------------
+Week9:
+- Escrow function done. Now the smart contract is able to hold the deposit from buyer and wait for the buyer
+  to confirm.
+- Seller can received the money released from smart contract automatically.
+- Adding flag event on user page to inform the change of status of each trade.
+- Fix bugs of frond-end web pages
+
+--------------------------------------------------------------
+Week10:
+- Adding delivery function to seller. Now seller can choose to make delivery and system will record the delivery
+  information to inform buyer.
+- Adding safety functions include safeMath to Solidity code. The balance now would be double checked when 
+  user try to purchase.
+- Adding online rate check, the price shown on every single item page will be transferred into AUD and shown 
+  in a small notice toolkit for user.
+- Redesign the main Logo and icon of currency(ethereum)
+
+--------------------------------------------------------------
+Week11:
+- Fix several bugs of database functions.
+- Fix the size problem of image displayed.
+- Refine the functions of checkout module, discarding all trivial files.
+- Refine the management of addresses, user will be assigned an address automatically from address-pool.
+- Refine the process of trade.
+
+--------------------------------------------------------------
+Week12:
+- Keep debugging and prepare for final Demo
+
+
+
+
+
+
+
+
+
+
+ 

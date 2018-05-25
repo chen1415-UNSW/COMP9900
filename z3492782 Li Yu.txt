@@ -1,0 +1,54 @@
+Work Diary
+
+z3492782 Li Yu
+
+--------------------------------------------------------------
+Week2:
+ 
+1. Group formed
+2. Learned concepts of DAPP
+3. Learned basic syntax of Solidity
+4. Learned how to use MetaMask
+--------------------------------------------------------------
+Week3: 
+
+1. Created Trello group for team
+2. Wrote project Methodology and Project Time-frame/Schedule for project proposal
+3. Managed group activates on Trello
+4. Reviewed project proposal and submited it
+
+--------------------------------------------------------------
+Week4:
+
+1. Distributed tasks for group members
+2. Created a frond end page of adding products to cart
+3. Provided opinions for database design 
+
+--------------------------------------------------------------
+Week5:
+
+1. Designed the relational database for the project
+2. Learn how to use truffle and webpack to create the project environment
+3. Learn express and ejs of Node.js
+
+--------------------------------------------------------------
+Week6:
+
+1. Learn how to use javascript to access Google firbase
+2. Prepare for Demo
+
+--------------------------------------------------------------
+Week7:
+
+1. Learn how to use MongoDB
+2. Reformat the front end pages. Separate hear , footer and javascript parts from the ejs pages.
+
+--------------------------------------------------------------
+Week8:
+
+1. Learn how to use javascript to access Google firbase
+2. Design and coding for the Mongodb product model and schema.
+3. Coding for Add one product/ delete one product.
+3. Coding for search products by keyworks.
+
+

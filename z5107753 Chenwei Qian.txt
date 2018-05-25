@@ -1,0 +1,47 @@
+Work Diary
+
+z5107753 Chenwei Qian
+
+--------------------------------------------------------------
+Week2:
+ 
+1. Group formed
+2. Learned concepts of DAPP
+3. Learned basic syntax of Solidity
+4. Learned how to use node.js
+--------------------------------------------------------------
+Week3: 
+
+1. Trello group and bitbucket group formed
+2. Wrote aim part for project proposal
+3. continue learning solidity and DApp
+4. project proposal submited
+--------------------------------------------------------------
+Week 4
+
+1. obtain my task as a database admin in this project
+2. leaning about nodejs and web site building
+3. discuss about our database design
+--------------------------------------------------------------
+Week 5
+
+1. Set up dev environment 
+2. use mysql to perform original version of the database
+3. Have problem about how to get dataset as an object.
+-------------------------------------------------------------
+week 6
+
+1. try using firebase but give up later
+2. start using webstorm(used to be subline)
+3. start building website template
+------------------------------------------------------------
+week 7
+
+1. using mongodb buiding database
+2. mongoose schema coding
+3. link database and frontend, database now is functional
+-------------------------------------------------------------
+week 8
+
+1. move database online
+2. static sql method coding, frontend can use it as nomal function. 

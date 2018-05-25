@@ -1,0 +1,104 @@
+<!--1. header start-->
+
+<%
+console.log("Header u_name: ",u_name)
+if(u_name != "NULL")   //现在是有用户登录的情况
+{%>
+
+
+
+
+<!--1. header end-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<div class="header">
+    <div class="container">
+        <div class="header-top">
+            <div class="logo">
+                <a href="/index">BLOCK BUSINESS</a>
+            </div>
+            <div class="login-bars">
+                <a class="btn btn-default log-bar" href="/ProfileControl" role="button">User Name: <%=u_name%></a>
+                <a class="btn btn-default log-bar" href="/addproduct" role="button">Add product</a>
+                <a class="btn btn-default log-bar" href="/myproducts?uid=<%=uid%>" role="button">My products</a>
+                <a class="btn btn-default log-bar" href="/SignOut" role="button">Sign Out</a>
+                <div class="cart box_1">
+                    <!--<a href="/checkout?uid=<%=uid%>"></a>-->
+                    <script>
+                        $(function(){
+                            var uid = "<%=uid%>";
+                            console.log("/header uid = ");
+                            console.log(uid);
+                            uid_json = {uid:uid};
+                            $.ajax({
+                                type:"POST",
+                                dataType:"",
+                                url:"/checkout/itemtotalnum",
+                                contentType: "application/json",
+                                dataType: 'json',
+                                data: JSON.stringify(uid_json),
+                                async:false,
+                                cache:false,
+                                success: function (data) {
+                                    if (data.result){
+                                        //console.log("cart item num = backend data.result = "+data.result);
+                                        document.getElementById("simpleCart_quantity").innerText = data.result;
+                                    }
+                                    else{
+                                        //console.log("cart item num = backend data.result = 0");
+                                        document.getElementById("simpleCart_quantity").innerText = "0";
+                                    }
+
+                                },
+                                error: function (err) {
+                                    console.log(err.message);
+                                }
+
+                            });
+
+                        });
+
+                        $("#simpleCart_quantity").load("20000");
+                    </script>
+
+                    <h3>
+                        <div class="total">
+                            <p hidden id="uid"><%=uid%></p>
+                            <a href="/checkout?uid=<%=uid%>">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            items  : <span id="simpleCart_quantity" class="badge" ></span></a></br>
+                        </div>
+                    </h3>
+                    </a>
+                    <!--<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>-->
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%
+}else if(u_name == "NULL"){ // if 没有用户登录 则后面的购物车链接都不生效
+%>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<div class="header">
+    <div class="container">
+        <div class="header-top">
+            <div class="logo">
+                <a href="/index">BLOCK BUSINESS</a>
+            </div>
+            <div class="login-bars">
+                <a class="btn btn-default log-bar" href="/register" role="button">Sign up</a>
+                <a class="btn btn-default log-bar" href="/signup" role="button">Log In</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%
+}
+ %>
+
+

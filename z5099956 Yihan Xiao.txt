@@ -83,7 +83,8 @@ Week11:
 --------------------------------------------------------------
 Week12:
 - Keep debugging and prepare for final Demo
-- Write final report of project. In charge of block-chain function and implementation challange parts.
+- Write final report of project. In charge of block-chain function and implementation challange and initialization/guide parts
+- Write Readme file
 
 
 

@@ -6,7 +6,7 @@ Chenwei Qian: z5107753@ad.unsw.edu.au
 Hao Chen:     z5102446@ad.unsw.edu.au
 
 Final Demo accomplished. Well done!
-![front page](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/FrontPage.png?raw=true)
+![front page](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/FrontPage.png?raw=true){:height="50%" width="50%"}
 
 ## Initialization:
 The project is based on Node.js, which requires NPM environment to install all needed package. Start terminal at the root directory.   
@@ -68,6 +68,7 @@ Next Run:
 compile --reset
 ```
 ![compile contract](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/compile%20Solidity.png?raw=true)
+
 This will make truffle to compile all Solidity code in Contract directory. When it is done, a new directory named **build/contracts** will be generated in root path. All compiled contracts will be placed here in **.json** format.
 
 Next Run: 
@@ -75,7 +76,7 @@ Next Run:
 ``` truffle
 migrate --network development --reset
 ```
-![migrate](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/migrate.png?raw=true)
+![migrate](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/migrate.png?raw=true)  
 
 This will migrate the smart contract defined in Solidity onto Ganache. 
 You shall see the details showing the deployment of smart contract on Ganache from the interface of Ganache in the Transaction page:

@@ -9,7 +9,9 @@ Final Demo accomplished. Well done!
 ![front page](https://github.com/Yikhan/ImageHost/blob/master/Block%20Business/FrontPage.png?raw=true)
 
 ## Initialization:
-The project is based on Node.js, which requires NPM environment to install all needed package. Start terminal at the root directory.   
+The project is based on Node.js, which requires NPM environment to install all needed package. You need to install Node.js and NPM in the first place. 
+
+Start terminal at the root directory.   
 Run:
 
 ``` command
@@ -17,7 +19,7 @@ npm install
 ```
 
 	
-This will install all packages the project needs according to the package.json file in root path.
+This will install all packages the project needs according to the package.json file in root path. When the installation is done, directory **node_modules** will be made.
 
 Install Webpack, which is used to pack all files related to block-chain.
 You may need to run the following commands:  

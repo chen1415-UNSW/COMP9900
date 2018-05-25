@@ -41,7 +41,7 @@ Week6:
 Week7:
 
 1. Learn how to use MongoDB
-2. Reformat the front end pages. Separate hear , footer and javascript parts from the ejs pages.
+2. Reformat the front end pages. Separate header , footer and javascript parts from the ejs pages.
 
 --------------------------------------------------------------
 Week8:
@@ -51,4 +51,37 @@ Week8:
 3. Coding for Add one product/ delete one product.
 3. Coding for search products by keyworks.
 
+--------------------------------------------------------------
+Week9:
 
+1. Coding for searching products matching for any string
+2. Coding for add product to cart/delete product from cart
+3. Coding for ajax request of header to display current item number of one user in each page
+4. Design and coding for the Mongodb cart model and schema. 
+
+--------------------------------------------------------------
+Week10:
+
+1. Coding for edit product
+2. Coding for add product to cart/delete product product from cart/display user's items in cart page
+3. Coding for delete prduct and update buyer's cart
+4. Coding for provide a product list for blockchain to placeorder
+5. Coding for Myproducts page which contains all items posted by one user
+
+
+
+--------------------------------------------------------------
+Week11:
+
+1. Coding for choose quantity when adding product to cart
+2. Coding for block schema of MongoDB side
+3. Coding for filter search results by price range
+4. Coding for filter search results by seller name
+5. Coding for place order from Node.js backen
+6. CSS formating for front-end code
+
+--------------------------------------------------------------
+Week12:
+
+1. debug
+2. report writing 

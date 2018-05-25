@@ -93,7 +93,7 @@ You will exit from truffle command-line and back to the root path.
 
 ## Package files with Webpack
 
-After all steps above, the smart contract is ready to use and we need to include them into a Javascript module for webpage to use.
+After all steps above, the smart contract is ready to use and we need to include them into a Javascript module for webpage to use.  
 Run:
 
 ``` command

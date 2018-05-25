@@ -5,8 +5,6 @@ module.exports = function (request, response, next) {
 
     console.log("View Order History Sale session: ", request.session.user);
 
-    //功能待添加
-
     if(request.session.user == undefined || request.session.user == "NULL")
     {
         // console.log("Sign Up No username Yet!");

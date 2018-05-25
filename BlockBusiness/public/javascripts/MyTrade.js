@@ -28066,11 +28066,8 @@ var default_buyer
 var default_seller
 var buyer_balance
 var seller_balance
-// 合约实例化
 var instance
-// 合约默认部署地址
 var contractAddress
-// 合约余额
 var contractBalance
 
 window.App = {
@@ -28090,7 +28087,7 @@ window.App = {
               alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.")
               return
             }
-            // 以后需要替换为用户的实际账户
+            // accs has to be replaced with buyer
             account_list = accs
             default_buyer = account_list[1]
             default_seller = account_list[2]
@@ -28098,21 +28095,19 @@ window.App = {
             console.log("Check account")
             console.log(default_buyer)
            
-            // 设置初始合约默认地址，否则会报错invalid address
+            // set default address
             web3.eth.defaultAccount = default_buyer
 
             self.refreshBalance(default_buyer)
   
           })
-        // 得到Trade合约地址
+   
         self.getContractAddress()
        
-        // 注册事件
         self.tradeEvent()
 
     },
 
-    // 返回新的地址给注册的新用户
     getNewAccount: function() {
 
     },
@@ -28122,19 +28117,6 @@ window.App = {
     },
 
     refreshBalance: async function(account) {
-        
-        // web3.eth.getBalance(account, function(err, result){
-        //     console.log("Refresh Balance")
-        //     if (!err) {
-        //          var balance = web3.fromWei(result ,'ether').toString()
-        //          console.log("MyTrade:" + balance)
-        //          return balance
-        //     }
-        //     else {
-        //         console.log(err)
-        //         return -1
-        //     }
-        // })
         var balance = await web3.eth.getBalance(account)
         return web3.fromWei(balance ,'ether').toNumber()
     },
@@ -28165,7 +28147,7 @@ window.App = {
 
         var self = this
         var txHashList = []
-        var waiting_for = 0 //异步等待标志
+        var waiting_for = 0 
         var flag = true
 
         var cartSize = cart_list.length
@@ -28176,12 +28158,12 @@ window.App = {
                 callback(1, cart_list)
             }
         }
-        //统计购物车总价是否超过用户余额
+  
         var total = 0
         for (var i in cart_list){
             total += cart_list[i].number * cart_list[i].price
         }
-        //添加价格确认
+        // check balance and total
         var thisBuyer = cart_list[0].buyerHash
         if (thisBuyer === undefined) thisBuyer = default_buyer
         if (! await self.checkBalanceEnough(thisBuyer, total)) {
@@ -28197,7 +28179,7 @@ window.App = {
         try{
         for (var i in cart_list) {
             ( async function(i){ 
-                // 如果买卖双方地址没有被赋值，使用默认地址交易
+               
                 let tradeDetail = cart_list[i]
                 if (tradeDetail.buyerHash === undefined) {
                     tradeDetail.buyerHash = default_buyer
@@ -28210,9 +28192,9 @@ window.App = {
                 console.log(tradeDetail.buyerHash)
                 console.log(tradeDetail.sellerHash)
             
-                // 该商品的总价
+                // total price
                 let total_ThisItem = tradeDetail.productPrice * tradeDetail.number
-                // 向区块发送
+                // send transaction to block
                 let value = await instance.setTrade(
                     tradeDetail.selleruid, 
                     tradeDetail.uid, 
@@ -28228,9 +28210,9 @@ window.App = {
                 let currentIndex = lastMaxIndex + parseInt(i)
 
                 console.log("Trade Index here: " + currentIndex)
-                //在输入的购物车里面添加交易成功的Hash
+               
                 cart_list[i].hash = value.tx
-                //添加储存在区块中的索引，便于confirm
+                //add index of trade in block
                 cart_list[i].blockIndex =  currentIndex
                 cart_list[i].buyerHash = tradeDetail.buyerHash
                 cart_list[i].sellerHash = tradeDetail.sellerHash
@@ -28238,12 +28220,6 @@ window.App = {
                 contractBalance = web3.eth.getBalance(contractAddress).toNumber()
                 console.log("Show contract balance after trade")
                 console.log(contractBalance)
-
-                //再把钱付给卖家
-                // var payHash = await instance.confirmTrade(currentIndex, {from:tradeDetail.buyerHash})
-                // var payHash = await instance.confirmTradeByAddress(
-                // "0x60EC8abbb9d6C807B0F2cd3D1E39c7D103EaF2f1", 
-                // {from:tradeDetail.buyerHash})
 
                 waiting_for += 1
                 waitingEnd(waiting_for)
@@ -28299,20 +28275,26 @@ window.App = {
     },
 
     simpleTransaction: async function(from, to, amount) {
-        var tx = await web3.eth.sendTransaction({from:from, to:to, value:web3.toWei(amount, 'ether'), gas:3000000})
+        var tx = await web3.eth.sendTransaction({
+            from:from, 
+            to:to, 
+            value:web3.toWei(amount, 'ether'), 
+            gas:3000000
+        })
         return tx
     },
 
     tradeEvent: function() {
         instance.showTrade().watch(function(error, result) {
-            console.log("Seller:" + result.args.seller + " Buyer:" + result.args.buyer + 
-            " Product:" + result.args.item)
+            console.log(
+                "Seller:" + result.args.seller + 
+                " Buyer:" + result.args.buyer + 
+                " Product:" + result.args.item
+            )
         })
         instance.showTradeIndex().watch( async function(error, result){
             let index = result.args.single_index.toNumber()
             console.log("Record trade index: " + index)
-            // let value = await instance.getSellerAddress(index)
-            // console.log(value)
         })   
     }
 

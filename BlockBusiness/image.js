@@ -1,7 +1,5 @@
 var cloudinary = require('cloudinary');
 
-
-
 exports.uploadimage= function (picture_path, callback) {
 
     picture_path =  __dirname + "/public"+picture_path;

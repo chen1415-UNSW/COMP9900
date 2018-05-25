@@ -37,7 +37,7 @@
     <script defer src="js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
     <script type="text/javascript" src="/javascripts/MyTrade.js"></script>
-    <!--交易动态页面-->
+
     <link href="./css/please-wait.css" rel="stylesheet">
     <link href="./css/spiner.css" rel="stylesheet">
     <script type="text/javascript" src="/js/please-wait.min.js"></script>
@@ -120,14 +120,14 @@
     </div>
 </div>
 
-<!--cart 展示区-->
+<!--cart-->
 <div class="check">
     <div class="container">
         <div class="col-md-12 cart-items">
 
             <h1 id="totalItemsNum">My Purchase History (<%=JSON.parse(JSON.stringify(result)).length%>)</h1>
 
-            <!--循环输出order history 内容-->
+            <!--order history-->
 
             <%
             var totalMoney = 0;

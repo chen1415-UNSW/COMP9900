@@ -31,8 +31,6 @@ router.post('/', upload.single('avatar'), function (req, res, next) {
     console.log("-------------- 5.8 调试照片 cloud-----------")
     console.log("1. imgPath = "+ imgPath);
 
-
-   // 5.8 bug
     imageCloud.uploadimage(imgPath, function(url) {
         console.log("3");
 
@@ -43,17 +41,7 @@ router.post('/', upload.single('avatar'), function (req, res, next) {
         });
 
     });
-    // console.log("3 . imgPathInCloud="+ imgPathInCloud);
-    //
-    //
-    // res.send({
-    //     err: null,
-    //     filePath: imgPathInCloud
-    // });
-    // res.send({
-    //     err: null,
-    //     filePath: 'uploads/' + path.basename(req.file.path)
-    // });
+
 });
 
 

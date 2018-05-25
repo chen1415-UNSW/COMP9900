@@ -30,7 +30,7 @@ contract Trade is SafeMath {
     );
 
     event showTradeIndex(
-        // 交易在合约记录中的编号，返回后方便用户确认付款
+        // the index of each trade in contract
         uint single_index
     );
 

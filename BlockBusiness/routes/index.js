@@ -6,8 +6,6 @@ var router = express.Router();
 /* GET home page. */
 router.get('/index', function(req, res, next) {
 
-
-
     var regex = new RegExp("",'i');
 
     if(req.session.user == undefined || req.session.user.u_name == "NULL")

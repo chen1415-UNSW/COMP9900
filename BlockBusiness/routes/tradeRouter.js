@@ -7,20 +7,6 @@ router.use(bodyParser.urlencoded({extend:false}))
 router.use(bodyParser.json())
 
 router.get('/', function(req, res, next) {
-    //Address.InitAllAddress()
-    // (async () => {
-    //     let addr = await Address.getAddress(true)
-    //     if (addr === undefined) {
-    //         console.log("No result matching")
-    //     } else {
-    //         console.log(addr.address)
-    //         Address.updateAddress(addr.address, false)
-    //     }
-    // })()
-   
-    // console.log("------check set------")
-    // addr = Address.getAddress(false)
-    // console.log(addr)
     res.render('trade')
 })
 

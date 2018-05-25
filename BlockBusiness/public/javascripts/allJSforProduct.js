@@ -1,4 +1,3 @@
-// <!--ajax发布pic-->
 function handleUpload() {
     let file = document.getElementById("choose").files[0];
     let formData = new FormData();
@@ -22,7 +21,6 @@ function handleUpload() {
         }
     })
 }
-
 
 function addProdcut() {
 
@@ -100,14 +98,6 @@ function editProduct(){
     var productInfo = document.getElementById("productInfo").value;
     var productStock = document.getElementById("productStock").value;
 
-
-
-    // // var pid = editpid.toString().substr(4);
-    // console.log("pid="+pid);
-    // console.log("-------------------- imgPath="+imgPath);
-    // console.log("productName="+productName);
-    // console.log("productPrice="+productPrice);
-    // console.log("productInfo="+productInfo);
     console.log("edit productStock="+productStock);
 
     edit_json = {"pid":pid, "selleruid":selleruid,"productName":productName, "productInfo":productInfo, "productPrice":productPrice, "productStock":productStock,"imgPath":imgPath};
@@ -151,12 +141,6 @@ function addToCart(){
     var imgPath = document.getElementById("showpimgPath").src.toString();
     var number = document.getElementById("shownumber").value;
     // var number = 1;
-
-    // console.log("add pid =");
-    // console.log(pid);
-    // console.log(productName);
-    // console.log(productInfo);
-    // console.log(productPrice);
     console.log("/***** addproduct number =" + number);
 
 
@@ -181,7 +165,6 @@ function addToCart(){
             // console.log("success delete frontend!!!");
             // console.log(data.msg);
             if (data.msg){
-                // 向 header的cart 加入 +1，加金额
                 window.alert("add to cart successfully.");
 
                 var itemNum = parseInt(document.getElementById("simpleCart_quantity").innerText) + parseInt(number);
@@ -227,13 +210,5 @@ function searchByPrice(){
                 console.log(err.message);
             }
         });
-
-
     }
-
-
-
-
-
-
 }

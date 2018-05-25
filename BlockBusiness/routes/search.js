@@ -111,11 +111,11 @@ router.get('/', function(req, res, next) {
 
         }
 
-    } // USER != NULL
+    } 
     else
     {
 
-        var searchInfo = req.query.searchInfo;//get
+        var searchInfo = req.query.searchInfo;
         var min = req.query.min;
         var max = req.query.max;
         var sellername = req.query.sellername;

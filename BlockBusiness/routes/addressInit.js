@@ -18,7 +18,7 @@ module.exports =
                 web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"))
             }
         }
-        // 初始化web3
+ 
         web3_start()
 
         web3.eth.getAccounts(function(err, accs) {

@@ -7,7 +7,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords" content=""/>
 
-  <!--好像也是展示pic用的code-->
   <script type="application/x-javascript">
     addEventListener("load", function() {
       setTimeout(hideURLbar, 0);
@@ -42,7 +41,7 @@
 
   <link href="/css/notice.css" rel="stylesheet" type="text/css">
 
-  <!--pic 展示-->
+  <!--pic-->
   <script>
     // Can also be used with $(document).ready()
     $(window).load(function() {
@@ -71,11 +70,11 @@
 
 <body>
   <%include header.ejs%>
-    <!--2.加search框-->
+
     <%include searchbar.ejs%>
 
 
-      <!--3. 导航 start -->
+
       <div class="head-bread">
         <div class="container">
           <ol class="breadcrumb">
@@ -84,9 +83,7 @@
           </ol>
         </div>
       </div>
-      <!--3. 导航 end -->
 
-      <!--4. 展示单个商品-->
       <div class="showcase-grid">
         <div class="container">
           <div class="col-md-8 showcase">
@@ -116,7 +113,7 @@
                 <p hidden id="showpid">pid:<%= pid %></p>
 
                 <!--<h4 id="showproductPrice"><span class="glyphicon glyphicon-usd"></span>&#36; <%= productPrice %></h4>-->
-                <!--5.10 增加计数器-->
+                <!--5.10 counter-->
                 
                 <h4 id="showproductPrice" title="unknown AUD">
                     <span>

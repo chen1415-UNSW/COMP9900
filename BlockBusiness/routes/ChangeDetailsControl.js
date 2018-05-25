@@ -4,7 +4,6 @@ var cryptoscript = require('../routes/encrypter');
 
 module.exports = function (request, response, next) {
 
-    //功能待做
     console.log("-----Enter Change Details----");
 
     var uname = request.session.user.username;

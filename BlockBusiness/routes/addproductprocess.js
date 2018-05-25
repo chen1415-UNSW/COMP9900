@@ -15,7 +15,6 @@ router.post('/', function(req, res, next) {
     var selleruid = req.session.userid.uid;
     var sellername = req.session.user.username;
 
-    //调用数据库，写入4个商品参数，返回pid
     var productentity=new Product(
         {
             selleruid:selleruid,

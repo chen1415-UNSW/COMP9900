@@ -21,8 +21,6 @@ $(function() {
         }
     });
 
-
-
     $("form[name='addProduct']").validate({
         // Specify validation rules
         rules: {

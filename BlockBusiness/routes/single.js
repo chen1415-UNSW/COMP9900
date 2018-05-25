@@ -40,8 +40,6 @@ router.get('/showproduct', function(req, res, next) {
         var logstr = JSON.stringify({url:req.path});
         console.log(logstr);
 
-        // 查数据库：未完继续
-        //数据库里边找这条数据，render 这个记录
         var productName = "";
         var productInfo = "";
         var productPrice = "";

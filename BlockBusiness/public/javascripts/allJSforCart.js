@@ -2,7 +2,7 @@ function removeFromCart(i){
     console.log("i=");
     console.log(i);
 
-    //1. 页面隐藏
+    //1. hide page
     var pid = document.getElementById("pid"+i.toString()).innerText;
     console.log("pid=");
     console.log(pid);
@@ -14,7 +14,7 @@ function removeFromCart(i){
     console.log(uid);
 
     delFromCart_json = {pid:pid,uid:uid,removeNum:removeNum};
-    //2. 数据库删除
+    //2. delete from database
     $.ajax({
         type: 'POST',
         url: '/checkout/delfromcart',
@@ -42,10 +42,6 @@ function  placeorder(cartInfo_list) {
     console.log(" cartInfo_list=");
     console.log(cartInfo_list);
 
-    //cartInof_json = {cartInfo_list:cartInfo_list};
-    // 5.8 制造假的 block信息
-    // block_json = {
-    //     status:1, cartInfo_list:cartInfo_list, uid:document.getElementById("uid").innerText};
     block_json = cartInfo_list;
     $.ajax({
 
@@ -61,9 +57,6 @@ function  placeorder(cartInfo_list) {
             if (data.msg){
                 //
                 window.alert(data.msg);
-                //1.清空购物车
-                //2.写入mongo block schma
-                //3.跳转order history 成功页
 
                 window.location.href = "/ProfileControl";
 

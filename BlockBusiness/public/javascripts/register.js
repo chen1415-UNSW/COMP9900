@@ -17,7 +17,7 @@ function submitForm() {
                 if(response.success){
                     alert("Reister success!");
                     window.location='http://localhost:3000/signup'
-                    //在这里定义一个session对象，将这个表格里的username，存到session里面
+                    
                 }else{
                     alert("Register Fail! Pleas try again.");
                 }

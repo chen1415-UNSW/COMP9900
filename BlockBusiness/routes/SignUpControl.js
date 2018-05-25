@@ -25,7 +25,7 @@ module.exports = function (request, response, next)
         {
             if(pwd === pwd2)
             {
-                // 5.8 创建 user fake hash
+                
                 var hash = await Address.getAddress(true)
                 if (hash === undefined) {
                     console.log("All address used");

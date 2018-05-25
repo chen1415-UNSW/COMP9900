@@ -5,8 +5,6 @@ module.exports = function (request, response, next) {
 
     console.log("View Order History session: ", request.session.user);
 
-    //功能待添加
-
     if(request.session.user == undefined || request.session.user == "NULL")
     {
         // console.log("Sign Up No username Yet!");
@@ -14,7 +12,7 @@ module.exports = function (request, response, next) {
     }
     else
     {
-        console.log("可以进入orderhistory页面");
+        console.log("enter orderhistory");
         console.log("Profile Control:  UID   ", request.session.userid.uid);
 
         Blocks.find({'uid':request.session.userid.uid}, function(err, res){

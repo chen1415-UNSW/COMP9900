@@ -1,5 +1,4 @@
 
-
 module.exports = function (request, response, next) {
 
     console.log("Contact session: ", request.session.user);
